@@ -1,118 +1,133 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-
-const INTERESTS = [
-  { id: "sport", label: "Sport", emoji: "⚽" },
-  { id: "musik", label: "Musik", emoji: "🎵" },
-  { id: "kinder", label: "Kinder", emoji: "👶" },
-  { id: "kultur", label: "Kultur", emoji: "🎨" },
-  { id: "natur", label: "Natur", emoji: "🌿" },
-  { id: "ehrenamt", label: "Ehrenamt", emoji: "🤝" },
-];
-
-const TOTAL_STEPS = 4;
+import { Card } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { WIZARD_STEPS } from "@/lib/wizardConfig";
+import WizardStepRenderer from "./wizard/WizardStepRenderer";
 
 interface OnboardingPanelProps {
-  onComplete?: (interests: string[]) => void;
+  onComplete?: (answers: Record<string, any>) => void;
 }
 
 export default function OnboardingPanel({ onComplete }: OnboardingPanelProps) {
-  const [selected, setSelected] = useState<string[]>(["musik"]);
-  const [step, setStep] = useState(2);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, any>>({});
+  const [isFinished, setIsFinished] = useState(false);
 
-  const toggle = (id: string) =>
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
-    );
+  const currentStep = WIZARD_STEPS[stepIndex];
+  const progress = ((stepIndex + 1) / WIZARD_STEPS.length) * 100;
 
-  const handleNext = () => {
-    if (step < TOTAL_STEPS) {
-      setStep((s) => s + 1);
-    } else {
-      onComplete?.(selected);
+  const handleSelect = (value: any) => {
+    const newAnswers = { ...answers, [currentStep.id]: value };
+    setAnswers(newAnswers);
+
+    // Auto-advance for single-choice and transition steps
+    if (currentStep.type === "single" || currentStep.type === "transition") {
+      advance(newAnswers, value);
     }
   };
 
+  const advance = (currentAnswers: Record<string, any>, lastValue: any) => {
+    // Special logic for transition step
+    if (currentStep.id === "transition_accessibility" && lastValue === "no") {
+      finish(currentAnswers);
+      return;
+    }
+
+    if (stepIndex < WIZARD_STEPS.length - 1) {
+      setStepIndex((prev) => prev + 1);
+    } else {
+      finish(currentAnswers);
+    }
+  };
+
+  const handleBack = () => {
+    if (stepIndex > 0) {
+      setStepIndex((prev) => prev - 1);
+    }
+  };
+
+  const handleSkip = () => {
+    advance(answers, null);
+  };
+
+  const finish = (finalAnswers: Record<string, any>) => {
+    setIsFinished(true);
+    onComplete?.(finalAnswers);
+  };
+
+  if (isFinished) {
+    return (
+      <Card className="flex flex-col items-center justify-center gap-6 p-6 md:p-8 border-[0.5px] shadow-[0_2px_16px_rgba(13,92,99,0.07)] text-center h-[600px] animate-in zoom-in-95 duration-500">
+        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+          <Sparkles size={32} />
+        </div>
+        <div className="flex flex-col gap-2">
+          <h2 className="text-[20px] md:text-[22px] font-bold text-foreground">Matches gefunden!</h2>
+          <p className="text-[14px] text-text-body px-2 md:px-4">
+            Wir haben deine Präferenzen analysiert und die besten Vereine in deiner Nähe markiert.
+          </p>
+        </div>
+        <Button 
+          className="w-full mt-4" 
+          onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}
+        >
+          Zu den Ergebnissen
+        </Button>
+        <button 
+          onClick={() => {
+            setStepIndex(0);
+            setAnswers({});
+            setIsFinished(false);
+          }}
+          className="text-[12px] text-text-muted hover:underline"
+        >
+          Suche verfeinern
+        </button>
+      </Card>
+    );
+  }
+
   return (
-    <div
-      className="bg-card border border-border flex flex-col gap-5 p-8"
-      style={{
-        borderRadius: "14px",
-        borderWidth: "0.5px",
-        boxShadow: "0 2px 16px rgba(13,92,99,0.07)",
-      }}
-    >
-      {/* Header */}
-      <div className="flex items-baseline justify-between">
-        <h2 className="text-[18px] font-bold text-foreground">Dein Vereins-Match</h2>
-        <span className="text-[12px] text-text-muted">KI-gestützt</span>
-      </div>
+    <Card className="flex flex-col gap-5 p-6 md:p-8 border-[0.5px] shadow-[0_2px_16px_rgba(13,92,99,0.07)] h-[600px] relative overflow-hidden transition-all duration-300">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-16 -mt-16 pointer-events-none" />
 
-      {/* Interest chips */}
-      <div>
-        <p className="text-[14px] text-text-body mb-3">Was interessiert dich?</p>
-        <div className="grid grid-cols-3 gap-2">
-          {INTERESTS.map(({ id, label, emoji }) => {
-            const isSelected = selected.includes(id);
-            return (
-              <button
-                key={id}
-                type="button"
-                onClick={() => toggle(id)}
-                aria-pressed={isSelected}
-                className={cn(
-                  "relative flex flex-col items-center gap-1.5 p-3 rounded-[10px] transition-all text-[13px] font-medium",
-                  isSelected
-                    ? "border-2 border-primary text-primary"
-                    : "border border-border text-text-body hover:border-primary/50"
-                )}
-                style={isSelected ? { background: "rgb(13 92 99 / 0.06)" } : { background: "#fff" }}
-              >
-                {isSelected && (
-                  <span
-                    className="absolute -top-2 -right-2 w-[18px] h-[18px] rounded-full bg-primary flex items-center justify-center"
-                    aria-hidden="true"
-                  >
-                    <Check size={10} className="text-primary-foreground" strokeWidth={3} />
-                  </span>
-                )}
-                <span className="text-xl" aria-hidden="true">{emoji}</span>
-                <span>{label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Progress indicator */}
-      <div className="flex flex-col gap-1">
+      {/* Top Meta */}
+      <div className="flex items-center justify-between z-10 shrink-0">
         <div className="flex items-center gap-2">
-          {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-            <div
-              key={i}
-              className={cn(
-                "h-2 rounded-full transition-all duration-300",
-                i < step ? "bg-primary w-5" : "bg-border w-2"
-              )}
-              aria-hidden="true"
-            />
-          ))}
-          <span className="text-[12px] font-medium text-text-muted ml-1">
-            Frage {step} von {TOTAL_STEPS}
-          </span>
+          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-[12px] font-medium text-primary">Dein Vereins-Match</span>
         </div>
-        <p className="text-[12px] text-text-muted">
-          Noch {TOTAL_STEPS - step} Fragen, dann zeigen wir dir deine Treffer
-        </p>
       </div>
 
-      <Button onClick={handleNext} className="w-full">
-        Weiter →
-      </Button>
-    </div>
+      {/* Progress */}
+      <div className="flex flex-col gap-2 z-10 shrink-0">
+        <div className="flex items-center justify-between text-[11px] font-bold text-text-muted/80">
+          <span>SCHRITT {stepIndex + 1} VON {WIZARD_STEPS.length}</span>
+          <span>{Math.round(progress)}%</span>
+        </div>
+        <Progress value={progress} className="h-1.5 bg-primary/10" />
+      </div>
+
+      {/* Step Content */}
+      <div className="flex-1 z-10 flex flex-col">
+        <WizardStepRenderer
+          step={currentStep}
+          answers={answers}
+          onSelect={handleSelect}
+          onBack={stepIndex > 0 ? handleBack : undefined}
+          onSkip={handleSkip}
+        />
+      </div>
+
+      {/* Hint */}
+      <div className="text-[11px] text-text-muted/70 text-center italic mt-2 shrink-0">
+        Tipp: Du kannst Fragen jederzeit überspringen.
+      </div>
+    </Card>
   );
 }

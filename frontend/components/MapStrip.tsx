@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const PINS = [
   { x: "18%", y: "38%", label: "Nordstadt" },
@@ -11,13 +12,7 @@ const PINS = [
 export default function MapStrip() {
   return (
     <div
-      className="relative w-full overflow-hidden"
-      style={{
-        height: "320px",
-        borderRadius: "14px",
-        border: "0.5px solid #C5DEDE",
-        background: "#E8F2F0",
-      }}
+      className="relative w-full h-[320px] overflow-hidden rounded-[14px] border-[0.5px] border-[#C5DEDE] bg-[#E8F2F0]"
       role="img"
       aria-label="Karte von Kassel mit Vereinsstandorten"
     >
@@ -73,31 +68,26 @@ export default function MapStrip() {
           style={{ left: x, top: y }}
         >
           <div
-            className="w-8 h-8 bg-primary flex items-center justify-center rotate-45 mx-auto"
-            style={{
-              borderRadius: "6px 6px 0 6px",
-              boxShadow: "0 2px 8px rgba(13,92,99,0.2)",
-            }}
+            className="w-8 h-8 bg-primary flex items-center justify-center rotate-45 mx-auto rounded-tr-[6px] rounded-tl-[6px] rounded-bl-[6px] shadow-[0_2px_8px_rgba(13,92,99,0.2)]"
           >
             <MapPin size={14} className="text-primary-foreground -rotate-45" />
           </div>
-          <div
-            className="mt-2 bg-white rounded px-2 py-0.5 text-[11px] font-medium text-foreground whitespace-nowrap w-fit mx-auto"
-            style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.13)" }}
+          <Badge 
+            variant="secondary"
+            className="mt-2 bg-white hover:bg-white text-foreground text-[11px] font-medium whitespace-nowrap w-fit mx-auto shadow-[0_1px_4px_rgba(0,0,0,0.13)] border-0"
           >
             {label}
-          </div>
+          </Badge>
         </div>
       ))}
 
       {/* Area label */}
-      <div
-        className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 flex items-center gap-2"
-        style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.13)" }}
+      <Badge
+        className="absolute top-4 left-4 bg-white hover:bg-white rounded-lg px-3 py-2 flex items-center gap-2 shadow-[0_1px_4px_rgba(0,0,0,0.13)] border-0"
       >
         <MapPin size={13} className="text-primary" aria-hidden="true" />
         <span className="text-[13px] font-medium text-foreground">Kassel & Umgebung</span>
-      </div>
+      </Badge>
     </div>
   );
 }

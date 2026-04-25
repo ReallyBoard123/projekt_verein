@@ -19,8 +19,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 import { getClub } from "@/lib/api";
 import type { Club } from "@/types";
 import { categoryLabel, formatEventDate } from "@/lib/club-utils";
@@ -59,65 +61,59 @@ export default function ClubDetailPage({ params }: PageProps) {
     <main>
       {/* Breadcrumb */}
       <div
-        className="px-12 py-4 bg-background"
-        style={{ borderBottom: "0.5px solid #E8F0F0" }}
+        className="px-6 md:px-12 py-4 bg-background border-b-[0.5px] border-[#E8F0F0]"
       >
         <div className="max-w-[1200px] mx-auto flex items-center gap-2 text-[14px]">
           <Link href="/vereine" className="text-primary flex items-center gap-1 hover:underline">
             <ArrowLeft size={14} aria-hidden="true" />
-            Zurück zur Übersicht
+            <span className="hidden sm:inline">Zurück zur Übersicht</span>
+            <span className="sm:hidden">Zurück</span>
           </Link>
           <span className="text-text-muted">·</span>
-          <span className="text-text-muted">Vereine</span>
-          <span className="text-text-muted">·</span>
-          <span className="text-text-body">{club.name}</span>
+          <span className="text-text-muted hidden sm:inline">Vereine</span>
+          <span className="text-text-muted hidden sm:inline">·</span>
+          <span className="text-text-body truncate">{club.name}</span>
         </div>
       </div>
 
       {/* Hero header */}
       <div
-        className="px-12 pt-10"
-        style={{ background: "var(--bg-panel)", borderBottom: "0.5px solid var(--border)" }}
+        className="px-6 md:px-12 pt-8 md:pt-10 border-b-[0.5px] border-[var(--border)] bg-[var(--bg-panel)]"
       >
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-start gap-6 mb-6">
+          <div className="flex flex-col sm:flex-row items-start gap-6 mb-6">
             {/* Logo placeholder */}
             <div
-              className="w-24 h-24 bg-card border border-border flex items-center justify-center text-primary shrink-0"
-              style={{ borderRadius: "16px" }}
+              className="w-20 h-20 md:w-24 md:h-24 bg-card border border-border flex items-center justify-center text-primary shrink-0 rounded-[16px]"
               aria-hidden="true"
             >
-              <Users size={40} />
+              <Users size={32} className="md:size-10" />
             </div>
 
             {/* Title block */}
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[12px] font-semibold uppercase tracking-[0.8px] text-primary px-2 py-1 rounded bg-primary/10">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/10 border-0">
                   {categoryLabel(club.category)}
-                </span>
+                </Badge>
                 {club.matchScore > 0 && (
-                  <div
-                    className="flex items-center gap-1 px-2 py-1 rounded-full text-primary text-[12px] font-semibold"
-                    style={{
-                      background: "rgb(13 92 99 / 0.07)",
-                      border: "1px solid rgb(13 92 99 / 0.25)",
-                    }}
+                  <Badge
+                    variant="secondary"
+                    className="flex items-center gap-1 px-2 py-1 rounded-full text-primary text-[12px] font-semibold bg-primary/7 border-primary/25 hover:bg-primary/7"
                   >
                     <Star size={11} fill="currentColor" aria-hidden="true" />
                     {club.matchScore} % Match
-                  </div>
+                  </Badge>
                 )}
               </div>
 
               <h1
-                className="text-[38px] leading-[1.1] text-foreground"
-                style={{ fontFamily: "var(--font-serif)", letterSpacing: "-0.3px" }}
+                className="text-[28px] md:text-[38px] leading-[1.1] text-foreground font-serif tracking-[-0.3px]"
               >
                 {club.name}
               </h1>
 
-              <div className="flex items-center gap-5 mt-2 text-[14px] text-text-body">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-[14px] text-text-body">
                 <span className="flex items-center gap-1">
                   <MapPin size={14} aria-hidden="true" />
                   {club.location}
@@ -134,47 +130,38 @@ export default function ClubDetailPage({ params }: PageProps) {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-2 shrink-0">
-              <button
-                type="button"
+            <div className="flex flex-wrap items-center gap-2 shrink-0 w-full sm:w-auto">
+              <Button
+                variant="outline"
                 onClick={() => setSaved((s) => !s)}
                 aria-pressed={saved}
-                aria-label={saved ? "Gespeichert" : "Speichern"}
                 className={cn(
-                  "flex items-center gap-1.5 px-4 py-2 rounded-lg text-[14px] font-medium border transition-all",
+                  "flex-1 sm:flex-none flex items-center justify-center gap-1.5",
                   saved
-                    ? "text-primary border-primary/40"
-                    : "text-text-body border-border hover:border-primary/50"
+                    ? "text-primary border-primary/40 bg-primary/5 hover:bg-primary/10"
+                    : "text-text-body border-border"
                 )}
-                style={saved ? { background: "rgb(13 92 99 / 0.06)" } : {}}
               >
                 <Heart
                   size={15}
                   aria-hidden="true"
                   className={saved ? "text-primary fill-primary" : ""}
                 />
-                {saved ? "Gespeichert" : "Speichern"}
-              </button>
-              <button
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[14px] font-medium border border-border text-text-body hover:border-primary/50 transition-all"
-                aria-label="Verein teilen"
-              >
-                <Share2 size={15} aria-hidden="true" />
-                Teilen
-              </button>
-              <Button>Kontakt aufnehmen →</Button>
+                <span>{saved ? "Gespeichert" : "Speichern"}</span>
+              </Button>
+              <Button className="flex-1 sm:flex-none">Kontakt aufnehmen →</Button>
             </div>
           </div>
 
-          {/* Tab bar */}
+          {/* Tab bar - scrollable on mobile */}
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="bg-transparent border-0 gap-0 h-auto p-0">
+            <TabsList className="bg-transparent border-0 gap-0 h-auto p-0 flex-nowrap overflow-x-auto no-scrollbar">
               {["überblick", "abteilungen", "events", "kontakt"].map((tab) => (
                 <TabsTrigger
                   key={tab}
                   value={tab}
                   className={cn(
-                    "capitalize rounded-none px-5 py-3 text-[15px] font-medium border-b-2 data-[state=active]:shadow-none",
+                    "capitalize rounded-none px-4 md:px-5 py-3 text-[14px] md:text-[15px] font-medium border-b-2 data-[state=active]:shadow-none whitespace-nowrap",
                     activeTab === tab
                       ? "border-primary text-primary"
                       : "border-transparent text-text-nav hover:text-foreground"
@@ -189,15 +176,14 @@ export default function ClubDetailPage({ params }: PageProps) {
       </div>
 
       {/* Main content */}
-      <div className="px-12 py-10 bg-background">
+      <div className="px-6 md:px-12 py-8 md:py-10 bg-background">
         <div
-          className="max-w-[1200px] mx-auto grid gap-10"
-          style={{ gridTemplateColumns: "1fr 340px" }}
+          className="max-w-[1200px] mx-auto flex flex-col lg:grid lg:grid-cols-[1fr_340px] gap-8 md:gap-10"
         >
           {/* Left column */}
           <div className="flex flex-col gap-8" id="überblick">
             {/* Stats row */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5">
               {[
                 { icon: <Users size={20} />, value: club.memberCount, label: "Mitglieder" },
                 { icon: <Calendar size={20} />, value: club.foundingYear, label: "Gegründet" },
@@ -209,12 +195,10 @@ export default function ClubDetailPage({ params }: PageProps) {
               ].map(({ icon, value, label }) => (
                 <div
                   key={label}
-                  className="bg-card border border-border rounded-[10px] p-5 flex items-center gap-4"
-                  style={{ borderWidth: "0.5px" }}
+                  className="bg-card border border-border rounded-[10px] p-5 flex items-center gap-4 border-[0.5px]"
                 >
                   <div
-                    className="w-11 h-11 rounded-[10px] flex items-center justify-center text-primary shrink-0"
-                    style={{ background: "rgb(13 92 99 / 0.07)" }}
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center text-primary shrink-0 bg-primary/7"
                     aria-hidden="true"
                   >
                     {icon}
@@ -239,13 +223,13 @@ export default function ClubDetailPage({ params }: PageProps) {
               </p>
               <div className="flex flex-wrap gap-1.5 mt-4">
                 {club.tags.map((tag) => (
-                  <span
+                  <Badge
                     key={tag}
-                    className="px-3 py-1 text-[13px] font-medium text-chip-text"
-                    style={{ background: "var(--chip-bg)", borderRadius: "6px" }}
+                    variant="secondary"
+                    className="px-3 py-1 text-[13px] font-medium text-chip-text bg-[var(--chip-bg)] hover:bg-[var(--chip-bg)] rounded-[6px] shadow-none"
                   >
                     {tag}
-                  </span>
+                  </Badge>
                 ))}
               </div>
             </section>
@@ -256,17 +240,15 @@ export default function ClubDetailPage({ params }: PageProps) {
                 <h2 id="depts-heading" className="text-[18px] font-bold text-foreground mb-4">
                   Abteilungen
                 </h2>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {club.departments.map((dept) => (
                     <div
                       key={dept.id}
-                      className="bg-card border border-border rounded-[10px] p-5"
-                      style={{ borderWidth: "0.5px" }}
+                      className="bg-card border border-border rounded-[10px] p-5 border-[0.5px]"
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <div
-                          className="w-9 h-9 rounded-lg flex items-center justify-center text-primary"
-                          style={{ background: "rgb(13 92 99 / 0.08)" }}
+                          className="w-9 h-9 rounded-lg flex items-center justify-center text-primary bg-primary/8"
                           aria-hidden="true"
                         >
                           <Users size={16} />
@@ -286,12 +268,12 @@ export default function ClubDetailPage({ params }: PageProps) {
                           </div>
                         ))}
                       </div>
-                      <button
-                        className="w-full py-2 rounded-lg text-[13px] font-medium text-primary border border-primary transition-colors hover:bg-primary/5"
-                        style={{ background: "rgb(13 92 99 / 0.03)" }}
+                      <Button
+                        variant="outline"
+                        className="w-full text-primary border-primary transition-colors hover:bg-primary/5 bg-primary/3"
                       >
                         Anfragen
-                      </button>
+                      </Button>
                     </div>
                   ))}
                 </div>
@@ -315,12 +297,10 @@ export default function ClubDetailPage({ params }: PageProps) {
                     return (
                       <div
                         key={event.id}
-                        className="flex items-center gap-4 py-4"
-                        style={
-                          i < club.events.length - 1
-                            ? { borderBottom: "0.5px solid var(--border-light)" }
-                            : {}
-                        }
+                        className={cn(
+                          "flex items-center gap-4 py-4",
+                          i < club.events.length - 1 && "border-b border-[var(--border-light)]"
+                        )}
                       >
                         {/* Date column */}
                         <div className="w-[52px] shrink-0 text-center">
@@ -345,11 +325,7 @@ export default function ClubDetailPage({ params }: PageProps) {
                         {/* Open badge */}
                         {event.isOpenForAll && (
                           <div
-                            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-semibold text-success-text shrink-0"
-                            style={{
-                              background: "var(--success-bg)",
-                              border: "1px solid var(--success-border)",
-                            }}
+                            className="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-semibold text-success-text shrink-0 bg-[var(--success-bg)] border border-[var(--success-border)]"
                           >
                             <Check size={11} aria-hidden="true" />
                             Offen für alle
@@ -366,12 +342,8 @@ export default function ClubDetailPage({ params }: PageProps) {
           {/* Sidebar */}
           <aside className="flex flex-col gap-6" id="kontakt">
             {/* Match breakdown */}
-            <div
-              className="rounded-[12px] p-5"
-              style={{
-                background: "rgb(13 92 99 / 0.05)",
-                border: "1px solid rgb(13 92 99 / 0.18)",
-              }}
+            <Card
+              className="rounded-[12px] p-5 border-[0.5px] shadow-none bg-primary/5 border-primary/18"
             >
               <div className="flex items-center gap-2 mb-1">
                 <Star size={16} className="text-primary" fill="currentColor" aria-hidden="true" />
@@ -395,24 +367,21 @@ export default function ClubDetailPage({ params }: PageProps) {
                   </div>
                 ))}
               </div>
-            </div>
+            </Card>
 
             {/* Fees */}
             <div
-              className="bg-card border border-border rounded-[10px] p-5"
-              style={{ borderWidth: "0.5px" }}
+              className="bg-card border border-border rounded-[10px] p-5 border-[0.5px]"
             >
               <h3 className="text-[15px] font-bold text-foreground mb-4">Mitgliedsbeitrag</h3>
               <div className="flex flex-col">
                 {club.fees.map((fee, i) => (
                   <div
                     key={fee.group}
-                    className="flex justify-between py-2.5 text-[14px]"
-                    style={
-                      i < club.fees.length - 1
-                        ? { borderBottom: "0.5px solid var(--border-light)" }
-                        : {}
-                    }
+                    className={cn(
+                      "flex justify-between py-2.5 text-[14px]",
+                      i < club.fees.length - 1 && "border-b border-[var(--border-light)]"
+                    )}
                   >
                     <span className="text-text-body">{fee.group}</span>
                     <span className="font-bold text-foreground">
@@ -422,8 +391,7 @@ export default function ClubDetailPage({ params }: PageProps) {
                 ))}
               </div>
               <div
-                className="mt-4 flex gap-2 p-3 rounded-lg text-[12px] text-text-body"
-                style={{ background: "var(--chip-bg)" }}
+                className="mt-4 flex gap-2 p-3 rounded-lg text-[12px] text-text-body bg-[var(--chip-bg)]"
               >
                 <Info size={14} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Ermäßigungen auf Anfrage möglich. Schnuppermitgliedschaft verfügbar.</span>
@@ -432,8 +400,7 @@ export default function ClubDetailPage({ params }: PageProps) {
 
             {/* Contact */}
             <div
-              className="bg-card border border-border rounded-[10px] overflow-hidden"
-              style={{ borderWidth: "0.5px" }}
+              className="bg-card border border-border rounded-[10px] overflow-hidden border-[0.5px]"
               id="kontakt"
             >
               <div className="p-5">
@@ -472,16 +439,13 @@ export default function ClubDetailPage({ params }: PageProps) {
                       return (
                         <div
                           key={label}
-                          className="flex items-start gap-3 py-3"
-                          style={
-                            i < arr.length - 1
-                              ? { borderBottom: "0.5px solid var(--border-light)" }
-                              : {}
-                          }
+                          className={cn(
+                            "flex items-start gap-3 py-3",
+                            i < arr.length - 1 && "border-b border-[var(--border-light)]"
+                          )}
                         >
                           <div
-                            className="w-7 h-7 rounded-lg flex items-center justify-center text-primary shrink-0"
-                            style={{ background: "rgb(13 92 99 / 0.08)" }}
+                            className="w-7 h-7 rounded-lg flex items-center justify-center text-primary shrink-0 bg-primary/8"
                             aria-hidden="true"
                           >
                             {icon}
@@ -498,8 +462,7 @@ export default function ClubDetailPage({ params }: PageProps) {
 
               {/* Mini map placeholder */}
               <div
-                className="h-[180px] relative"
-                style={{ background: "#E8F2F0", borderTop: "0.5px solid var(--border)" }}
+                className="h-[180px] relative bg-[#E8F2F0] border-t border-[var(--border)]"
                 role="img"
                 aria-label="Kartenvorschau Vereinsstandort"
               >
