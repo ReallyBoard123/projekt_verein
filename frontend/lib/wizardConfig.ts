@@ -1,17 +1,17 @@
-import { 
-  Baby, 
-  User, 
-  Users, 
-  History, 
-  Euro, 
-  Calendar, 
-  Clock, 
-  Accessibility, 
-  MapPin, 
-  Smile, 
+import {
+  Baby,
+  User,
+  Users,
+  History,
+  Euro,
+  Calendar,
+  Clock,
+  Accessibility,
+  MapPin,
+  Smile,
   ShieldCheck,
   Activity,
-  UserCheck
+  UserCheck,
 } from "lucide-react";
 
 export type QuestionType = "single" | "multi" | "transition" | "finish";
@@ -54,7 +54,7 @@ export const WIZARD_STEPS: WizardStep[] = [
     options: [
       { id: "sport", label: "Sport", emoji: "⚽" },
       { id: "musik_kunst", label: "Musik / Kunst", emoji: "🎵" },
-      { id: "technik", label: "Technik / IT / Handwerk", emoji: "🛠️" },
+      { id: "technik", label: "Technik / Handwerk", emoji: "🛠️" },
       { id: "soziales", label: "Soziales / Ehrenamt", emoji: "🤝" },
       { id: "natur", label: "Natur / Outdoor", emoji: "🌿" },
       { id: "sonstiges", label: "Sonstiges", emoji: "✨" },

@@ -22,7 +22,9 @@ export default function VereineListingPage() {
   const [events, setEvents] = useState<ClubEvent[]>([]);
   const [activeFilter, setActiveFilter] = useState("Alle");
   const [searchQuery, setSearchQuery] = useState("");
-  const [matchAnswers, setMatchAnswers] = useState<Record<string, any> | null>(null);
+  const [matchAnswers, setMatchAnswers] = useState<Record<string, any> | null>(
+    null,
+  );
 
   useEffect(() => {
     getClubs().then(setClubs);
@@ -66,7 +68,8 @@ export default function VereineListingPage() {
                 Vereine in Kassel
               </h2>
               <p className="text-[15px] text-text-body mt-1">
-                {visibleClubs.length} Verein{visibleClubs.length !== 1 ? "e" : ""} gefunden
+                {visibleClubs.length} Verein
+                {visibleClubs.length !== 1 ? "e" : ""} gefunden
               </p>
             </div>
             <Button
@@ -98,7 +101,10 @@ export default function VereineListingPage() {
       {/* Events */}
       <section
         className="px-6 md:px-12 py-10 md:py-16"
-        style={{ background: "var(--bg-alt)", borderTop: "0.5px solid var(--border)" }}
+        style={{
+          background: "var(--bg-alt)",
+          borderTop: "0.5px solid var(--border)",
+        }}
       >
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-8">
@@ -121,7 +127,10 @@ export default function VereineListingPage() {
       </section>
 
       {/* Admin footer */}
-      <section className="px-6 md:px-12 py-10 md:py-14" style={{ background: "#0B1A1A" }}>
+      <section
+        className="px-6 md:px-12 py-10 md:py-14"
+        style={{ background: "#0B1A1A" }}
+      >
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">
           <div>
             <h2
@@ -130,14 +139,16 @@ export default function VereineListingPage() {
             >
               Euer Verein fehlt?
             </h2>
-            <p className="text-[14px] md:text-[16px] mt-2" style={{ color: "#8AB5B5" }}>
-              Tragt euren Verein kostenlos ein und erreicht neue Mitglieder in Kassel.
+            <p
+              className="text-[14px] md:text-[16px] mt-2"
+              style={{ color: "#8AB5B5" }}
+            >
+              Tragt euren Verein kostenlos ein und erreicht neue Mitglieder in
+              Kassel.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
-            <Button
-              className="h-12 text-white font-semibold transition-opacity hover:opacity-90 bg-[var(--brand-accent)] border-0"
-            >
+            <Button className="h-12 text-white font-semibold transition-opacity hover:opacity-90 bg-[var(--brand-accent)] border-0">
               Verein kostenlos eintragen
             </Button>
             <Button

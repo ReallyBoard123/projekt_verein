@@ -9,6 +9,7 @@ interface WizardStepRendererProps {
   step: WizardStep;
   answers: Record<string, any>;
   onSelect: (value: any) => void;
+  onNext?: () => void;
   onBack?: () => void;
   onSkip?: () => void;
 }
@@ -17,6 +18,7 @@ export default function WizardStepRenderer({
   step,
   answers,
   onSelect,
+  onNext,
   onBack,
   onSkip,
 }: WizardStepRendererProps) {
@@ -45,7 +47,7 @@ export default function WizardStepRenderer({
   };
 
   return (
-    <div className="flex flex-col gap-4 md:gap-5 animate-in fade-in slide-in-from-right-4 duration-300 h-full">
+    <div className="flex flex-col gap-4 md:gap-5 animate-in fade-in slide-in-from-right-4 duration-300">
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between">
@@ -65,15 +67,17 @@ export default function WizardStepRenderer({
           )}
         </div>
         {step.subtitle && (
-          <p className="text-[12px] md:text-[13px] text-text-muted">{step.subtitle}</p>
+          <p className="text-[12px] md:text-[13px] text-text-muted">
+            {step.subtitle}
+          </p>
         )}
       </div>
 
       {/* Options */}
-      <div 
+      <div
         className={cn(
           "grid gap-2",
-          step.columns === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
+          step.columns === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1",
         )}
       >
         {step.options?.map((option) => {
@@ -84,41 +88,54 @@ export default function WizardStepRenderer({
               variant="outline"
               onClick={() => handleToggle(option.id)}
               className={cn(
-                "relative flex items-center justify-start gap-3 h-auto py-2.5 md:py-3 px-3 md:px-4 text-left transition-all",
+                "relative flex items-center justify-start gap-3 h-auto py-2.5 md:py-3 px-3 md:px-4 text-left transition-all duration-200",
                 selected
-                  ? "border-2 border-primary bg-primary/5 text-primary hover:bg-primary/10 hover:text-primary shadow-sm"
-                  : "border-border text-text-body hover:border-primary/50"
+                  ? "border-primary bg-primary/5 text-primary ring-1 ring-inset ring-primary shadow-sm"
+                  : "border-border text-text-body hover:border-primary/50 hover:bg-primary/5",
               )}
             >
               {option.emoji && (
-                <span className="text-lg md:text-xl shrink-0" aria-hidden="true">
+                <span
+                  className="text-lg md:text-xl shrink-0"
+                  aria-hidden="true"
+                >
                   {option.emoji}
                 </span>
               )}
               <span className="text-[13px] md:text-[14px] font-medium leading-tight">
                 {option.label}
               </span>
-              {selected && (
-                <div className="ml-auto shrink-0">
-                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-                    <Check size={12} className="text-primary-foreground" strokeWidth={3} />
-                  </div>
-                </div>
-              )}
+              <div
+                className={cn(
+                  "ml-auto shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-200",
+                  selected
+                    ? "bg-primary shadow-sm scale-100 opacity-100"
+                    : "scale-50 opacity-0",
+                )}
+                aria-hidden="true"
+              >
+                <Check
+                  size={12}
+                  className="text-primary-foreground"
+                  strokeWidth={3}
+                />
+              </div>
             </Button>
           );
         })}
       </div>
 
       {/* Footer Actions */}
-      <div className="flex flex-col gap-3 mt-auto pt-2 border-t border-border/50">
+      <div className="flex flex-col gap-3 pt-4">
         {step.type === "multi" && minRequired > 0 && (
-          <p className={cn(
-            "text-[11px] font-medium",
-            hasMetMin ? "text-primary/70" : "text-brand-accent animate-pulse"
-          )}>
-            {hasMetMin 
-              ? "✓ Mindestanforderung erfüllt" 
+          <p
+            className={cn(
+              "text-[11px] font-medium",
+              hasMetMin ? "text-primary/70" : "text-brand-accent animate-pulse",
+            )}
+          >
+            {hasMetMin
+              ? "✓ Mindestanforderung erfüllt"
               : `Bitte wähle mindestens ${minRequired} Optionen aus (${selectedCount}/${minRequired})`}
           </p>
         )}
@@ -127,16 +144,12 @@ export default function WizardStepRenderer({
             variant="ghost"
             size="sm"
             onClick={onSkip}
-            className="text-text-muted hover:text-foreground text-[12px] md:text-[13px]"
+            className="text-text-muted hover:text-foreground text-[12px] md:text-[13px] px-0 hover:bg-transparent"
           >
             Überspringen
           </Button>
-          {step.type === "multi" && (
-            <Button 
-              size="sm" 
-              onClick={() => onSelect(currentAnswer)}
-              disabled={!hasMetMin}
-            >
+          {step.type === "multi" && onNext && (
+            <Button size="sm" onClick={onNext} disabled={!hasMetMin}>
               Weiter
             </Button>
           )}

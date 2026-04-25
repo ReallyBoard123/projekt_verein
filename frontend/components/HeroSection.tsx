@@ -28,9 +28,7 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
         {/* Left: Search & Copy */}
         <div className="flex flex-col gap-6 md:gap-8">
           <div className="flex flex-col gap-4 md:gap-6">
-            <p
-              className="text-[13px] font-semibold uppercase tracking-[0.8px] text-brand-accent"
-            >
+            <p className="text-[13px] font-semibold uppercase tracking-[0.8px] text-brand-accent">
               Kassel & Umgebung
             </p>
 
@@ -45,8 +43,8 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
                 Dein passender Verein in Kassel
               </h1>
               <p className="text-[15px] md:text-[17px] text-text-body leading-[1.6]">
-                Entdecke Vereine in deiner Nähe – personalisiert, barrierefrei und
-                kostenlos.
+                Entdecke Vereine in deiner Nähe – personalisiert, barrierefrei
+                und kostenlos.
               </p>
             </div>
 
@@ -79,7 +77,9 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
 
             {/* Quick-filter chips */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[13px] font-medium text-text-muted">Schnellfilter:</span>
+              <span className="text-[13px] font-medium text-text-muted">
+                Schnellfilter:
+              </span>
               {QUICK_CHIPS.map((chip) => {
                 const isActive = activeChip === chip;
                 return (
@@ -92,10 +92,12 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
                       "flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all",
                       isActive
                         ? "text-primary"
-                        : "border-border text-text-body hover:border-primary/50"
+                        : "border-border text-text-body hover:border-primary/50",
                     )}
                     style={{
-                      border: isActive ? "1.5px solid var(--primary)" : "1px solid var(--border)",
+                      border: isActive
+                        ? "1.5px solid var(--primary)"
+                        : "1px solid var(--border)",
                       background: isActive ? "rgb(13 92 99 / 0.08)" : "#fff",
                     }}
                   >

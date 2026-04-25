@@ -2,7 +2,12 @@ import Link from "next/link";
 import { MapPin, Star } from "lucide-react";
 import type { Club } from "@/types";
 import { categoryIcon, categoryLabel } from "@/lib/club-utils";
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 interface ClubCardProps {
@@ -27,12 +32,14 @@ export default function ClubCard({ club }: ClubCardProps) {
         </div>
 
         {club.matchScore > 0 && (
-          <Badge 
-            variant="secondary" 
+          <Badge
+            variant="secondary"
             className="flex items-center gap-1 px-2 py-1 rounded-full text-primary bg-primary/7 border-primary/25 hover:bg-primary/7"
           >
             <Star size={11} fill="currentColor" aria-hidden="true" />
-            <span className="text-[12px] font-semibold">{club.matchScore} % Match</span>
+            <span className="text-[12px] font-semibold">
+              {club.matchScore} % Match
+            </span>
           </Badge>
         )}
       </CardHeader>
