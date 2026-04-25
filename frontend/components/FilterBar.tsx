@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const FILTERS = ["Alle", "Sport", "Kinder", "Kultur", "≤ 5 km"];
 
@@ -15,21 +16,22 @@ export default function FilterBar({ active, onChange }: FilterBarProps) {
       {FILTERS.map((filter) => {
         const isActive = active === filter;
         return (
-          <button
+          <Button
             key={filter}
-            type="button"
+            variant={isActive ? "default" : "outline"}
+            size="sm"
             onClick={() => onChange(filter)}
             aria-pressed={isActive}
             className={cn(
-              "px-4 py-1.5 rounded-full text-[13px] border transition-all",
+              "rounded-full text-[13px] transition-all h-8",
               isActive
-                ? "bg-primary text-primary-foreground border-primary font-semibold"
+                ? "font-semibold"
                 : "bg-card text-text-body border-border hover:border-primary/50"
             )}
             style={{ borderWidth: isActive ? "1.5px" : "0.5px" }}
           >
             {filter}
-          </button>
+          </Button>
         );
       })}
     </div>
