@@ -11,7 +11,6 @@ import de.ks.hackathon.together.angebot.AngebotService;
 import de.ks.hackathon.together.eigenschaften.EigenschaftService;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -21,10 +20,10 @@ public class ImportController {
     private final VereinService vereinService;
     private final AngebotService angebotService;
     private final EigenschaftService eigenschaftService;
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/vereine")
-    public ResponseEntity<String> importVereine(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<String> importVereine(@RequestBody MultipartFile file) throws IOException {
         JsonNode root = objectMapper.readTree(file.getInputStream());
         if (!root.isArray()) {
             return ResponseEntity.badRequest().body("JSON muss ein Array sein");

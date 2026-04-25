@@ -10,14 +10,17 @@ import java.util.Set;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Node
 public class Eigenschaft {
     @Id
     @GeneratedValue
+    @EqualsAndHashCode.Include
     private Long id;
     private String name;
     private String beschreibung;
@@ -27,4 +30,11 @@ public class Eigenschaft {
 
     @Relationship(type = "HAT_EIGENSCHAFT", direction = Relationship.Direction.INCOMING)
     private Set<Angebot> angebote;
+
+    public Set<Verein> getVereine() {
+        if (vereine == null) {
+            vereine = new java.util.HashSet<>();
+        }
+        return vereine;
+    }
 }
