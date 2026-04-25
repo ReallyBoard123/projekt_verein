@@ -1,5 +1,6 @@
 package de.ks.hackathon.together.vereine;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +8,7 @@ import de.ks.hackathon.together.angebot.Angebot;
 import de.ks.hackathon.together.eigenschaften.Eigenschaft;
 
 @Service
+@ConditionalOnProperty(name = "app.dummydata", havingValue = "false", matchIfMissing = true)
 public class VereinService {
     private final VereinRepository repository;
 

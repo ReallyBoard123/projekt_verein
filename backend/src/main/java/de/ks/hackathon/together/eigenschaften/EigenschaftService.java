@@ -1,10 +1,12 @@
 package de.ks.hackathon.together.eigenschaften;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@ConditionalOnProperty(name = "app.dummydata", havingValue = "false", matchIfMissing = true)
 public class EigenschaftService {
     private final EigenschaftRepository repository;
 
