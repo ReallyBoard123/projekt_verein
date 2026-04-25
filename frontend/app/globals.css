@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* shadcn system mappings */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand design tokens */
+  --color-brand-accent: var(--brand-accent);
+  --color-bg-panel: var(--bg-panel);
+  --color-bg-alt: var(--bg-alt);
+  --color-border-light: var(--border-light);
+  --color-chip-bg: var(--chip-bg);
+  --color-chip-text: var(--chip-text);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-nav: var(--text-nav);
+  --color-success-bg: var(--success-bg);
+  --color-success-text: var(--success-text);
+  --color-success-border: var(--success-border);
+
+  /* Fonts */
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-dm-serif);
+  --font-mono: ui-monospace, monospace;
+
+  /* Radius scale */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  /* shadcn semantic tokens — mapped to VereinsFinder brand */
+  --background: #ffffff;
+  --foreground: #0b1a1a;
+  --card: #ffffff;
+  --card-foreground: #0b1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #0b1a1a;
+  --primary: #0d5c63;
+  --primary-foreground: #ffffff;
+  --secondary: #e4f4f5;
+  --secondary-foreground: #0b1a1a;
+  --muted: #f5fafa;
+  --muted-foreground: #7a9a9a;
+  --accent: #f0f9f9;
+  --accent-foreground: #2a5555;
+  --destructive: #dc2626;
+  --border: #c5dede;
+  --input: #c5dede;
+  --ring: #0d5c63;
+  --radius: 10px;
+
+  /* VereinsFinder design tokens */
+  --brand-accent: #b35c00;
+  --bg-panel: #e4f4f5;
+  --bg-alt: #f5fafa;
+  --border-light: #e8f0f0;
+  --chip-bg: #f0f9f9;
+  --chip-text: #2a5555;
+  --text-body: #3a5555;
+  --text-muted: #7a9a9a;
+  --text-nav: #2a4545;
+  --success-bg: #e8f5ee;
+  --success-text: #2a7a52;
+  --success-border: #b8ddc9;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+}
