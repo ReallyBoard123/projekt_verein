@@ -53,12 +53,7 @@ Farbe kommuniziert nie allein: Match-Score = Badge + Stern-Icon + Text. Ausgewä
 **Heinz, 67** — Rentner, nicht technikaffin, braucht klare Sprache und große Schrift.  
 **Markus, 52** — Vereinsvorstand ohne eigene Website, will Angebote schnell online stellen.
 
----
-
-## Tech-Stack
-
-React (Vite) · Tailwind CSS · Leaflet.js / OpenStreetMap (v1.1)
 
 ---
 
-*Zugang ist kein Privileg. VereinsFinder macht gesellschaftliche Teilhabe für alle möglich.*
+*Zugang ist kein Privileg. Together macht gesellschaftliche Teilhabe für alle möglich.*
