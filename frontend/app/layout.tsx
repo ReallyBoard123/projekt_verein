@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const geistSans = Geist({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
-const dmSerifDisplay = DM_Serif_Display({
-  variable: "--font-dm-serif",
+const geistMono = Geist_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-serif",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "VereinsFinder – Dein Verein in Kassel",
-  description:
-    "Entdecke Vereine und Events in Kassel. Personalisierte Empfehlungen, barrierefrei und kostenlos.",
+  title: "Together — VereinsFinder Kassel",
+  description: "Finde den passenden Verein in deiner Nähe.",
 };
 
 export default function RootLayout({
@@ -28,13 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="de"
-      className={`${dmSans.variable} ${dmSerifDisplay.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
+    <html lang="de" className="scroll-smooth">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
+      >
+        <Suspense fallback={null}>
+          <Navbar />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          {children}
+        </Suspense>
       </body>
     </html>
   );

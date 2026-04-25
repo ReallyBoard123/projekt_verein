@@ -8,31 +8,28 @@ import {
   Users,
   Calendar,
   Heart,
-  Share2,
-  Phone,
-  Mail,
   Globe,
   Star,
   Clock,
   Check,
   Info,
+  Phone,
+  Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { getClub } from "@/lib/api";
+import { fetchClubById } from "@/lib/actions";
 import type { Club } from "@/types";
 import { categoryLabel, formatEventDate } from "@/lib/club-utils";
 import { cn } from "@/lib/utils";
 
 const MATCH_DIMENSIONS = [
-  { label: "Interessen", value: 98 },
-  { label: "Standort", value: 92 },
-  { label: "Altersgruppe", value: 95 },
-  { label: "Beitragsrahmen", value: 90 },
+  { label: "Interessen", value: 92 },
+  { label: "Standort", value: 85 },
+  { label: "Engagement", value: 78 },
 ];
 
 interface PageProps {
@@ -46,13 +43,16 @@ export default function ClubDetailPage({ params }: PageProps) {
   const [activeTab, setActiveTab] = useState("überblick");
 
   useEffect(() => {
-    getClub(id).then(setClub).catch(console.error);
+    fetchClubById(id).then(setClub).catch(console.error);
   }, [id]);
 
   if (!club) {
     return (
       <main className="flex items-center justify-center min-h-[60vh]">
-        <p className="text-text-muted text-[15px]">Wird geladen …</p>
+        <div className="animate-pulse flex flex-col items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-primary/10" />
+          <p className="text-text-muted font-medium">Club Details laden...</p>
+        </div>
       </main>
     );
   }
@@ -234,8 +234,8 @@ export default function ClubDetailPage({ params }: PageProps) {
               </p>
               <p className="text-[15px] text-text-body leading-[1.7] mt-3">
                 Wir sind offen für alle – egal ob Anfänger oder Erfahrene. Komm
-                einfach zu einem unserer Trainings und schnupper rein. Anmeldung
-                vorab nicht notwendig.
+                einfach zu einem unserer Trainings und schnupper rein.
+                Anmeldung vorab nicht notwendig.
               </p>
               <div className="flex flex-wrap gap-1.5 mt-4">
                 {club.tags.map((tag) => (
