@@ -58,63 +58,67 @@ Farbe kommuniziert nie allein: Match-Score = Badge + Stern-Icon + Text. Ausgewä
 
 *Zugang ist kein Privileg. Together macht gesellschaftliche Teilhabe für alle möglich.*
 
-# Vereinsfinder Backend
+---
 
-## Voraussetzungen
-- Java 17 oder höher (getestet mit Corretto 25)
-- Gradle (Wrapper ist enthalten, kein separates Setup nötig)
-- **Für produktiven Betrieb:** Neo4j Community oder Desktop Edition (https://neo4j.com/download/)
+## Schnellstart
 
-## Installation und Start
+### Voraussetzungen
 
-1. Repository clonen
-2. In das Backend-Verzeichnis wechseln:
-   ```
-   cd backend
-   ```
-3. **Neo4j installieren und starten:**
-    - Neo4j Desktop oder Community Edition installieren: https://neo4j.com/download/
-    - Datenbank starten (Standard: bolt://localhost:7687)
-    - Benutzername und Passwort merken (Standard: neo4j / bei Erststart selbst vergeben)
-4. **Konfiguration prüfen:**
-    - In `src/main/resources/application.properties` ggf. anpassen:
-      ```
-      spring.neo4j.uri=bolt://localhost:7687
-      spring.neo4j.authentication.username=neo4j
-      spring.neo4j.authentication.password=DEIN_PASSWORT
-      ```
-5. **Backend starten:**
-   ```
-   ./gradlew bootRun
-   ```
-    - Die Anwendung läuft dann auf [http://localhost:8080](http://localhost:8080)
+- **Node.js** (für das Frontend)
+- **Java 25** (für das Backend, getestet mit Corretto 25)
+- **Neo4j** (optional, nur für produktiven Betrieb)
 
-   Falls das nicht sofort funktioniert.
-   ```
-   ./gradlew clean build
-   ```
-## Dummy-Modus (ohne Neo4j)
-- In `src/main/resources/application.properties` folgende Zeile ergänzen:
+### Starten
+
+```bash
+git clone <repo-url>
+cd projekt_verein
+./start.sh
+```
+
+Das Skript:
+- installiert automatisch Frontend-Dependencies (`npm install`) beim ersten Start
+- startet Backend (`:8080`) und Frontend (`:3000`) parallel
+- beendet beide Prozesse sauber mit `Ctrl+C`
+- gibt Port 8080 automatisch frei, falls er noch belegt ist
+
+---
+
+## Konfiguration
+
+### Dummy-Modus (kein Neo4j nötig)
+
+In `backend/src/main/resources/application.properties` ist bereits gesetzt:
+
+```
+app.dummydata=true
+```
+
+Damit laufen alle Endpunkte ohne eine echte Datenbank.
+
+### Produktiver Betrieb mit Neo4j
+
+1. Neo4j installieren: https://neo4j.com/download/
+2. Datenbank starten (Standard: `bolt://localhost:7687`)
+3. `application.properties` anpassen:
+
+```
+spring.neo4j.uri=bolt://localhost:7687
+spring.neo4j.authentication.username=together
+spring.neo4j.authentication.password=together
+app.dummydata=false
+```
+
+---
+
+## API
+
+- Backend läuft auf [http://localhost:8080](http://localhost:8080)
+- OpenAPI-Spezifikation: `backend/src/main/resources/openapi.yaml`
+- Vereinsdaten importieren:
+  ```bash
+  curl -F "file=@backend/src/main/resources/kassel_vereine_master_cleaned.json" http://localhost:8080/api/import/vereine
   ```
-  app.dummydata=true
-  ```
-- Dann werden Dummy-Daten für alle Endpunkte zurückgegeben und Neo4j ist nicht erforderlich.
-
-## API-Dokumentation
-- Die OpenAPI-Spezifikation findest du unter `src/main/resources/openapi.yaml`.
-- Du kannst damit z.B. mit Swagger UI oder OpenAPI Generator Frontend-Clients generieren.
-
-## Import von Vereinsdaten
-- Über den Endpunkt `/api/import/vereine` kann eine JSON-Datei (z.B. `kassel_vereine_master_cleaned.json`) importiert werden.
-- Beispiel mit curl:
-  ```
-  curl -F "file=@src/main/resources/kassel_vereine_master_cleaned.json" http://localhost:8080/api/import/vereine
-  ```
-
-## Hinweise
-- Bei Problemen prüfe die Logausgabe im Terminal und ggf. die Konfiguration in `application.properties`.
-- Für produktiven Betrieb wird eine laufende Neo4j-Datenbank benötigt.
-- Im Dummy-Modus können alle Endpunkte getestet werden, aber es werden keine echten Daten gespeichert.
 
 ---
 
