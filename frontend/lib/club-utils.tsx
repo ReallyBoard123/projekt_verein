@@ -18,7 +18,20 @@ export function categoryIcon(category: string): ReactNode {
   return CATEGORY_MAP[category.toLowerCase()]?.icon ?? <Users size={16} />;
 }
 
-const MONTHS_DE = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+const MONTHS_DE = [
+  "Jan",
+  "Feb",
+  "Mär",
+  "Apr",
+  "Mai",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Okt",
+  "Nov",
+  "Dez",
+];
 const DAYS_DE = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
 export function formatEventDate(dateStr: string) {

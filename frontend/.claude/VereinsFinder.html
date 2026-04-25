@@ -1,641 +1,1562 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VereinsFinder Kassel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VereinsFinder Kassel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+      integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+      integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+      integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/babel" src="tweaks-panel.jsx"></script>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      color: #0f1c1d;
-      background: #fff;
-      -webkit-font-smoothing: antialiased;
-    }
-    ::selection { background: #0D5C6322; }
-  </style>
-</head>
-<body>
-<div id="root"></div>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        color: #0f1c1d;
+        background: #fff;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: #0d5c6322;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "primaryColor": "#0D5C63",
-  "accentColor": "#B35C00",
-  "bgPanel": "#E4F4F5",
-  "cardRadius": 10,
-  "heroLayout": "split",
-  "showMatchBadge": true
-}/*EDITMODE-END*/;
+    <script type="text/babel">
+      const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
+        primaryColor: "#0D5C63",
+        accentColor: "#B35C00",
+        bgPanel: "#E4F4F5",
+        cardRadius: 10,
+        heroLayout: "split",
+        showMatchBadge: true,
+      }; /*EDITMODE-END*/
 
-// ─── Icons (inline SVG components) ───────────────────────────────────────────
-const Icon = ({ name, size = 16, color = "currentColor" }) => {
-  const icons = {
-    search: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
-    check: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
-    star: <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
-    mapPin: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
-    arrow: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>,
-    users: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-    music: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>,
-    ball: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>,
-    heart: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
-    book: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
-    palette: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill={color}/><circle cx="17.5" cy="10.5" r=".5" fill={color}/><circle cx="8.5" cy="7.5" r=".5" fill={color}/><circle cx="6.5" cy="12.5" r=".5" fill={color}/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>,
-    tree: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 14l3-3h-3V3l-5 5-5-5v8H4l3 3-3 3h5v5h6v-5h5l-3-3z"/></svg>,
-    calendar: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
-    clock: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-    tag: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>,
-    plus: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
-    menu: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>,
-    running: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13" cy="4" r="2"/><path d="M7 21l3-6 2 2 3-8"/><path d="M17 21l-3-6"/><path d="M7 7l1 4 3 1"/></svg>,
-    child: <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3h6"/><circle cx="12" cy="8" r="3"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>,
-  };
-  return icons[name] || null;
-};
+      // ─── Icons (inline SVG components) ───────────────────────────────────────────
+      const Icon = ({ name, size = 16, color = "currentColor" }) => {
+        const icons = {
+          search: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          ),
+          check: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          ),
+          star: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill={color}
+              stroke="none"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          ),
+          mapPin: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          ),
+          arrow: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          ),
+          users: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          ),
+          music: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+          ),
+          ball: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+              <path d="M2 12h20" />
+            </svg>
+          ),
+          heart: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          ),
+          book: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+          ),
+          palette: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="13.5" cy="6.5" r=".5" fill={color} />
+              <circle cx="17.5" cy="10.5" r=".5" fill={color} />
+              <circle cx="8.5" cy="7.5" r=".5" fill={color} />
+              <circle cx="6.5" cy="12.5" r=".5" fill={color} />
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+            </svg>
+          ),
+          tree: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M17 14l3-3h-3V3l-5 5-5-5v8H4l3 3-3 3h5v5h6v-5h5l-3-3z" />
+            </svg>
+          ),
+          calendar: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          ),
+          clock: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          ),
+          tag: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+              <line x1="7" y1="7" x2="7.01" y2="7" />
+            </svg>
+          ),
+          plus: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          ),
+          menu: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          ),
+          running: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="13" cy="4" r="2" />
+              <path d="M7 21l3-6 2 2 3-8" />
+              <path d="M17 21l-3-6" />
+              <path d="M7 7l1 4 3 1" />
+            </svg>
+          ),
+          child: (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 3h6" />
+              <circle cx="12" cy="8" r="3" />
+              <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+            </svg>
+          ),
+        };
+        return icons[name] || null;
+      };
 
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-const Navbar = ({ primary, accent }) => (
-  <nav style={{
-    position: 'sticky', top: 0, zIndex: 100,
-    background: '#fff',
-    borderBottom: '0.5px solid #c5dede',
-    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-    padding: '0 48px', height: 64,
-  }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      <div style={{
-        width: 32, height: 32, borderRadius: 8,
-        background: primary,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
-        <Icon name="mapPin" color="#fff" size={16} />
-      </div>
-      <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: primary, letterSpacing: '-0.3px' }}>
-        Vereine<span style={{ color: accent }}>Finder</span>
-      </span>
-    </div>
-
-    <div style={{ display: 'flex', gap: 32 }}>
-      {['Vereine', 'Events', 'Karte'].map(l => (
-        <a key={l} href="#" style={{
-          fontSize: 15, fontWeight: 500, color: '#2a4545',
-          textDecoration: 'none', padding: '4px 0',
-          borderBottom: l === 'Vereine' ? `2px solid ${primary}` : '2px solid transparent',
-        }}>{l}</a>
-      ))}
-    </div>
-
-    <button style={{
-      background: primary, color: '#fff',
-      border: 'none', borderRadius: 8,
-      padding: '9px 18px', fontSize: 14, fontWeight: 600,
-      cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6,
-    }}>
-      <Icon name="plus" color="#fff" size={14} />
-      Verein eintragen
-    </button>
-  </nav>
-);
-
-// ─── Quick-filter chip (search bar) ──────────────────────────────────────────
-const QuickChip = ({ label, active, primary }) => (
-  <button style={{
-    display: 'inline-flex', alignItems: 'center', gap: 5,
-    padding: '6px 14px', borderRadius: 20,
-    border: active ? `1.5px solid ${primary}` : '1px solid #c5dede',
-    background: active ? `${primary}14` : '#fff',
-    color: active ? primary : '#3a5555',
-    fontSize: 13, fontWeight: active ? 600 : 400, cursor: 'pointer',
-  }}>
-    {active && <Icon name="check" color={primary} size={12} />}
-    {label}
-  </button>
-);
-
-// ─── Match chip (onboarding) ──────────────────────────────────────────────────
-const MatchChip = ({ label, icon, selected, primary }) => (
-  <button style={{
-    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
-    padding: '12px 10px', borderRadius: 10, width: 90,
-    border: selected ? `2px solid ${primary}` : '1.5px solid #c5dede',
-    background: selected ? `${primary}0f` : '#fff',
-    color: selected ? primary : '#3a5555',
-    fontSize: 12, fontWeight: selected ? 600 : 400, cursor: 'pointer',
-    position: 'relative',
-  }}>
-    {selected && (
-      <span style={{
-        position: 'absolute', top: -8, right: -8,
-        width: 18, height: 18, borderRadius: '50%',
-        background: primary, display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
-        <Icon name="check" color="#fff" size={10} />
-      </span>
-    )}
-    <Icon name={icon} color={selected ? primary : '#3a5555'} size={20} />
-    {label}
-  </button>
-);
-
-// ─── Hero ─────────────────────────────────────────────────────────────────────
-const Hero = ({ primary, accent, bgPanel }) => {
-  const [activeChip, setActiveChip] = React.useState('Fußball');
-  const [selectedInterests, setSelectedInterests] = React.useState(['Musik']);
-  const quickChips = ['Fußball', 'Kinder', 'Kultur', 'Senioren'];
-  const interests = [
-    { label: 'Sport', icon: 'ball' },
-    { label: 'Musik', icon: 'music' },
-    { label: 'Kinder', icon: 'child' },
-    { label: 'Kultur', icon: 'palette' },
-    { label: 'Natur', icon: 'tree' },
-    { label: 'Ehrenamt', icon: 'heart' },
-  ];
-
-  const toggle = (label) => {
-    setSelectedInterests(prev =>
-      prev.includes(label) ? prev.filter(x => x !== label) : [...prev, label]
-    );
-  };
-
-  return (
-    <section style={{ background: bgPanel, padding: '64px 48px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
-        {/* Left */}
-        <div>
-          <p style={{ fontSize: 13, fontWeight: 600, color: accent, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 12 }}>
-            Kassel &amp; Umgebung
-          </p>
-          <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 44, lineHeight: 1.1, color: '#0b1a1a', marginBottom: 18, textWrap: 'pretty' }}>
-            Dein passender<br />Verein in Kassel
-          </h1>
-          <p style={{ fontSize: 17, color: '#3a5555', lineHeight: 1.6, marginBottom: 32, maxWidth: 420 }}>
-            Entdecke lokale Vereine, die zu dir passen — von Sport bis Kultur, für alle Altersgruppen.
-          </p>
-
-          {/* Search */}
-          <div style={{
-            display: 'flex', gap: 0,
-            border: `1.5px solid ${primary}`,
-            borderRadius: 10, overflow: 'hidden',
-            background: '#fff', marginBottom: 16,
-          }}>
-            <div style={{ padding: '0 16px', display: 'flex', alignItems: 'center', color: '#7a9a9a' }}>
-              <Icon name="search" size={18} color="#7a9a9a" />
-            </div>
-            <input
-              type="text"
-              placeholder="Vereinsname oder Sportart suchen …"
+      // ─── Navbar ───────────────────────────────────────────────────────────────────
+      const Navbar = ({ primary, accent }) => (
+        <nav
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            background: "#fff",
+            borderBottom: "0.5px solid #c5dede",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 48px",
+            height: 64,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div
               style={{
-                flex: 1, border: 'none', outline: 'none',
-                fontSize: 15, padding: '13px 0', color: '#0b1a1a',
-                background: 'transparent',
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                background: primary,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-            />
-            <button style={{
-              background: primary, color: '#fff',
-              border: 'none', padding: '0 24px',
-              fontSize: 15, fontWeight: 600, cursor: 'pointer',
-            }}>Suchen</button>
-          </div>
-
-          {/* Quick chips */}
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 13, color: '#7a9a9a', alignSelf: 'center' }}>Schnellfilter:</span>
-            {quickChips.map(c => (
-              <QuickChip key={c} label={c} active={activeChip === c} primary={primary}
-                onClick={() => setActiveChip(c)} />
-            ))}
-          </div>
-        </div>
-
-        {/* Right — Onboarding panel */}
-        <div style={{
-          background: '#fff',
-          border: '0.5px solid #c5dede',
-          borderRadius: 14, padding: 32,
-          boxShadow: '0 2px 16px #0D5C6312',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: '#0b1a1a' }}>Dein Vereins-Match</h2>
-            <span style={{ fontSize: 12, color: '#7a9a9a', fontWeight: 500 }}>
-              <Icon name="star" color={accent} size={12} /> KI-gestützt
+            >
+              <Icon name="mapPin" color="#fff" size={16} />
+            </div>
+            <span
+              style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: 20,
+                color: primary,
+                letterSpacing: "-0.3px",
+              }}
+            >
+              Vereine<span style={{ color: accent }}>Finder</span>
             </span>
           </div>
-          <p style={{ fontSize: 14, color: '#3a5555', marginBottom: 20 }}>Was interessiert dich?</p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 28 }}>
-            {interests.map(i => (
-              <MatchChip key={i.label} label={i.label} icon={i.icon}
-                selected={selectedInterests.includes(i.label)} primary={primary}
-                onClick={() => toggle(i.label)} />
+          <div style={{ display: "flex", gap: 32 }}>
+            {["Vereine", "Events", "Karte"].map((l) => (
+              <a
+                key={l}
+                href="#"
+                style={{
+                  fontSize: 15,
+                  fontWeight: 500,
+                  color: "#2a4545",
+                  textDecoration: "none",
+                  padding: "4px 0",
+                  borderBottom:
+                    l === "Vereine"
+                      ? `2px solid ${primary}`
+                      : "2px solid transparent",
+                }}
+              >
+                {l}
+              </a>
             ))}
           </div>
 
-          {/* Progress */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-              <div style={{ display: 'flex', gap: 6 }}>
-                {[1,2,3,4].map(n => (
-                  <div key={n} style={{
-                    width: n <= 2 ? 20 : 8, height: 8, borderRadius: 4,
-                    background: n <= 2 ? primary : '#c5dede',
-                    transition: 'width 0.3s',
-                  }} />
+          <button
+            style={{
+              background: primary,
+              color: "#fff",
+              border: "none",
+              borderRadius: 8,
+              padding: "9px 18px",
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+            }}
+          >
+            <Icon name="plus" color="#fff" size={14} />
+            Verein eintragen
+          </button>
+        </nav>
+      );
+
+      // ─── Quick-filter chip (search bar) ──────────────────────────────────────────
+      const QuickChip = ({ label, active, primary }) => (
+        <button
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 5,
+            padding: "6px 14px",
+            borderRadius: 20,
+            border: active ? `1.5px solid ${primary}` : "1px solid #c5dede",
+            background: active ? `${primary}14` : "#fff",
+            color: active ? primary : "#3a5555",
+            fontSize: 13,
+            fontWeight: active ? 600 : 400,
+            cursor: "pointer",
+          }}
+        >
+          {active && <Icon name="check" color={primary} size={12} />}
+          {label}
+        </button>
+      );
+
+      // ─── Match chip (onboarding) ──────────────────────────────────────────────────
+      const MatchChip = ({ label, icon, selected, primary }) => (
+        <button
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 6,
+            padding: "12px 10px",
+            borderRadius: 10,
+            width: 90,
+            border: selected ? `2px solid ${primary}` : "1.5px solid #c5dede",
+            background: selected ? `${primary}0f` : "#fff",
+            color: selected ? primary : "#3a5555",
+            fontSize: 12,
+            fontWeight: selected ? 600 : 400,
+            cursor: "pointer",
+            position: "relative",
+          }}
+        >
+          {selected && (
+            <span
+              style={{
+                position: "absolute",
+                top: -8,
+                right: -8,
+                width: 18,
+                height: 18,
+                borderRadius: "50%",
+                background: primary,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Icon name="check" color="#fff" size={10} />
+            </span>
+          )}
+          <Icon name={icon} color={selected ? primary : "#3a5555"} size={20} />
+          {label}
+        </button>
+      );
+
+      // ─── Hero ─────────────────────────────────────────────────────────────────────
+      const Hero = ({ primary, accent, bgPanel }) => {
+        const [activeChip, setActiveChip] = React.useState("Fußball");
+        const [selectedInterests, setSelectedInterests] = React.useState([
+          "Musik",
+        ]);
+        const quickChips = ["Fußball", "Kinder", "Kultur", "Senioren"];
+        const interests = [
+          { label: "Sport", icon: "ball" },
+          { label: "Musik", icon: "music" },
+          { label: "Kinder", icon: "child" },
+          { label: "Kultur", icon: "palette" },
+          { label: "Natur", icon: "tree" },
+          { label: "Ehrenamt", icon: "heart" },
+        ];
+
+        const toggle = (label) => {
+          setSelectedInterests((prev) =>
+            prev.includes(label)
+              ? prev.filter((x) => x !== label)
+              : [...prev, label],
+          );
+        };
+
+        return (
+          <section style={{ background: bgPanel, padding: "64px 48px" }}>
+            <div
+              style={{
+                maxWidth: 1200,
+                margin: "0 auto",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 64,
+                alignItems: "center",
+              }}
+            >
+              {/* Left */}
+              <div>
+                <p
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: accent,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.8px",
+                    marginBottom: 12,
+                  }}
+                >
+                  Kassel &amp; Umgebung
+                </p>
+                <h1
+                  style={{
+                    fontFamily: "'DM Serif Display', serif",
+                    fontSize: 44,
+                    lineHeight: 1.1,
+                    color: "#0b1a1a",
+                    marginBottom: 18,
+                    textWrap: "pretty",
+                  }}
+                >
+                  Dein passender
+                  <br />
+                  Verein in Kassel
+                </h1>
+                <p
+                  style={{
+                    fontSize: 17,
+                    color: "#3a5555",
+                    lineHeight: 1.6,
+                    marginBottom: 32,
+                    maxWidth: 420,
+                  }}
+                >
+                  Entdecke lokale Vereine, die zu dir passen — von Sport bis
+                  Kultur, für alle Altersgruppen.
+                </p>
+
+                {/* Search */}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 0,
+                    border: `1.5px solid ${primary}`,
+                    borderRadius: 10,
+                    overflow: "hidden",
+                    background: "#fff",
+                    marginBottom: 16,
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: "0 16px",
+                      display: "flex",
+                      alignItems: "center",
+                      color: "#7a9a9a",
+                    }}
+                  >
+                    <Icon name="search" size={18} color="#7a9a9a" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Vereinsname oder Sportart suchen …"
+                    style={{
+                      flex: 1,
+                      border: "none",
+                      outline: "none",
+                      fontSize: 15,
+                      padding: "13px 0",
+                      color: "#0b1a1a",
+                      background: "transparent",
+                    }}
+                  />
+                  <button
+                    style={{
+                      background: primary,
+                      color: "#fff",
+                      border: "none",
+                      padding: "0 24px",
+                      fontSize: 15,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Suchen
+                  </button>
+                </div>
+
+                {/* Quick chips */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      color: "#7a9a9a",
+                      alignSelf: "center",
+                    }}
+                  >
+                    Schnellfilter:
+                  </span>
+                  {quickChips.map((c) => (
+                    <QuickChip
+                      key={c}
+                      label={c}
+                      active={activeChip === c}
+                      primary={primary}
+                      onClick={() => setActiveChip(c)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Right — Onboarding panel */}
+              <div
+                style={{
+                  background: "#fff",
+                  border: "0.5px solid #c5dede",
+                  borderRadius: 14,
+                  padding: 32,
+                  boxShadow: "0 2px 16px #0D5C6312",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginBottom: 4,
+                  }}
+                >
+                  <h2
+                    style={{ fontSize: 18, fontWeight: 700, color: "#0b1a1a" }}
+                  >
+                    Dein Vereins-Match
+                  </h2>
+                  <span
+                    style={{ fontSize: 12, color: "#7a9a9a", fontWeight: 500 }}
+                  >
+                    <Icon name="star" color={accent} size={12} /> KI-gestützt
+                  </span>
+                </div>
+                <p style={{ fontSize: 14, color: "#3a5555", marginBottom: 20 }}>
+                  Was interessiert dich?
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 10,
+                    marginBottom: 28,
+                  }}
+                >
+                  {interests.map((i) => (
+                    <MatchChip
+                      key={i.label}
+                      label={i.label}
+                      icon={i.icon}
+                      selected={selectedInterests.includes(i.label)}
+                      primary={primary}
+                      onClick={() => toggle(i.label)}
+                    />
+                  ))}
+                </div>
+
+                {/* Progress */}
+                <div style={{ marginBottom: 20 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginBottom: 8,
+                    }}
+                  >
+                    <div style={{ display: "flex", gap: 6 }}>
+                      {[1, 2, 3, 4].map((n) => (
+                        <div
+                          key={n}
+                          style={{
+                            width: n <= 2 ? 20 : 8,
+                            height: 8,
+                            borderRadius: 4,
+                            background: n <= 2 ? primary : "#c5dede",
+                            transition: "width 0.3s",
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <span
+                      style={{
+                        fontSize: 12,
+                        color: "#3a5555",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Frage 2 von 4
+                    </span>
+                  </div>
+                  <p style={{ fontSize: 12, color: "#7a9a9a" }}>
+                    Noch 2 Fragen, dann zeigen wir dir deine Treffer
+                  </p>
+                </div>
+
+                <button
+                  style={{
+                    width: "100%",
+                    background: primary,
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: 8,
+                    padding: "13px 0",
+                    fontSize: 15,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                  }}
+                >
+                  Weiter
+                  <Icon name="arrow" color="#fff" size={16} />
+                </button>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      // ─── Club card ────────────────────────────────────────────────────────────────
+      const ClubCard = ({
+        name,
+        category,
+        categoryIcon,
+        location,
+        tags,
+        desc,
+        match,
+        primary,
+        accent,
+        radius,
+        showMatch,
+      }) => (
+        <article
+          style={{
+            background: "#fff",
+            border: "0.5px solid #c5dede",
+            borderRadius: radius,
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            boxShadow: "0 1px 6px #0D5C630d",
+          }}
+        >
+          {/* Category strip */}
+          <div
+            style={{
+              padding: "14px 18px 12px",
+              borderBottom: "0.5px solid #e4f0f0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: `${primary}14`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Icon name={categoryIcon} color={primary} size={16} />
+              </div>
+              <span
+                style={{
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: primary,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                {category}
+              </span>
+            </div>
+            {showMatch && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  background: `${primary}12`,
+                  border: `1px solid ${primary}40`,
+                  borderRadius: 20,
+                  padding: "3px 10px",
+                }}
+              >
+                <Icon name="star" color={primary} size={11} />
+                <span style={{ fontSize: 12, fontWeight: 700, color: primary }}>
+                  {match} % Match
+                </span>
+              </div>
+            )}
+          </div>
+
+          <div
+            style={{
+              padding: "18px 18px 20px",
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: 17,
+                fontWeight: 700,
+                color: "#0b1a1a",
+                marginBottom: 6,
+              }}
+            >
+              {name}
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                color: "#7a9a9a",
+                fontSize: 13,
+                marginBottom: 12,
+              }}
+            >
+              <Icon name="mapPin" color="#7a9a9a" size={13} />
+              {location}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                gap: 6,
+                flexWrap: "wrap",
+                marginBottom: 12,
+              }}
+            >
+              {tags.map((t) => (
+                <span
+                  key={t}
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 500,
+                    background: "#f0f9f9",
+                    color: "#2a5555",
+                    border: "0.5px solid #c5dede",
+                    borderRadius: 4,
+                    padding: "3px 8px",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+            <p
+              style={{
+                fontSize: 14,
+                color: "#3a5555",
+                lineHeight: 1.55,
+                flex: 1,
+              }}
+            >
+              {desc}
+            </p>
+
+            <a
+              href="#"
+              style={{
+                marginTop: 16,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+                fontSize: 14,
+                fontWeight: 600,
+                color: primary,
+                textDecoration: "none",
+              }}
+            >
+              Details
+              <Icon name="arrow" color={primary} size={14} />
+            </a>
+          </div>
+        </article>
+      );
+
+      // ─── Results section ──────────────────────────────────────────────────────────
+      const Results = ({ primary, accent, radius, showMatch }) => {
+        const [activeFilter, setActiveFilter] = React.useState("Alle");
+        const filters = ["Alle", "Sport", "Kinder", "Kultur", "≤ 5 km"];
+        const clubs = [
+          {
+            name: "FC Kassel Nordstadt",
+            category: "Sport",
+            categoryIcon: "ball",
+            location: "Nordstadt, 3,2 km",
+            tags: ["Fußball", "Junioren", "Aktive"],
+            desc: "Traditionsverein im Herzen der Nordstadt mit Jugendabteilung ab 5 Jahren und aktiver Herrenmannschaft.",
+            match: 95,
+          },
+          {
+            name: "Musikschule Wilhelmshöhe e.V.",
+            category: "Kultur",
+            categoryIcon: "music",
+            location: "Wilhelmshöhe, 4,1 km",
+            tags: ["Musik", "Erwachsene", "Kinder"],
+            desc: "Offene Musikschule für alle Altersgruppen — von klassischem Klavier bis Jazz-Ensemble und Chor.",
+            match: 88,
+          },
+          {
+            name: "Naturfreunde Kassel",
+            category: "Natur",
+            categoryIcon: "tree",
+            location: "Baunatal, 6,5 km",
+            tags: ["Wandern", "Umwelt", "Familien"],
+            desc: "Gemeinsam die Region entdecken: Wandertouren, Naturschutzprojekte und gesellige Abende für die ganze Familie.",
+            match: 81,
+          },
+        ];
+
+        return (
+          <section style={{ padding: "64px 48px" }}>
+            <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  justifyContent: "space-between",
+                  marginBottom: 28,
+                }}
+              >
+                <div>
+                  <h2
+                    style={{
+                      fontFamily: "'DM Serif Display', serif",
+                      fontSize: 32,
+                      color: "#0b1a1a",
+                      marginBottom: 6,
+                    }}
+                  >
+                    Passende Vereine in Kassel
+                  </h2>
+                  <p style={{ fontSize: 15, color: "#3a5555" }}>
+                    247 Vereine gefunden · sortiert nach Match-Score
+                  </p>
+                </div>
+                <button
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    border: `1.5px solid ${primary}`,
+                    borderRadius: 8,
+                    padding: "8px 16px",
+                    background: "#fff",
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: primary,
+                    cursor: "pointer",
+                  }}
+                >
+                  <Icon name="tag" color={primary} size={14} />
+                  Alle Filter
+                </button>
+              </div>
+
+              {/* Filter bar */}
+              <div style={{ display: "flex", gap: 6, marginBottom: 32 }}>
+                {filters.map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setActiveFilter(f)}
+                    style={{
+                      padding: "8px 18px",
+                      borderRadius: 8,
+                      border:
+                        activeFilter === f
+                          ? `1.5px solid ${primary}`
+                          : "1px solid #c5dede",
+                      background: activeFilter === f ? primary : "#fff",
+                      color: activeFilter === f ? "#fff" : "#3a5555",
+                      fontSize: 14,
+                      fontWeight: activeFilter === f ? 600 : 400,
+                      cursor: "pointer",
+                    }}
+                  >
+                    {f}
+                  </button>
                 ))}
               </div>
-              <span style={{ fontSize: 12, color: '#3a5555', fontWeight: 500 }}>Frage 2 von 4</span>
-            </div>
-            <p style={{ fontSize: 12, color: '#7a9a9a' }}>Noch 2 Fragen, dann zeigen wir dir deine Treffer</p>
-          </div>
 
-          <button style={{
-            width: '100%', background: primary, color: '#fff',
-            border: 'none', borderRadius: 8,
-            padding: '13px 0', fontSize: 15, fontWeight: 600,
-            cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          }}>
-            Weiter
-            <Icon name="arrow" color="#fff" size={16} />
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ─── Club card ────────────────────────────────────────────────────────────────
-const ClubCard = ({ name, category, categoryIcon, location, tags, desc, match, primary, accent, radius, showMatch }) => (
-  <article style={{
-    background: '#fff',
-    border: '0.5px solid #c5dede',
-    borderRadius: radius,
-    overflow: 'hidden',
-    display: 'flex', flexDirection: 'column',
-    boxShadow: '0 1px 6px #0D5C630d',
-  }}>
-    {/* Category strip */}
-    <div style={{
-      padding: '14px 18px 12px',
-      borderBottom: '0.5px solid #e4f0f0',
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div style={{
-          width: 32, height: 32, borderRadius: 8,
-          background: `${primary}14`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <Icon name={categoryIcon} color={primary} size={16} />
-        </div>
-        <span style={{ fontSize: 12, fontWeight: 600, color: primary, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          {category}
-        </span>
-      </div>
-      {showMatch && (
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 4,
-          background: `${primary}12`,
-          border: `1px solid ${primary}40`,
-          borderRadius: 20, padding: '3px 10px',
-        }}>
-          <Icon name="star" color={primary} size={11} />
-          <span style={{ fontSize: 12, fontWeight: 700, color: primary }}>{match} % Match</span>
-        </div>
-      )}
-    </div>
-
-    <div style={{ padding: '18px 18px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-      <h3 style={{ fontSize: 17, fontWeight: 700, color: '#0b1a1a', marginBottom: 6 }}>{name}</h3>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#7a9a9a', fontSize: 13, marginBottom: 12 }}>
-        <Icon name="mapPin" color="#7a9a9a" size={13} />
-        {location}
-      </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
-        {tags.map(t => (
-          <span key={t} style={{
-            fontSize: 12, fontWeight: 500,
-            background: '#f0f9f9', color: '#2a5555',
-            border: '0.5px solid #c5dede',
-            borderRadius: 4, padding: '3px 8px',
-          }}>{t}</span>
-        ))}
-      </div>
-      <p style={{ fontSize: 14, color: '#3a5555', lineHeight: 1.55, flex: 1 }}>{desc}</p>
-
-      <a href="#" style={{
-        marginTop: 16, display: 'inline-flex', alignItems: 'center', gap: 4,
-        fontSize: 14, fontWeight: 600, color: primary, textDecoration: 'none',
-      }}>
-        Details
-        <Icon name="arrow" color={primary} size={14} />
-      </a>
-    </div>
-  </article>
-);
-
-// ─── Results section ──────────────────────────────────────────────────────────
-const Results = ({ primary, accent, radius, showMatch }) => {
-  const [activeFilter, setActiveFilter] = React.useState('Alle');
-  const filters = ['Alle', 'Sport', 'Kinder', 'Kultur', '≤ 5 km'];
-  const clubs = [
-    {
-      name: 'FC Kassel Nordstadt',
-      category: 'Sport', categoryIcon: 'ball',
-      location: 'Nordstadt, 3,2 km',
-      tags: ['Fußball', 'Junioren', 'Aktive'],
-      desc: 'Traditionsverein im Herzen der Nordstadt mit Jugendabteilung ab 5 Jahren und aktiver Herrenmannschaft.',
-      match: 95,
-    },
-    {
-      name: 'Musikschule Wilhelmshöhe e.V.',
-      category: 'Kultur', categoryIcon: 'music',
-      location: 'Wilhelmshöhe, 4,1 km',
-      tags: ['Musik', 'Erwachsene', 'Kinder'],
-      desc: 'Offene Musikschule für alle Altersgruppen — von klassischem Klavier bis Jazz-Ensemble und Chor.',
-      match: 88,
-    },
-    {
-      name: 'Naturfreunde Kassel',
-      category: 'Natur', categoryIcon: 'tree',
-      location: 'Baunatal, 6,5 km',
-      tags: ['Wandern', 'Umwelt', 'Familien'],
-      desc: 'Gemeinsam die Region entdecken: Wandertouren, Naturschutzprojekte und gesellige Abende für die ganze Familie.',
-      match: 81,
-    },
-  ];
-
-  return (
-    <section style={{ padding: '64px 48px' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 28 }}>
-          <div>
-            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: '#0b1a1a', marginBottom: 6 }}>
-              Passende Vereine in Kassel
-            </h2>
-            <p style={{ fontSize: 15, color: '#3a5555' }}>247 Vereine gefunden · sortiert nach Match-Score</p>
-          </div>
-          <button style={{
-            display: 'flex', alignItems: 'center', gap: 6,
-            border: `1.5px solid ${primary}`, borderRadius: 8,
-            padding: '8px 16px', background: '#fff',
-            fontSize: 14, fontWeight: 500, color: primary, cursor: 'pointer',
-          }}>
-            <Icon name="tag" color={primary} size={14} />
-            Alle Filter
-          </button>
-        </div>
-
-        {/* Filter bar */}
-        <div style={{ display: 'flex', gap: 6, marginBottom: 32 }}>
-          {filters.map(f => (
-            <button key={f} onClick={() => setActiveFilter(f)} style={{
-              padding: '8px 18px', borderRadius: 8,
-              border: activeFilter === f ? `1.5px solid ${primary}` : '1px solid #c5dede',
-              background: activeFilter === f ? primary : '#fff',
-              color: activeFilter === f ? '#fff' : '#3a5555',
-              fontSize: 14, fontWeight: activeFilter === f ? 600 : 400,
-              cursor: 'pointer',
-            }}>{f}</button>
-          ))}
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-          {clubs.map(c => (
-            <ClubCard key={c.name} {...c} primary={primary} accent={accent} radius={radius} showMatch={showMatch} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ─── Map strip ────────────────────────────────────────────────────────────────
-const MapStrip = ({ primary }) => {
-  const pins = [
-    { x: '22%', y: '38%', label: 'FC Kassel' },
-    { x: '45%', y: '52%', label: 'Musikschule' },
-    { x: '63%', y: '30%', label: 'Naturfreunde' },
-    { x: '35%', y: '68%', label: 'SV Baunatal' },
-    { x: '72%', y: '60%', label: 'Tennisclub' },
-  ];
-  return (
-    <section style={{ padding: '0 48px 64px', maxWidth: 1200, margin: '0 auto' }}>
-      <div style={{
-        borderRadius: 14, overflow: 'hidden',
-        border: '0.5px solid #c5dede',
-        position: 'relative', height: 320,
-        background: '#e8f2f0',
-      }}>
-        {/* Striped map placeholder */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `repeating-linear-gradient(45deg, #d4eae8 0px, #d4eae8 1px, transparent 1px, transparent 24px)`,
-          opacity: 0.5,
-        }} />
-        {/* Road lines */}
-        <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 800 320" preserveAspectRatio="none">
-          <path d="M0 160 Q200 120 400 180 Q600 240 800 160" stroke="#c0d8d4" strokeWidth="10" fill="none" />
-          <path d="M200 0 Q250 100 280 200 Q310 280 320 320" stroke="#c0d8d4" strokeWidth="8" fill="none" />
-          <path d="M500 0 Q520 80 540 160 Q560 240 580 320" stroke="#c0d8d4" strokeWidth="8" fill="none" />
-          <path d="M0 80 Q300 60 800 100" stroke="#c0d8d4" strokeWidth="5" fill="none" />
-        </svg>
-
-        {/* Label */}
-        <div style={{
-          position: 'absolute', top: 18, left: 20,
-          background: '#fff', borderRadius: 8, padding: '8px 14px',
-          border: '0.5px solid #c5dede',
-          display: 'flex', alignItems: 'center', gap: 6,
-          fontSize: 13, fontWeight: 600, color: '#0b1a1a',
-          boxShadow: '0 1px 4px #0002',
-        }}>
-          <Icon name="mapPin" color={primary} size={14} />
-          Kassel &amp; Umgebung
-        </div>
-
-        {/* Pins */}
-        {pins.map((p, i) => (
-          <div key={i} style={{
-            position: 'absolute', left: p.x, top: p.y,
-            transform: 'translate(-50%, -100%)',
-          }}>
-            <div style={{
-              background: primary, color: '#fff',
-              borderRadius: '50% 50% 50% 0', width: 28, height: 28,
-              transform: 'rotate(-45deg)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 2px 8px #0D5C6333',
-            }}>
-              <div style={{ transform: 'rotate(45deg)' }}>
-                <Icon name="users" color="#fff" size={13} />
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: 20,
+                }}
+              >
+                {clubs.map((c) => (
+                  <ClubCard
+                    key={c.name}
+                    {...c}
+                    primary={primary}
+                    accent={accent}
+                    radius={radius}
+                    showMatch={showMatch}
+                  />
+                ))}
               </div>
             </div>
-            <div style={{
-              background: '#fff', borderRadius: 4, padding: '2px 6px',
-              fontSize: 11, fontWeight: 600, color: '#0b1a1a',
-              border: '0.5px solid #c5dede', marginTop: 2, whiteSpace: 'nowrap',
-              boxShadow: '0 1px 3px #0002',
-            }}>{p.label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
+          </section>
+        );
+      };
 
-// ─── Events section ───────────────────────────────────────────────────────────
-const Events = ({ primary, accent, radius }) => {
-  const events = [
-    { date: '03. Mai', day: 'Sa', name: 'Kasseler Stadtlauf 2026', location: 'Friedrichsplatz', time: '09:00 Uhr', cat: 'Sport', catIcon: 'running' },
-    { date: '10. Mai', day: 'Sa', name: 'Frühjahrskonzert der Musikschule', location: 'Kulturbahnhof Kassel', time: '19:30 Uhr', cat: 'Kultur', catIcon: 'music' },
-    { date: '17. Mai', day: 'So', name: 'Familientag im Naturpark', location: 'Habichtswald, Treffpunkt P3', time: '10:00 Uhr', cat: 'Natur', catIcon: 'tree' },
-  ];
+      // ─── Map strip ────────────────────────────────────────────────────────────────
+      const MapStrip = ({ primary }) => {
+        const pins = [
+          { x: "22%", y: "38%", label: "FC Kassel" },
+          { x: "45%", y: "52%", label: "Musikschule" },
+          { x: "63%", y: "30%", label: "Naturfreunde" },
+          { x: "35%", y: "68%", label: "SV Baunatal" },
+          { x: "72%", y: "60%", label: "Tennisclub" },
+        ];
+        return (
+          <section
+            style={{ padding: "0 48px 64px", maxWidth: 1200, margin: "0 auto" }}
+          >
+            <div
+              style={{
+                borderRadius: 14,
+                overflow: "hidden",
+                border: "0.5px solid #c5dede",
+                position: "relative",
+                height: 320,
+                background: "#e8f2f0",
+              }}
+            >
+              {/* Striped map placeholder */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  backgroundImage: `repeating-linear-gradient(45deg, #d4eae8 0px, #d4eae8 1px, transparent 1px, transparent 24px)`,
+                  opacity: 0.5,
+                }}
+              />
+              {/* Road lines */}
+              <svg
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+                viewBox="0 0 800 320"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0 160 Q200 120 400 180 Q600 240 800 160"
+                  stroke="#c0d8d4"
+                  strokeWidth="10"
+                  fill="none"
+                />
+                <path
+                  d="M200 0 Q250 100 280 200 Q310 280 320 320"
+                  stroke="#c0d8d4"
+                  strokeWidth="8"
+                  fill="none"
+                />
+                <path
+                  d="M500 0 Q520 80 540 160 Q560 240 580 320"
+                  stroke="#c0d8d4"
+                  strokeWidth="8"
+                  fill="none"
+                />
+                <path
+                  d="M0 80 Q300 60 800 100"
+                  stroke="#c0d8d4"
+                  strokeWidth="5"
+                  fill="none"
+                />
+              </svg>
 
-  return (
-    <section style={{ background: '#f5fafa', padding: '64px 48px', borderTop: '0.5px solid #c5dede' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ marginBottom: 32 }}>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 32, color: '#0b1a1a', marginBottom: 6 }}>
-            Kommende Veranstaltungen
-          </h2>
-          <p style={{ fontSize: 15, color: '#3a5555' }}>Events und Mitmachaktionen aus Kasseler Vereinen</p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-          {events.map(e => (
-            <article key={e.name} style={{
-              background: '#fff',
-              border: '0.5px solid #c5dede',
-              borderRadius: radius,
-              overflow: 'hidden',
-              boxShadow: '0 1px 6px #0D5C630d',
-              display: 'flex',
-            }}>
-              {/* Date block */}
-              <div style={{
-                background: primary, color: '#fff',
-                padding: '20px 18px', minWidth: 72,
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{e.day}</span>
-                <span style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.1 }}>{e.date.split('.')[0]}</span>
-                <span style={{ fontSize: 11, opacity: 0.8 }}>{e.date.split(' ')[1]}</span>
+              {/* Label */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 18,
+                  left: 20,
+                  background: "#fff",
+                  borderRadius: 8,
+                  padding: "8px 14px",
+                  border: "0.5px solid #c5dede",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: "#0b1a1a",
+                  boxShadow: "0 1px 4px #0002",
+                }}
+              >
+                <Icon name="mapPin" color={primary} size={14} />
+                Kassel &amp; Umgebung
               </div>
 
-              <div style={{ padding: '18px 18px', flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                  <div style={{
-                    background: `${primary}14`, borderRadius: 6, padding: '3px 8px',
-                    display: 'flex', alignItems: 'center', gap: 4,
-                  }}>
-                    <Icon name={e.catIcon} color={primary} size={12} />
-                    <span style={{ fontSize: 11, fontWeight: 600, color: primary }}>{e.cat}</span>
+              {/* Pins */}
+              {pins.map((p, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: "absolute",
+                    left: p.x,
+                    top: p.y,
+                    transform: "translate(-50%, -100%)",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: primary,
+                      color: "#fff",
+                      borderRadius: "50% 50% 50% 0",
+                      width: 28,
+                      height: 28,
+                      transform: "rotate(-45deg)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 2px 8px #0D5C6333",
+                    }}
+                  >
+                    <div style={{ transform: "rotate(45deg)" }}>
+                      <Icon name="users" color="#fff" size={13} />
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      background: "#fff",
+                      borderRadius: 4,
+                      padding: "2px 6px",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#0b1a1a",
+                      border: "0.5px solid #c5dede",
+                      marginTop: 2,
+                      whiteSpace: "nowrap",
+                      boxShadow: "0 1px 3px #0002",
+                    }}
+                  >
+                    {p.label}
                   </div>
                 </div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0b1a1a', marginBottom: 8, lineHeight: 1.3 }}>{e.name}</h3>
-                <div style={{ fontSize: 13, color: '#7a9a9a', display: 'flex', flexDirection: 'column', gap: 3 }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                    <Icon name="mapPin" color="#7a9a9a" size={12} /> {e.location}
-                  </span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                    <Icon name="clock" color="#7a9a9a" size={12} /> {e.time}
-                  </span>
-                </div>
+              ))}
+            </div>
+          </section>
+        );
+      };
+
+      // ─── Events section ───────────────────────────────────────────────────────────
+      const Events = ({ primary, accent, radius }) => {
+        const events = [
+          {
+            date: "03. Mai",
+            day: "Sa",
+            name: "Kasseler Stadtlauf 2026",
+            location: "Friedrichsplatz",
+            time: "09:00 Uhr",
+            cat: "Sport",
+            catIcon: "running",
+          },
+          {
+            date: "10. Mai",
+            day: "Sa",
+            name: "Frühjahrskonzert der Musikschule",
+            location: "Kulturbahnhof Kassel",
+            time: "19:30 Uhr",
+            cat: "Kultur",
+            catIcon: "music",
+          },
+          {
+            date: "17. Mai",
+            day: "So",
+            name: "Familientag im Naturpark",
+            location: "Habichtswald, Treffpunkt P3",
+            time: "10:00 Uhr",
+            cat: "Natur",
+            catIcon: "tree",
+          },
+        ];
+
+        return (
+          <section
+            style={{
+              background: "#f5fafa",
+              padding: "64px 48px",
+              borderTop: "0.5px solid #c5dede",
+            }}
+          >
+            <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+              <div style={{ marginBottom: 32 }}>
+                <h2
+                  style={{
+                    fontFamily: "'DM Serif Display', serif",
+                    fontSize: 32,
+                    color: "#0b1a1a",
+                    marginBottom: 6,
+                  }}
+                >
+                  Kommende Veranstaltungen
+                </h2>
+                <p style={{ fontSize: 15, color: "#3a5555" }}>
+                  Events und Mitmachaktionen aus Kasseler Vereinen
+                </p>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
-// ─── Admin footer banner ──────────────────────────────────────────────────────
-const AdminBanner = ({ primary, accent }) => (
-  <section style={{
-    background: '#0b1a1a',
-    padding: '56px 48px',
-  }}>
-    <div style={{
-      maxWidth: 1200, margin: '0 auto',
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32,
-    }}>
-      <div>
-        <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 30, color: '#fff', marginBottom: 10 }}>
-          Euer Verein fehlt?
-        </h2>
-        <p style={{ fontSize: 16, color: '#8ab5b5', lineHeight: 1.6, maxWidth: 500 }}>
-          Tragt euren Verein kostenlos ein und werdet von hunderten Interessierten in Kassel gefunden.
-        </p>
-      </div>
-      <div style={{ display: 'flex', gap: 12, flexShrink: 0 }}>
-        <button style={{
-          background: accent, color: '#fff',
-          border: 'none', borderRadius: 8,
-          padding: '14px 28px', fontSize: 15, fontWeight: 700,
-          cursor: 'pointer', whiteSpace: 'nowrap',
-          display: 'flex', alignItems: 'center', gap: 8,
-        }}>
-          <Icon name="plus" color="#fff" size={16} />
-          Verein kostenlos eintragen
-        </button>
-        <button style={{
-          background: 'transparent', color: '#8ab5b5',
-          border: '1px solid #2a4545', borderRadius: 8,
-          padding: '14px 24px', fontSize: 15, fontWeight: 500,
-          cursor: 'pointer',
-        }}>Mehr erfahren</button>
-      </div>
-    </div>
-  </section>
-);
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: 20,
+                }}
+              >
+                {events.map((e) => (
+                  <article
+                    key={e.name}
+                    style={{
+                      background: "#fff",
+                      border: "0.5px solid #c5dede",
+                      borderRadius: radius,
+                      overflow: "hidden",
+                      boxShadow: "0 1px 6px #0D5C630d",
+                      display: "flex",
+                    }}
+                  >
+                    {/* Date block */}
+                    <div
+                      style={{
+                        background: primary,
+                        color: "#fff",
+                        padding: "20px 18px",
+                        minWidth: 72,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          opacity: 0.8,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.5px",
+                        }}
+                      >
+                        {e.day}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 22,
+                          fontWeight: 700,
+                          lineHeight: 1.1,
+                        }}
+                      >
+                        {e.date.split(".")[0]}
+                      </span>
+                      <span style={{ fontSize: 11, opacity: 0.8 }}>
+                        {e.date.split(" ")[1]}
+                      </span>
+                    </div>
 
-// ─── App ──────────────────────────────────────────────────────────────────────
-const App = () => {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const primary = t.primaryColor;
-  const accent = t.accentColor;
-  const bgPanel = t.bgPanel;
-  const cardRadius = t.cardRadius;
-  const showMatchBadge = t.showMatchBadge;
+                    <div style={{ padding: "18px 18px", flex: 1 }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 6,
+                          marginBottom: 8,
+                        }}
+                      >
+                        <div
+                          style={{
+                            background: `${primary}14`,
+                            borderRadius: 6,
+                            padding: "3px 8px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 4,
+                          }}
+                        >
+                          <Icon name={e.catIcon} color={primary} size={12} />
+                          <span
+                            style={{
+                              fontSize: 11,
+                              fontWeight: 600,
+                              color: primary,
+                            }}
+                          >
+                            {e.cat}
+                          </span>
+                        </div>
+                      </div>
+                      <h3
+                        style={{
+                          fontSize: 15,
+                          fontWeight: 700,
+                          color: "#0b1a1a",
+                          marginBottom: 8,
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {e.name}
+                      </h3>
+                      <div
+                        style={{
+                          fontSize: 13,
+                          color: "#7a9a9a",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 3,
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 5,
+                          }}
+                        >
+                          <Icon name="mapPin" color="#7a9a9a" size={12} />{" "}
+                          {e.location}
+                        </span>
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 5,
+                          }}
+                        >
+                          <Icon name="clock" color="#7a9a9a" size={12} />{" "}
+                          {e.time}
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      };
 
-  return (
-    <>
-      <TweaksPanel>
-        <TweakSection label="Farben" />
-        <TweakColor label="Primärfarbe" value={primary} onChange={v => setTweak('primaryColor', v)} />
-        <TweakColor label="Akzentfarbe" value={accent} onChange={v => setTweak('accentColor', v)} />
-        <TweakColor label="Panel-Hintergrund" value={bgPanel} onChange={v => setTweak('bgPanel', v)} />
-        <TweakSection label="Layout" />
-        <TweakSlider label="Card-Radius" value={cardRadius} min={4} max={20} unit="px" onChange={v => setTweak('cardRadius', v)} />
-        <TweakToggle label="Match-Badge anzeigen" value={showMatchBadge} onChange={v => setTweak('showMatchBadge', v)} />
-      </TweaksPanel>
+      // ─── Admin footer banner ──────────────────────────────────────────────────────
+      const AdminBanner = ({ primary, accent }) => (
+        <section
+          style={{
+            background: "#0b1a1a",
+            padding: "56px 48px",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: 1200,
+              margin: "0 auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 32,
+            }}
+          >
+            <div>
+              <h2
+                style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: 30,
+                  color: "#fff",
+                  marginBottom: 10,
+                }}
+              >
+                Euer Verein fehlt?
+              </h2>
+              <p
+                style={{
+                  fontSize: 16,
+                  color: "#8ab5b5",
+                  lineHeight: 1.6,
+                  maxWidth: 500,
+                }}
+              >
+                Tragt euren Verein kostenlos ein und werdet von hunderten
+                Interessierten in Kassel gefunden.
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: 12, flexShrink: 0 }}>
+              <button
+                style={{
+                  background: accent,
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 8,
+                  padding: "14px 28px",
+                  fontSize: 15,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
+                <Icon name="plus" color="#fff" size={16} />
+                Verein kostenlos eintragen
+              </button>
+              <button
+                style={{
+                  background: "transparent",
+                  color: "#8ab5b5",
+                  border: "1px solid #2a4545",
+                  borderRadius: 8,
+                  padding: "14px 24px",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  cursor: "pointer",
+                }}
+              >
+                Mehr erfahren
+              </button>
+            </div>
+          </div>
+        </section>
+      );
 
-      <Navbar primary={primary} accent={accent} />
-      <Hero primary={primary} accent={accent} bgPanel={bgPanel} />
-      <Results primary={primary} accent={accent} radius={cardRadius} showMatch={showMatchBadge} />
-      <MapStrip primary={primary} />
-      <Events primary={primary} accent={accent} radius={cardRadius} />
-      <AdminBanner primary={primary} accent={accent} />
-    </>
-  );
-};
+      // ─── App ──────────────────────────────────────────────────────────────────────
+      const App = () => {
+        const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+        const primary = t.primaryColor;
+        const accent = t.accentColor;
+        const bgPanel = t.bgPanel;
+        const cardRadius = t.cardRadius;
+        const showMatchBadge = t.showMatchBadge;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
-</script>
-</body>
+        return (
+          <>
+            <TweaksPanel>
+              <TweakSection label="Farben" />
+              <TweakColor
+                label="Primärfarbe"
+                value={primary}
+                onChange={(v) => setTweak("primaryColor", v)}
+              />
+              <TweakColor
+                label="Akzentfarbe"
+                value={accent}
+                onChange={(v) => setTweak("accentColor", v)}
+              />
+              <TweakColor
+                label="Panel-Hintergrund"
+                value={bgPanel}
+                onChange={(v) => setTweak("bgPanel", v)}
+              />
+              <TweakSection label="Layout" />
+              <TweakSlider
+                label="Card-Radius"
+                value={cardRadius}
+                min={4}
+                max={20}
+                unit="px"
+                onChange={(v) => setTweak("cardRadius", v)}
+              />
+              <TweakToggle
+                label="Match-Badge anzeigen"
+                value={showMatchBadge}
+                onChange={(v) => setTweak("showMatchBadge", v)}
+              />
+            </TweaksPanel>
+
+            <Navbar primary={primary} accent={accent} />
+            <Hero primary={primary} accent={accent} bgPanel={bgPanel} />
+            <Results
+              primary={primary}
+              accent={accent}
+              radius={cardRadius}
+              showMatch={showMatchBadge}
+            />
+            <MapStrip primary={primary} />
+            <Events primary={primary} accent={accent} radius={cardRadius} />
+            <AdminBanner primary={primary} accent={accent} />
+          </>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
 </html>

@@ -30,7 +30,14 @@ export default function MapStrip() {
             patternUnits="userSpaceOnUse"
             patternTransform="rotate(45)"
           >
-            <line x1="0" y1="0" x2="0" y2="24" stroke="#C0D8D4" strokeWidth="1" />
+            <line
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="24"
+              stroke="#C0D8D4"
+              strokeWidth="1"
+            />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#stripes)" opacity="0.35" />
@@ -67,12 +74,10 @@ export default function MapStrip() {
           className="absolute -translate-x-1/2"
           style={{ left: x, top: y }}
         >
-          <div
-            className="w-8 h-8 bg-primary flex items-center justify-center rotate-45 mx-auto rounded-tr-[6px] rounded-tl-[6px] rounded-bl-[6px] shadow-[0_2px_8px_rgba(13,92,99,0.2)]"
-          >
+          <div className="w-8 h-8 bg-primary flex items-center justify-center rotate-45 mx-auto rounded-tr-[6px] rounded-tl-[6px] rounded-bl-[6px] shadow-[0_2px_8px_rgba(13,92,99,0.2)]">
             <MapPin size={14} className="text-primary-foreground -rotate-45" />
           </div>
-          <Badge 
+          <Badge
             variant="secondary"
             className="mt-2 bg-white hover:bg-white text-foreground text-[11px] font-medium whitespace-nowrap w-fit mx-auto shadow-[0_1px_4px_rgba(0,0,0,0.13)] border-0"
           >
@@ -82,11 +87,11 @@ export default function MapStrip() {
       ))}
 
       {/* Area label */}
-      <Badge
-        className="absolute top-4 left-4 bg-white hover:bg-white rounded-lg px-3 py-2 flex items-center gap-2 shadow-[0_1px_4px_rgba(0,0,0,0.13)] border-0"
-      >
+      <Badge className="absolute top-4 left-4 bg-white hover:bg-white rounded-lg px-3 py-2 flex items-center gap-2 shadow-[0_1px_4px_rgba(0,0,0,0.13)] border-0">
         <MapPin size={13} className="text-primary" aria-hidden="true" />
-        <span className="text-[13px] font-medium text-foreground">Kassel & Umgebung</span>
+        <span className="text-[13px] font-medium text-foreground">
+          Kassel & Umgebung
+        </span>
       </Badge>
     </div>
   );

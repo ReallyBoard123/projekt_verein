@@ -15,16 +15,21 @@ export async function getClubs(filters?: {
     await delay(200);
     let clubs = MOCK_CLUBS;
     if (filters?.category && filters.category !== "Alle") {
-      clubs = clubs.filter((c) => c.category === filters.category?.toLowerCase());
+      clubs = clubs.filter(
+        (c) => c.category === filters.category?.toLowerCase(),
+      );
     }
     if (filters?.childFriendly) {
-      clubs = clubs.filter((c) => c.tags.includes("Kinder") || c.tags.includes("Familie"));
+      clubs = clubs.filter(
+        (c) => c.tags.includes("Kinder") || c.tags.includes("Familie"),
+      );
     }
     return clubs;
   }
   const params = new URLSearchParams();
   if (filters?.category) params.set("category", filters.category);
-  if (filters?.maxDistance) params.set("maxDistance", String(filters.maxDistance));
+  if (filters?.maxDistance)
+    params.set("maxDistance", String(filters.maxDistance));
   if (filters?.childFriendly) params.set("childFriendly", "true");
   const res = await fetch(`${API_BASE}/api/clubs?${params}`);
   if (!res.ok) throw new Error("Failed to fetch clubs");

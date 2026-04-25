@@ -9,6 +9,7 @@
 **Tech Stack:** Next.js 16.2.4, shadcn/ui (base-nova style, `@base-ui/react`), Tailwind CSS v4, TypeScript
 
 **Key component APIs (already installed):**
+
 - `Button` — variants: `default | outline | secondary | ghost | destructive | link`; sizes: `default | xs | sm | lg | icon`. Backed by `@base-ui/react/button`, accepts all standard button attributes including `aria-pressed`.
 - `Badge` — variants: `default | secondary | destructive | outline | ghost | link`. Renders as `<span>` via `useRender`. Default `h-5 text-xs rounded-4xl`.
 - `Card` / `CardHeader` / `CardContent` / `CardFooter` / `CardTitle` — `Card` renders `<div>` with `ring-1 ring-foreground/10 rounded-xl bg-card flex flex-col gap-4 py-4`.
@@ -20,22 +21,23 @@
 
 ## File Map
 
-| File | Change |
-|------|--------|
-| `app/vereine/[id]/page.tsx` | Remove dead `Separator` import (Task 1), then Card/Badge/Button (Task 8) |
-| `components/HeroSection.tsx` | `Input` + `Button` for quick-chips (Task 2) |
-| `components/FilterBar.tsx` | `Button` for filter pill chips (Task 3) |
-| `components/ClubCard.tsx` | `Card` wrapper + `Badge` for tags (Task 4) |
-| `components/EventCard.tsx` | `Card` wrapper + `Badge` for category label (Task 5) |
-| `components/OnboardingPanel.tsx` | `Card` wrapper (Task 6) |
-| `app/vereine/page.tsx` | `Button` for "Alle Filter" + footer CTAs (Task 7) |
-| `app/vereine/[id]/page.tsx` | `Card` for sidebar/dept sections + `Badge` for labels + `Button` for action buttons (Task 8) |
+| File                             | Change                                                                                       |
+| -------------------------------- | -------------------------------------------------------------------------------------------- |
+| `app/vereine/[id]/page.tsx`      | Remove dead `Separator` import (Task 1), then Card/Badge/Button (Task 8)                     |
+| `components/HeroSection.tsx`     | `Input` + `Button` for quick-chips (Task 2)                                                  |
+| `components/FilterBar.tsx`       | `Button` for filter pill chips (Task 3)                                                      |
+| `components/ClubCard.tsx`        | `Card` wrapper + `Badge` for tags (Task 4)                                                   |
+| `components/EventCard.tsx`       | `Card` wrapper + `Badge` for category label (Task 5)                                         |
+| `components/OnboardingPanel.tsx` | `Card` wrapper (Task 6)                                                                      |
+| `app/vereine/page.tsx`           | `Button` for "Alle Filter" + footer CTAs (Task 7)                                            |
+| `app/vereine/[id]/page.tsx`      | `Card` for sidebar/dept sections + `Badge` for labels + `Button` for action buttons (Task 8) |
 
 ---
 
 ## Task 1: Remove dead Separator import
 
 **Files:**
+
 - Modify: `app/vereine/[id]/page.tsx:23`
 
 `Separator` is imported but never rendered anywhere in the JSX — dead import.
@@ -50,13 +52,16 @@ import { Separator } from "@/components/ui/separator";
 ```
 
 The imports block should go from:
+
 ```typescript
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 ```
+
 to:
+
 ```typescript
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -68,6 +73,7 @@ import { Progress } from "@/components/ui/progress";
 ```bash
 npm run build 2>&1 | head -30
 ```
+
 Expected: no TypeScript errors about Separator.
 
 - [ ] **Step 3: Commit**
@@ -82,15 +88,18 @@ git commit -m "chore: remove unused Separator import in ClubDetailPage"
 ## Task 2: HeroSection — Input + Button for quick-filter chips
 
 **Files:**
+
 - Modify: `components/HeroSection.tsx`
 
 Two changes in this file:
+
 1. Replace raw `<input>` with shadcn `Input` (the search bar lives inside a custom-styled wrapper div that owns the border/radius; the Input must suppress its own border and height).
 2. Replace raw `<button>` quick-filter chips with shadcn `Button`.
 
 - [ ] **Step 1: Update imports**
 
 Replace the top of `components/HeroSection.tsx`:
+
 ```typescript
 // Before:
 import { Button } from "@/components/ui/button";
@@ -103,6 +112,7 @@ import { Input } from "@/components/ui/input";
 - [ ] **Step 2: Replace the raw `<input>` with `Input`**
 
 Find (lines 64–71):
+
 ```tsx
 <input
   type="search"
@@ -116,6 +126,7 @@ Find (lines 64–71):
 ```
 
 Replace with:
+
 ```tsx
 <Input
   type="search"
@@ -133,6 +144,7 @@ Key overrides: `h-auto` removes the default `h-8`, `border-0 rounded-none` remov
 - [ ] **Step 3: Replace quick-filter chip `<button>` elements with `Button`**
 
 Find (lines 87–109):
+
 ```tsx
 <button
   key={chip}
@@ -143,21 +155,20 @@ Find (lines 87–109):
     "flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all",
     isActive
       ? "text-primary"
-      : "border-border text-text-body hover:border-primary/50"
+      : "border-border text-text-body hover:border-primary/50",
   )}
   style={{
     border: isActive ? "1.5px solid var(--primary)" : "1px solid var(--border)",
     background: isActive ? "rgb(13 92 99 / 0.08)" : "#fff",
   }}
 >
-  {isActive && (
-    <Check size={12} strokeWidth={3} aria-hidden="true" />
-  )}
+  {isActive && <Check size={12} strokeWidth={3} aria-hidden="true" />}
   {chip}
 </button>
 ```
 
 Replace with:
+
 ```tsx
 <Button
   key={chip}
@@ -169,16 +180,14 @@ Replace with:
     "flex items-center gap-1 px-3 py-1.5 h-auto rounded-full text-[13px] font-medium transition-all",
     isActive
       ? "text-primary"
-      : "border-border text-text-body hover:border-primary/50 hover:bg-transparent"
+      : "border-border text-text-body hover:border-primary/50 hover:bg-transparent",
   )}
   style={{
     border: isActive ? "1.5px solid var(--primary)" : "1px solid var(--border)",
     background: isActive ? "rgb(13 92 99 / 0.08)" : "#fff",
   }}
 >
-  {isActive && (
-    <Check size={12} strokeWidth={3} aria-hidden="true" />
-  )}
+  {isActive && <Check size={12} strokeWidth={3} aria-hidden="true" />}
   {chip}
 </Button>
 ```
@@ -190,6 +199,7 @@ Replace with:
 ```bash
 npm run dev
 ```
+
 Open `http://localhost:3000/vereine`. The search bar should look identical. The quick-filter chips (Fußball, Kinder, Musik, Wandern, Kunst) should look and behave identically.
 
 - [ ] **Step 5: Commit**
@@ -204,6 +214,7 @@ git commit -m "feat: replace raw input and chip buttons with shadcn Input and Bu
 ## Task 3: FilterBar — Button for filter pill chips
 
 **Files:**
+
 - Modify: `components/FilterBar.tsx`
 
 Replace the 5 raw `<button>` filter chips with shadcn `Button`.
@@ -222,6 +233,7 @@ import { cn } from "@/lib/utils";
 - [ ] **Step 2: Replace raw `<button>` with `Button`**
 
 Find (lines 18–31):
+
 ```tsx
 <button
   key={filter}
@@ -232,7 +244,7 @@ Find (lines 18–31):
     "px-4 py-1.5 rounded-full text-[13px] border transition-all",
     isActive
       ? "bg-primary text-primary-foreground border-primary font-semibold"
-      : "bg-card text-text-body border-border hover:border-primary/50"
+      : "bg-card text-text-body border-border hover:border-primary/50",
   )}
   style={{ borderWidth: isActive ? "1.5px" : "0.5px" }}
 >
@@ -241,6 +253,7 @@ Find (lines 18–31):
 ```
 
 Replace with:
+
 ```tsx
 <Button
   key={filter}
@@ -252,7 +265,7 @@ Replace with:
     "px-4 py-1.5 h-auto rounded-full text-[13px] transition-all",
     isActive
       ? "font-semibold"
-      : "bg-card text-text-body hover:bg-card hover:border-primary/50 hover:text-text-body"
+      : "bg-card text-text-body hover:bg-card hover:border-primary/50 hover:text-text-body",
   )}
   style={{ borderWidth: isActive ? "1.5px" : "0.5px" }}
 >
@@ -278,9 +291,11 @@ git commit -m "feat: replace raw button chips with shadcn Button in FilterBar"
 ## Task 4: ClubCard — Card wrapper + Badge for tags
 
 **Files:**
+
 - Modify: `components/ClubCard.tsx`
 
 Two changes:
+
 1. Replace `<article>` outer wrapper with `Card` (preserve all styling via className overrides).
 2. Replace tag `<span>` chips and match-score `<div>` with `Badge`.
 
@@ -305,6 +320,7 @@ import { Badge } from "@/components/ui/badge";
 - [ ] **Step 2: Replace `<article>` with `<Card>`**
 
 Find (lines 10–18):
+
 ```tsx
 export default function ClubCard({ club }: ClubCardProps) {
   return (
@@ -319,6 +335,7 @@ export default function ClubCard({ club }: ClubCardProps) {
 ```
 
 Replace with:
+
 ```tsx
 export default function ClubCard({ club }: ClubCardProps) {
   return (
@@ -335,66 +352,80 @@ Key overrides on `Card`: `gap-0 py-0` removes the default `gap-4 py-4`, `ring-0`
 - [ ] **Step 3: Replace match-score `<div>` with `Badge`**
 
 Find (lines 37–48):
+
 ```tsx
-{club.matchScore > 0 && (
-  <div
-    className="flex items-center gap-1 px-2 py-1 rounded-full text-primary"
-    style={{
-      background: "rgb(13 92 99 / 0.07)",
-      border: "1px solid rgb(13 92 99 / 0.25)",
-    }}
-  >
-    <Star size={11} fill="currentColor" aria-hidden="true" />
-    <span className="text-[12px] font-semibold">{club.matchScore} % Match</span>
-  </div>
-)}
+{
+  club.matchScore > 0 && (
+    <div
+      className="flex items-center gap-1 px-2 py-1 rounded-full text-primary"
+      style={{
+        background: "rgb(13 92 99 / 0.07)",
+        border: "1px solid rgb(13 92 99 / 0.25)",
+      }}
+    >
+      <Star size={11} fill="currentColor" aria-hidden="true" />
+      <span className="text-[12px] font-semibold">
+        {club.matchScore} % Match
+      </span>
+    </div>
+  );
+}
 ```
 
 Replace with:
+
 ```tsx
-{club.matchScore > 0 && (
-  <Badge
-    className="flex items-center gap-1 px-2 py-1 h-auto rounded-full text-primary text-[12px] font-semibold"
-    style={{
-      background: "rgb(13 92 99 / 0.07)",
-      border: "1px solid rgb(13 92 99 / 0.25)",
-    }}
-  >
-    <Star size={11} fill="currentColor" aria-hidden="true" />
-    {club.matchScore} % Match
-  </Badge>
-)}
+{
+  club.matchScore > 0 && (
+    <Badge
+      className="flex items-center gap-1 px-2 py-1 h-auto rounded-full text-primary text-[12px] font-semibold"
+      style={{
+        background: "rgb(13 92 99 / 0.07)",
+        border: "1px solid rgb(13 92 99 / 0.25)",
+      }}
+    >
+      <Star size={11} fill="currentColor" aria-hidden="true" />
+      {club.matchScore} % Match
+    </Badge>
+  );
+}
 ```
 
 - [ ] **Step 4: Replace tag `<span>` chips with `Badge`**
 
 Find (lines 61–70):
+
 ```tsx
-{club.tags.map((tag) => (
-  <span
-    key={tag}
-    className="px-2 py-0.5 rounded text-[12px] font-medium text-chip-text"
-    style={{
-      background: "var(--chip-bg)",
-      borderRadius: "4px",
-    }}
-  >
-    {tag}
-  </span>
-))}
+{
+  club.tags.map((tag) => (
+    <span
+      key={tag}
+      className="px-2 py-0.5 rounded text-[12px] font-medium text-chip-text"
+      style={{
+        background: "var(--chip-bg)",
+        borderRadius: "4px",
+      }}
+    >
+      {tag}
+    </span>
+  ));
+}
 ```
 
 Replace with:
+
 ```tsx
-{club.tags.map((tag) => (
-  <Badge
-    key={tag}
-    variant="outline"
-    className="px-2 py-0.5 h-auto rounded-[4px] text-[12px] font-medium bg-chip-bg text-chip-text border-0"
-  >
-    {tag}
-  </Badge>
-))}
+{
+  club.tags.map((tag) => (
+    <Badge
+      key={tag}
+      variant="outline"
+      className="px-2 py-0.5 h-auto rounded-[4px] text-[12px] font-medium bg-chip-bg text-chip-text border-0"
+    >
+      {tag}
+    </Badge>
+  ));
+}
 ```
 
 `bg-chip-bg` and `text-chip-text` are Tailwind utilities mapped from the CSS tokens defined in `globals.css` `@theme inline` block.
@@ -415,6 +446,7 @@ git commit -m "feat: replace article/span/div with Card and Badge in ClubCard"
 ## Task 5: EventCard — Card wrapper + Badge for category label
 
 **Files:**
+
 - Modify: `components/EventCard.tsx`
 
 Replace `<article>` with `Card`. Replace the category `<span>` with `Badge`.
@@ -438,6 +470,7 @@ import { Badge } from "@/components/ui/badge";
 - [ ] **Step 2: Replace `<article>` with `<Card>`**
 
 Find (lines 12–19):
+
 ```tsx
 return (
   <article
@@ -451,6 +484,7 @@ return (
 ```
 
 Replace with:
+
 ```tsx
 return (
   <Card
@@ -464,6 +498,7 @@ Note `flex-row` to override Card's default `flex-col`, and closing `</article>` 
 - [ ] **Step 3: Replace category `<span>` with `Badge`**
 
 Find (line 31):
+
 ```tsx
 <span className="text-[11px] font-semibold uppercase tracking-[0.8px] text-brand-accent">
   {event.category}
@@ -471,6 +506,7 @@ Find (line 31):
 ```
 
 Replace with:
+
 ```tsx
 <Badge
   variant="ghost"
@@ -498,6 +534,7 @@ git commit -m "feat: replace article/span with Card and Badge in EventCard"
 ## Task 6: OnboardingPanel — Card wrapper
 
 **Files:**
+
 - Modify: `components/OnboardingPanel.tsx`
 
 Replace the outermost wrapper `<div>` with `Card`.
@@ -516,6 +553,7 @@ import { Card } from "@/components/ui/card";
 - [ ] **Step 2: Replace wrapper `<div>` with `Card`**
 
 Find (lines 40–48):
+
 ```tsx
 return (
   <div
@@ -529,6 +567,7 @@ return (
 ```
 
 Replace with:
+
 ```tsx
 return (
   <Card
@@ -557,6 +596,7 @@ git commit -m "feat: replace wrapper div with Card in OnboardingPanel"
 ## Task 7: vereine/page.tsx — Button for "Alle Filter" and footer CTA buttons
 
 **Files:**
+
 - Modify: `app/vereine/page.tsx`
 
 Three raw `<button>` elements: "Alle Filter" (line 65), and two dark-themed footer CTAs (lines 129, 135).
@@ -583,6 +623,7 @@ import { Button } from "@/components/ui/button";
 - [ ] **Step 2: Replace "Alle Filter" raw button**
 
 Find (lines 64–69):
+
 ```tsx
 <button
   className="px-4 py-2 rounded-lg text-[14px] font-medium text-primary transition-colors hover:bg-primary/5"
@@ -593,6 +634,7 @@ Find (lines 64–69):
 ```
 
 Replace with:
+
 ```tsx
 <Button
   variant="outline"
@@ -605,6 +647,7 @@ Replace with:
 - [ ] **Step 3: Replace footer CTA buttons**
 
 Find (lines 129–140):
+
 ```tsx
 <button
   className="px-6 py-3 rounded-lg text-white text-[14px] font-semibold transition-opacity hover:opacity-90"
@@ -621,6 +664,7 @@ Find (lines 129–140):
 ```
 
 Replace with:
+
 ```tsx
 <Button
   variant="ghost"
@@ -656,9 +700,11 @@ git commit -m "feat: replace raw buttons with shadcn Button in vereine listing p
 ## Task 8: vereine/[id]/page.tsx — Card + Badge + Button
 
 **Files:**
+
 - Modify: `app/vereine/[id]/page.tsx`
 
 Most complex task — multiple changes across the detail page:
+
 1. Add `Card` and `Badge` imports (Button already imported)
 2. Replace category label `<span>` with `Badge`
 3. Replace match-score `<div>` with `Badge`
@@ -690,6 +736,7 @@ import { Progress } from "@/components/ui/progress";
 - [ ] **Step 2: Replace category label `<span>` with `Badge`**
 
 Find (line 96):
+
 ```tsx
 <span className="text-[12px] font-semibold uppercase tracking-[0.8px] text-primary px-2 py-1 rounded bg-primary/10">
   {categoryLabel(club.category)}
@@ -697,6 +744,7 @@ Find (line 96):
 ```
 
 Replace with:
+
 ```tsx
 <Badge className="text-[12px] font-semibold uppercase tracking-[0.8px] text-primary px-2 py-1 h-auto rounded bg-primary/10 border-0">
   {categoryLabel(club.category)}
@@ -706,40 +754,47 @@ Replace with:
 - [ ] **Step 3: Replace match-score `<div>` in the hero header with `Badge`**
 
 Find (lines 99–109):
+
 ```tsx
-{club.matchScore > 0 && (
-  <div
-    className="flex items-center gap-1 px-2 py-1 rounded-full text-primary text-[12px] font-semibold"
-    style={{
-      background: "rgb(13 92 99 / 0.07)",
-      border: "1px solid rgb(13 92 99 / 0.25)",
-    }}
-  >
-    <Star size={11} fill="currentColor" aria-hidden="true" />
-    {club.matchScore} % Match
-  </div>
-)}
+{
+  club.matchScore > 0 && (
+    <div
+      className="flex items-center gap-1 px-2 py-1 rounded-full text-primary text-[12px] font-semibold"
+      style={{
+        background: "rgb(13 92 99 / 0.07)",
+        border: "1px solid rgb(13 92 99 / 0.25)",
+      }}
+    >
+      <Star size={11} fill="currentColor" aria-hidden="true" />
+      {club.matchScore} % Match
+    </div>
+  );
+}
 ```
 
 Replace with:
+
 ```tsx
-{club.matchScore > 0 && (
-  <Badge
-    className="flex items-center gap-1 px-2 py-1 h-auto rounded-full text-primary text-[12px] font-semibold"
-    style={{
-      background: "rgb(13 92 99 / 0.07)",
-      border: "1px solid rgb(13 92 99 / 0.25)",
-    }}
-  >
-    <Star size={11} fill="currentColor" aria-hidden="true" />
-    {club.matchScore} % Match
-  </Badge>
-)}
+{
+  club.matchScore > 0 && (
+    <Badge
+      className="flex items-center gap-1 px-2 py-1 h-auto rounded-full text-primary text-[12px] font-semibold"
+      style={{
+        background: "rgb(13 92 99 / 0.07)",
+        border: "1px solid rgb(13 92 99 / 0.25)",
+      }}
+    >
+      <Star size={11} fill="currentColor" aria-hidden="true" />
+      {club.matchScore} % Match
+    </Badge>
+  );
+}
 ```
 
 - [ ] **Step 4: Replace "Speichern" raw `<button>` with `Button`**
 
 Find (lines 138–158):
+
 ```tsx
 <button
   type="button"
@@ -771,6 +826,7 @@ Find (lines 138–158):
 ```
 
 Replace with:
+
 ```tsx
 <Button
   type="button"
@@ -806,6 +862,7 @@ Replace with:
 - [ ] **Step 5: Replace department card `<div>` with `Card` and "Anfragen" `<button>` with `Button`**
 
 Find each department card (lines 261–297). The outer `<div>`:
+
 ```tsx
 <div
   key={dept.id}
@@ -815,6 +872,7 @@ Find each department card (lines 261–297). The outer `<div>`:
 ```
 
 Replace with:
+
 ```tsx
 <Card
   key={dept.id}
@@ -826,6 +884,7 @@ Replace with:
 And closing `</div>` → `</Card>`.
 
 Also find the "Anfragen" raw button inside each department card (line 289–293):
+
 ```tsx
 <button
   className="w-full py-2 rounded-lg text-[13px] font-medium text-primary border border-primary transition-colors hover:bg-primary/5"
@@ -836,6 +895,7 @@ Also find the "Anfragen" raw button inside each department card (line 289–293)
 ```
 
 Replace with:
+
 ```tsx
 <Button
   variant="outline"
@@ -849,68 +909,81 @@ Replace with:
 - [ ] **Step 6: Replace tag `<span>` chips in the About section with `Badge`**
 
 Find (lines 241–249):
+
 ```tsx
-{club.tags.map((tag) => (
-  <span
-    key={tag}
-    className="px-3 py-1 text-[13px] font-medium text-chip-text"
-    style={{ background: "var(--chip-bg)", borderRadius: "6px" }}
-  >
-    {tag}
-  </span>
-))}
+{
+  club.tags.map((tag) => (
+    <span
+      key={tag}
+      className="px-3 py-1 text-[13px] font-medium text-chip-text"
+      style={{ background: "var(--chip-bg)", borderRadius: "6px" }}
+    >
+      {tag}
+    </span>
+  ));
+}
 ```
 
 Replace with:
+
 ```tsx
-{club.tags.map((tag) => (
-  <Badge
-    key={tag}
-    variant="outline"
-    className="px-3 py-1 h-auto text-[13px] font-medium bg-chip-bg text-chip-text border-0 rounded-[6px]"
-  >
-    {tag}
-  </Badge>
-))}
+{
+  club.tags.map((tag) => (
+    <Badge
+      key={tag}
+      variant="outline"
+      className="px-3 py-1 h-auto text-[13px] font-medium bg-chip-bg text-chip-text border-0 rounded-[6px]"
+    >
+      {tag}
+    </Badge>
+  ));
+}
 ```
 
 - [ ] **Step 7: Replace "Offen für alle" `<div>` with `Badge`**
 
 Find (lines 346–356):
+
 ```tsx
-{event.isOpenForAll && (
-  <div
-    className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-semibold text-success-text shrink-0"
-    style={{
-      background: "var(--success-bg)",
-      border: "1px solid var(--success-border)",
-    }}
-  >
-    <Check size={11} aria-hidden="true" />
-    Offen für alle
-  </div>
-)}
+{
+  event.isOpenForAll && (
+    <div
+      className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-semibold text-success-text shrink-0"
+      style={{
+        background: "var(--success-bg)",
+        border: "1px solid var(--success-border)",
+      }}
+    >
+      <Check size={11} aria-hidden="true" />
+      Offen für alle
+    </div>
+  );
+}
 ```
 
 Replace with:
+
 ```tsx
-{event.isOpenForAll && (
-  <Badge
-    className="flex items-center gap-1 px-2.5 py-1 h-auto rounded-full text-[12px] font-semibold text-success-text shrink-0"
-    style={{
-      background: "var(--success-bg)",
-      border: "1px solid var(--success-border)",
-    }}
-  >
-    <Check size={11} aria-hidden="true" />
-    Offen für alle
-  </Badge>
-)}
+{
+  event.isOpenForAll && (
+    <Badge
+      className="flex items-center gap-1 px-2.5 py-1 h-auto rounded-full text-[12px] font-semibold text-success-text shrink-0"
+      style={{
+        background: "var(--success-bg)",
+        border: "1px solid var(--success-border)",
+      }}
+    >
+      <Check size={11} aria-hidden="true" />
+      Offen für alle
+    </Badge>
+  );
+}
 ```
 
 - [ ] **Step 8: Replace match-breakdown sidebar `<div>` with `Card`**
 
 Find (lines 370–377):
+
 ```tsx
 <div
   className="rounded-[12px] p-5"
@@ -922,6 +995,7 @@ Find (lines 370–377):
 ```
 
 Replace with:
+
 ```tsx
 <Card
   className="gap-0 py-0 p-5 ring-0 rounded-[12px]"
@@ -937,6 +1011,7 @@ And closing `</div>` → `</Card>`.
 - [ ] **Step 9: Replace fees sidebar `<div>` with `Card`**
 
 Find (lines 400–405):
+
 ```tsx
 <div
   className="bg-card border border-border rounded-[10px] p-5"
@@ -945,6 +1020,7 @@ Find (lines 400–405):
 ```
 
 Replace with:
+
 ```tsx
 <Card
   className="gap-0 py-0 p-5 ring-0 border border-border rounded-[10px]"
@@ -957,6 +1033,7 @@ And closing `</div>` → `</Card>`.
 - [ ] **Step 10: Replace contact sidebar `<div>` with `Card`**
 
 Find (lines 434–438):
+
 ```tsx
 <div
   className="bg-card border border-border rounded-[10px] overflow-hidden"
@@ -966,6 +1043,7 @@ Find (lines 434–438):
 ```
 
 Replace with:
+
 ```tsx
 <Card
   className="gap-0 py-0 ring-0 border border-border rounded-[10px]"
@@ -983,6 +1061,7 @@ npm run dev
 ```
 
 Navigate to `http://localhost:3000/vereine` then click a club to open the detail page. Check:
+
 - Hero header: category badge, match badge look correct
 - Tags in "Über den Verein" section look correct
 - Department cards render with correct border/padding
