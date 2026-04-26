@@ -139,6 +139,50 @@ export async function fetchAllClubsForSearch(): Promise<Club[]> {
   return fetchClubs();
 }
 
+export interface MapClub {
+  slug: string;
+  name: string;
+  category: string;
+  latitude: number;
+  longitude: number;
+  website: string | null;
+  tags: string[];
+  description: string | null;
+  address: string | null;
+}
+
+export async function fetchMapClubs(): Promise<MapClub[]> {
+  "use cache";
+
+  const rows = await prisma.verein.findMany({
+    where: { addressLat: { not: null }, addressLng: { not: null } },
+    select: {
+      slug: true,
+      name: true,
+      categories: true,
+      tags: true,
+      addressLat: true,
+      addressLng: true,
+      website: true,
+      description: true,
+      summary: true,
+      addressRaw: true,
+    },
+  });
+
+  return rows.map((r) => ({
+    slug: r.slug,
+    name: r.name,
+    category: (JSON.parse(r.categories || "[]") as string[])[0] ?? "Verein",
+    latitude: r.addressLat as number,
+    longitude: r.addressLng as number,
+    website: r.website,
+    tags: (JSON.parse(r.tags || "[]") as string[]).slice(0, 4),
+    description: r.description ?? r.summary ?? null,
+    address: r.addressRaw,
+  }));
+}
+
 export async function fetchEvents(): Promise<ClubEvent[]> {
   "use cache";
 

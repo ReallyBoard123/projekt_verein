@@ -26,22 +26,57 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import type { Club, Department } from "@/types"; // Import Department type
+import type { Club } from "@/types";
 import { categoryIcon, categoryLabel } from "@/lib/club-utils";
 import { cn } from "@/lib/utils";
+
+const DB_CATEGORIES = [
+  "Sport", "Kultur", "Musik", "Kunst", "Soziales", "Jugend",
+  "Bildung", "Umwelt", "Technik", "Gesundheit", "Religion",
+  "Politik", "Stadtteil", "Interessenvertretung", "Förderverein", "Tierschutz",
+];
 
 export default function ClubDetailContent({ club }: { club: Club }) {
   const [saved, setSaved] = useState(false);
   const [isSuggesting, setIsSuggesting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [suggestionSent, setSuggestionSent] = useState(false);
+  const [form, setForm] = useState({
+    name:        club.name,
+    description: club.description ?? "",
+    website:     club.contact.website ?? "",
+    email:       club.contact.email ?? "",
+    phone:       club.contact.phone ?? "",
+    address:     club.contact.address ?? "",
+    category:    club.category,
+    tags:        club.tags.join(", "),
+  });
 
-  const handleSendSuggestion = () => {
-    setSuggestionSent(true);
-    setTimeout(() => {
-      setIsSuggesting(false);
-      setSuggestionSent(false);
-    }, 2000);
+  const set = (field: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+
+  const handleSendSuggestion = async () => {
+    setSubmitting(true);
+    try {
+      await fetch(`/api/clubs/${club.slug}/suggest`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
+        }),
+      });
+      setSuggestionSent(true);
+      setTimeout(() => {
+        setIsSuggesting(false);
+        setSuggestionSent(false);
+      }, 2500);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -270,28 +305,80 @@ export default function ClubDetailContent({ club }: { club: Club }) {
                   Daten korrigieren
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className="sm:max-w-[520px] max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                  <DialogTitle>Korrektur vorschlagen</DialogTitle>
+                  <DialogTitle>Daten korrigieren</DialogTitle>
                   <DialogDescription>
-                    Sag uns, was an dem Profil von <strong>{club.name}</strong> geändert werden muss. Wir prüfen das manuell.
+                    Ändere die Felder die falsch oder veraltet sind. Leere Felder werden nicht überschrieben.
                   </DialogDescription>
                 </DialogHeader>
-                
+
                 {suggestionSent ? (
                   <div className="py-10 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95">
                     <CheckCircle2 size={48} className="text-green-500 mb-4" />
-                    <p className="font-bold text-lg">Vielen Dank!</p>
-                    <p className="text-muted-foreground">Dein Hinweis wurde an die Community gesendet.</p>
+                    <p className="font-bold text-lg">Gespeichert!</p>
+                    <p className="text-muted-foreground text-[14px]">Die Änderungen wurden übernommen.</p>
                   </div>
                 ) : (
-                  <div className="grid gap-4 py-4">
-                    <Textarea 
-                      placeholder="Beispiel: Die Adresse hat sich geändert... oder: Hier ist die neue Website..." 
-                      className="min-h-[120px]"
-                    />
-                    <DialogFooter>
-                      <Button onClick={handleSendSuggestion} className="w-full">Absenden</Button>
+                  <div className="grid gap-4 py-2">
+                    <div className="grid gap-1.5">
+                      <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Name</label>
+                      <Input value={form.name} onChange={set("name")} />
+                    </div>
+
+                    <div className="grid gap-1.5">
+                      <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Kategorie</label>
+                      <select
+                        value={form.category}
+                        onChange={set("category")}
+                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                      >
+                        {DB_CATEGORIES.map((c) => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="grid gap-1.5">
+                      <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Tags <span className="font-normal normal-case">(kommagetrennt)</span></label>
+                      <Input value={form.tags} onChange={set("tags")} placeholder="Sport, Kinder, Outdoor" />
+                    </div>
+
+                    <div className="grid gap-1.5">
+                      <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Beschreibung</label>
+                      <Textarea value={form.description} onChange={set("description")} className="min-h-[100px] resize-none" />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="grid gap-1.5">
+                        <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Website</label>
+                        <Input value={form.website} onChange={set("website")} type="url" placeholder="https://" />
+                      </div>
+                      <div className="grid gap-1.5">
+                        <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">E-Mail</label>
+                        <Input value={form.email} onChange={set("email")} type="email" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="grid gap-1.5">
+                        <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Telefon</label>
+                        <Input value={form.phone} onChange={set("phone")} type="tel" />
+                      </div>
+                      <div className="grid gap-1.5">
+                        <label className="text-[12px] font-semibold text-text-muted uppercase tracking-wide">Adresse</label>
+                        <Input value={form.address} onChange={set("address")} />
+                      </div>
+                    </div>
+
+                    <DialogFooter className="pt-2">
+                      <Button
+                        onClick={handleSendSuggestion}
+                        disabled={submitting}
+                        className="w-full"
+                      >
+                        {submitting ? "Wird gespeichert…" : "Änderungen speichern"}
+                      </Button>
                     </DialogFooter>
                   </div>
                 )}

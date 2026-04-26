@@ -6,19 +6,11 @@ import { computeMatchScore, expandInterestTags } from "@/lib/scoring";
 import type { Club } from "@/types";
 import HeroSection from "@/components/HeroSection";
 import ClubCard from "@/components/ClubCard";
-import MapStrip from "@/components/MapStrip";
+import MapSection from "@/components/MapSection";
 import FilterBar from "@/components/FilterBar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const FILTER_CATEGORY_MAP: Record<string, string | null> = {
-  Alle: null,
-  Sport: "Sport",
-  Kinder: "Jugend",
-  Kultur: "Kultur",
-  Technik: "Technik",
-  Soziales: "Soziales",
-};
+import { FILTER_CATEGORY_MAP } from "@/lib/filters";
 
 const PAGE_SIZE = 9;
 
@@ -174,7 +166,7 @@ export default function VereineListingPage() {
       </section>
 
       <section className="px-6 md:px-12 pb-16">
-        <MapStrip />
+        <MapSection />
       </section>
 
       <section className="px-6 md:px-12 py-10 md:py-14 bg-primary">

@@ -8,7 +8,6 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 interface ClubCardProps {
@@ -49,15 +48,9 @@ export default function ClubCard({ club, onTagClick }: ClubCardProps) {
         </div>
 
         {isWizardMatch && (
-          <Badge
-            variant="secondary"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-primary bg-primary/10 border-primary/30 hover:bg-primary/10"
-          >
-            <Wand2 size={11} aria-hidden="true" />
-            <span className="text-[12px] font-semibold">
-              {club.matchScore} % Match
-            </span>
-          </Badge>
+          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <Wand2 size={12} aria-hidden="true" />
+          </div>
         )}
       </CardHeader>
 
