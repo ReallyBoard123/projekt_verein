@@ -41,7 +41,7 @@ export default async function ClubDetailPage({ params }: PageProps) {
   return (
     <main>
       {/* Breadcrumb */}
-      <div className="px-6 md:px-12 py-4 bg-background border-b-[0.5px] border-border-light">
+      <nav aria-label="Breadcrumb" className="px-6 md:px-12 py-4 bg-background border-b-[0.5px] border-border-light">
         <div className="max-w-[1200px] mx-auto flex items-center gap-2 text-[14px]">
           <Link
             href="/"
@@ -56,7 +56,7 @@ export default async function ClubDetailPage({ params }: PageProps) {
           <span className="text-text-muted hidden sm:inline">·</span>
           <span className="text-text-body truncate">{club.name}</span>
         </div>
-      </div>
+      </nav>
 
       {/* Main Content (Interactive Client Layer) */}
       <div className="px-6 md:px-12 pt-8 md:pt-10 bg-[var(--bg-panel)] border-b-[0.5px] border-[var(--border)]">

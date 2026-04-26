@@ -116,8 +116,8 @@ export default function OnboardingPanel({ onComplete }: OnboardingPanelProps) {
   if (showCheckpoint) {
     return (
       <Card className="flex flex-col items-center justify-center gap-6 p-6 md:p-8 border-[0.5px] shadow-[0_2px_16px_rgba(13,92,99,0.07)] text-center h-[560px] animate-in zoom-in-95 duration-300">
-        {/* Batch dots */}
-        <div className="flex gap-2">
+        {/* Batch dots — decorative, progress announced in text below */}
+        <div className="flex gap-2" aria-hidden="true">
           {WIZARD_BATCHES.map((_, i) => (
             <div
               key={i}
@@ -173,18 +173,27 @@ export default function OnboardingPanel({ onComplete }: OnboardingPanelProps) {
         <div
           className="h-full bg-primary transition-all duration-500 ease-in-out"
           style={{ width: `${progress}%` }}
+          role="progressbar"
+          aria-valuenow={stepInBatch + 1}
+          aria-valuemin={1}
+          aria-valuemax={currentBatch.length}
+          aria-label={`Frage ${stepInBatch + 1} von ${currentBatch.length}`}
         />
       </div>
 
       {/* Top meta */}
       <div className="flex items-center justify-between z-10 shrink-0 mb-4 mt-1">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
           <span className="text-[12px] font-medium text-primary">
             Dein Vereins-Match
           </span>
         </div>
-        <span className="text-[11px] font-bold text-text-muted/80 tracking-widest">
+        <span
+          className="text-[11px] font-bold text-text-muted/80 tracking-widest"
+          aria-live="polite"
+          aria-label={`Frage ${stepInBatch + 1} von ${currentBatch.length}`}
+        >
           {stepInBatch + 1} / {currentBatch.length}
         </span>
       </div>

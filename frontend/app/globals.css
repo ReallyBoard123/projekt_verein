@@ -76,7 +76,7 @@
   --radius: 10px;
 
   /* VereinsFinder design tokens */
-  --brand-accent: #ff2391;
+  --brand-accent: #b5007d; /* darkened from #ff2391 — passes WCAG AA 4.5:1 on white */
   --bg-panel: #f7f8ef;
   --bg-alt: #eaece0;
   --border-light: #e4e6d4;
@@ -97,5 +97,14 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

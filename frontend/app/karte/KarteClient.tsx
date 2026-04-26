@@ -96,8 +96,8 @@ export default function KarteClient({ clubs }: Props) {
                   </h3>
                 </div>
               </div>
-              <button onClick={() => setSelected(null)} className="text-text-muted hover:text-foreground ml-2 shrink-0 mt-0.5">
-                <X size={16} />
+              <button onClick={() => setSelected(null)} aria-label="Schließen" className="text-text-muted hover:text-foreground ml-2 shrink-0 mt-0.5">
+                <X size={16} aria-hidden="true" />
               </button>
             </div>
 

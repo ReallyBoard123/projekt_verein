@@ -157,7 +157,7 @@ export default function HeroSection({ onSearch, onMatch, clubsData }: HeroSectio
                 onChange={handleSearchInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Verein oder Sportart suchen …"
-                className="flex-1 px-3 py-3 text-[15px] text-foreground bg-transparent outline-none placeholder:text-text-muted"
+                className="flex-1 px-3 py-3 text-[15px] text-foreground bg-transparent outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset placeholder:text-text-muted"
                 aria-label="Verein oder Sportart suchen"
               />
               {/* Updated Button: Icon only on sm, icon + text on md+ */}
@@ -179,28 +179,31 @@ export default function HeroSection({ onSearch, onMatch, clubsData }: HeroSectio
                   scrollbarWidth: 'thin'
                 }}
               >
-                {searchResults.slice(0, 4).map((club) => ( // Changed from 5 to 4 suggestions
-                  <div
+                {searchResults.slice(0, 4).map((club) => (
+                  <button
                     key={club.id}
-                    className="p-2 cursor-pointer hover:bg-gray-100 border-b border-gray-200 last:border-b-0"
+                    className="w-full text-left p-2 cursor-pointer hover:bg-gray-100 border-b border-gray-200 last:border-b-0 focus-visible:outline-none focus-visible:bg-gray-100"
                     onClick={() => {
-                      setQuery(club.name); 
-                      setSearchResults([]); 
-                      onSearch?.(club.name); 
+                      setQuery(club.name);
+                      setSearchResults([]);
+                      onSearch?.(club.name);
                     }}
                   >
                     <div className="font-medium text-sm">{club.name}</div>
                     <div className="text-xs text-gray-500 truncate">{club.summary || club.description}</div>
-                  </div>
+                  </button>
                 ))}
-                 {searchResults.length > 4 && ( // Adjusted check for "Mehr Ergebnisse..."
-                  <div className="p-2 text-xs text-gray-500 cursor-pointer hover:bg-gray-100" onClick={() => {
-                    setQuery(""); 
-                    setSearchResults([]);
-                    onSearch?.(query); 
-                  }}>
-                    Mehr Ergebnisse...
-                  </div>
+                {searchResults.length > 4 && (
+                  <button
+                    className="w-full text-left p-2 text-xs text-gray-500 cursor-pointer hover:bg-gray-100 focus-visible:outline-none focus-visible:bg-gray-100"
+                    onClick={() => {
+                      setQuery("");
+                      setSearchResults([]);
+                      onSearch?.(query);
+                    }}
+                  >
+                    Mehr Ergebnisse…
+                  </button>
                 )}
               </div>
             )}
