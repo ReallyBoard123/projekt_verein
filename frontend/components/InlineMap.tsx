@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { MapClub } from "@/lib/actions";
 import { MAP_CENTER, MAP_TILE_URL, MAP_TILE_ATTRIBUTION } from "@/lib/map-config";
 
@@ -27,6 +27,7 @@ export default function InlineMap({ clubs }: { clubs: MapClub[] }) {
   const mapRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const layerRef = useRef<any>(null);
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -50,6 +51,7 @@ export default function InlineMap({ clubs }: { clubs: MapClub[] }) {
       ).addTo(map);
 
       mapRef.current = map;
+      setMapReady(true);
     });
 
     return () => {
@@ -89,7 +91,7 @@ export default function InlineMap({ clubs }: { clubs: MapClub[] }) {
 
       layerRef.current = L.layerGroup(markers).addTo(map);
     });
-  }, [clubs]);
+  }, [clubs, mapReady]);
 
   return <div ref={containerRef} className="w-full h-full" />;
 }

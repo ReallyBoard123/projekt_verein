@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { MapClub } from "@/lib/actions";
 import { MAP_CENTER, MAP_TILE_URL, MAP_TILE_ATTRIBUTION } from "@/lib/map-config";
 
@@ -33,6 +33,7 @@ export default function MapView({ clubs, selected, onSelect }: Props) {
   const mapRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const layerRef = useRef<any>(null);
+  const [mapReady, setMapReady] = useState(false);
 
   // Initialise map once
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function MapView({ clubs, selected, onSelect }: Props) {
 
       L.control.zoom({ position: "topright" }).addTo(map);
       mapRef.current = map;
+      setMapReady(true);
     });
 
     return () => {
@@ -69,7 +71,7 @@ export default function MapView({ clubs, selected, onSelect }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Re-draw markers when clubs or selection changes
+  // Re-draw markers when clubs or selection changes (mapReady ensures map is initialized first)
   useEffect(() => {
     if (!mapRef.current) return;
 
@@ -104,7 +106,7 @@ export default function MapView({ clubs, selected, onSelect }: Props) {
       }
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clubs, selected]);
+  }, [clubs, selected, mapReady]);
 
   return <div ref={containerRef} className="flex-1 h-full w-full" style={{ minHeight: 0 }} />;
 }
