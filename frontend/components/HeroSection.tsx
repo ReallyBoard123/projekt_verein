@@ -96,7 +96,7 @@ export default function HeroSection({ onSearch, onMatch, clubsData }: HeroSectio
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
                 placeholder="Verein oder Sportart suchen …"
-                className="flex-1 px-3 py-3 text-[15px] text-foreground bg-transparent outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset placeholder:text-text-muted"
+                className="flex-1 px-3 py-3 text-[15px] text-foreground bg-transparent outline-none placeholder:text-text-muted"
                 aria-label="Verein oder Sportart suchen"
               />
               <Button
