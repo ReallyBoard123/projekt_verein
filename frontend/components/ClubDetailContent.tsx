@@ -1,0 +1,288 @@
+"use client";
+
+import { useState } from "react";
+import {
+  MapPin,
+  Users,
+  Calendar,
+  Heart,
+  Globe,
+  Clock,
+  Phone,
+  Mail,
+  Edit3,
+  CheckCircle2,
+  AlertCircle
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import type { Club } from "@/types";
+import { categoryIcon, categoryLabel } from "@/lib/club-utils";
+import { cn } from "@/lib/utils";
+
+export default function ClubDetailContent({ club }: { club: Club }) {
+  const [saved, setSaved] = useState(false);
+  const [isSuggesting, setIsSuggesting] = useState(false);
+  const [suggestionSent, setSuggestionSent] = useState(false);
+
+  const handleSendSuggestion = () => {
+    setSuggestionSent(true);
+    setTimeout(() => {
+      setIsSuggesting(false);
+      setSuggestionSent(false);
+    }, 2000);
+  };
+
+  return (
+    <div className="max-w-[1200px] mx-auto pb-20">
+      {/* Header Block */}
+      <div className="flex flex-col sm:flex-row items-start gap-6 mb-10">
+        <div 
+          className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center text-primary shrink-0 rounded-[20px] shadow-sm border-[0.5px] border-[#E8F0F0]"
+          style={{ background: "rgb(13 92 99 / 0.08)" }}
+        >
+          <div className="scale-[2.0] md:scale-[2.5]">
+            {categoryIcon(club.category)}
+          </div>
+        </div>
+
+        <div className="flex-1">
+          <Badge
+            variant="secondary"
+            className="bg-primary/10 text-primary hover:bg-primary/10 border-0 mb-3 px-3 py-1"
+          >
+            {categoryLabel(club.category)}
+          </Badge>
+
+          <h1 className="text-[32px] md:text-[42px] font-bold leading-[1.1] text-foreground font-serif tracking-[-0.5px] mb-4">
+            {club.name}
+          </h1>
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-text-body">
+            {club.location && (
+              <span className="flex items-center gap-1.5 font-medium">
+                <MapPin size={16} className="text-primary/70" />
+                {club.location}
+              </span>
+            )}
+            {club.memberCount > 0 && (
+              <span className="flex items-center gap-1.5">
+                <Users size={16} className="text-primary/70" />
+                {club.memberCount} Mitglieder
+              </span>
+            )}
+            {club.foundingYear > 0 && (
+              <span className="flex items-center gap-1.5">
+                <Calendar size={16} className="text-primary/70" />
+                Seit {club.foundingYear}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto mt-4 sm:mt-0">
+          <Button
+            variant="outline"
+            onClick={() => setSaved((s) => !s)}
+            className={cn(
+              "flex-1 sm:flex-none h-11 px-6 rounded-full transition-all",
+              saved ? "bg-primary/10 border-primary/30 text-primary" : "border-border"
+            )}
+          >
+            <Heart size={18} className={cn("mr-2", saved && "fill-primary")} />
+            {saved ? "Gespeichert" : "Merken"}
+          </Button>
+          <Button className="flex-1 sm:flex-none h-11 px-8 rounded-full shadow-lg shadow-primary/20">
+            Mitmachen →
+          </Button>
+        </div>
+      </div>
+
+      {/* Main Grid */}
+      <div className="flex flex-col lg:grid lg:grid-cols-[1fr_360px] gap-12">
+        {/* Left Column: Content */}
+        <div className="flex flex-col gap-10">
+          <section>
+            <h2 className="text-[20px] font-bold text-foreground mb-4 font-serif">
+              Über uns
+            </h2>
+            <div className="prose prose-slate max-w-none text-[16px] text-text-body leading-[1.8] space-y-4">
+              <p>{club.description || "Für diesen Verein liegt noch keine ausführliche Beschreibung vor."}</p>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 mt-8">
+              {club.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="px-3 py-1 text-[13px] font-medium border-border/60 text-text-muted rounded-md bg-muted/5"
+                >
+                  #{tag}
+                </Badge>
+              ))}
+            </div>
+          </section>
+
+          {club.departments.length > 0 && (
+            <section>
+              <h2 className="text-[20px] font-bold text-foreground mb-6 font-serif border-b pb-4">
+                Angebote & Gruppen
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {club.departments.map((dept) => (
+                  <Card key={dept.id} className="p-5 border-[0.5px] bg-muted/5 hover:bg-background transition-colors">
+                    <h3 className="font-bold text-[16px] mb-2">{dept.name}</h3>
+                    <div className="space-y-1.5 mb-4">
+                      {dept.trainingTimes.map((t) => (
+                        <div key={t} className="flex items-center gap-2 text-[13px] text-text-muted">
+                          <Clock size={14} className="shrink-0" />
+                          {t}
+                        </div>
+                      ))}
+                    </div>
+                    <Button variant="link" className="p-0 h-auto text-primary text-[13px] font-bold">
+                      Details anfragen →
+                    </Button>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+
+        {/* Right Column: Sidebar */}
+        <aside className="flex flex-col gap-6">
+          <Card className="p-6 border-[0.5px] shadow-sm">
+            <h3 className="font-bold text-[17px] mb-6 border-b pb-3">Kontakt & Infos</h3>
+            
+            <div className="space-y-5">
+              {club.contact.address && (
+                <div className="flex items-start gap-4">
+                  <div className="w-9 h-9 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+                    <MapPin size={16} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-[12px] text-text-muted font-medium mb-0.5">Adresse</p>
+                    <p className="text-[14px] leading-snug">{club.contact.address}</p>
+                  </div>
+                </div>
+              )}
+
+              {club.contact.phone && club.contact.phone !== "null" && (
+                <div className="flex items-start gap-4">
+                  <div className="w-9 h-9 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+                    <Phone size={16} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-[12px] text-text-muted font-medium mb-0.5">Telefon</p>
+                    <p className="text-[14px]">{club.contact.phone}</p>
+                  </div>
+                </div>
+              )}
+
+              {club.contact.website && club.contact.website !== "null" && (
+                <div className="flex items-start gap-4">
+                  <div className="w-9 h-9 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+                    <Globe size={16} className="text-primary" />
+                  </div>
+                  <div className="overflow-hidden">
+                    <p className="text-[12px] text-text-muted font-medium mb-0.5">Website</p>
+                    <a 
+                      href={club.contact.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[14px] text-primary hover:underline block truncate"
+                    >
+                      {club.contact.website.replace(/^https?:\/\/(www\.)?/, '')}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Map Section */}
+            {club.latitude && club.longitude ? (
+              <div className="h-[200px] mt-8 relative rounded-xl border border-border overflow-hidden shadow-inner">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  marginHeight={0}
+                  marginWidth={0}
+                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${club.longitude - 0.005}%2C${club.latitude - 0.005}%2C${club.longitude + 0.005}%2C${club.latitude + 0.005}&layer=mapnik&marker=${club.latitude}%2C${club.longitude}`}
+                />
+                <div className="absolute bottom-2 right-2 bg-white/90 px-2 py-0.5 rounded text-[10px] text-text-muted border shadow-sm">
+                  © OpenStreetMap
+                </div>
+              </div>
+            ) : (
+              <div className="h-[180px] mt-8 relative bg-primary/5 rounded-xl border border-dashed border-primary/20 overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center opacity-40">
+                  <MapPin size={24} className="text-primary" />
+                </div>
+              </div>
+            )}
+          </Card>
+
+          {/* Suggest Edits Card */}
+          <Card className="p-6 border-primary/20 bg-primary/5 border-dashed border-2">
+            <div className="flex items-center gap-3 mb-4">
+              <AlertCircle size={20} className="text-primary" />
+              <h4 className="font-bold text-[15px] text-primary">Profil verwalten?</h4>
+            </div>
+            <p className="text-[13px] text-text-body mb-5 leading-relaxed">
+              Die Daten sind unvollständig oder veraltet? Hilf uns, den VereinsFinder aktuell zu halten.
+            </p>
+            
+            <Dialog open={isSuggesting} onOpenChange={setIsSuggesting}>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="w-full bg-background border-primary/30 text-primary hover:bg-primary/5">
+                  <Edit3 size={15} className="mr-2" />
+                  Daten korrigieren
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Korrektur vorschlagen</DialogTitle>
+                  <DialogDescription>
+                    Sag uns, was an dem Profil von <strong>{club.name}</strong> geändert werden muss. Wir prüfen das manuell.
+                  </DialogDescription>
+                </DialogHeader>
+                
+                {suggestionSent ? (
+                  <div className="py-10 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95">
+                    <CheckCircle2 size={48} className="text-green-500 mb-4" />
+                    <p className="font-bold text-lg">Vielen Dank!</p>
+                    <p className="text-muted-foreground">Dein Hinweis wurde an die Community gesendet.</p>
+                  </div>
+                ) : (
+                  <div className="grid gap-4 py-4">
+                    <Textarea 
+                      placeholder="Beispiel: Die Adresse hat sich geändert... oder: Hier ist die neue Website..." 
+                      className="min-h-[120px]"
+                    />
+                    <DialogFooter>
+                      <Button onClick={handleSendSuggestion} className="w-full">Absenden</Button>
+                    </DialogFooter>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
+          </Card>
+        </aside>
+      </div>
+    </div>
+  );
+}

@@ -66,14 +66,23 @@ export default function ClubCard({ club }: ClubCardProps) {
           ))}
         </div>
 
-        <p className="text-[14px] text-text-body leading-[1.55] mt-1 flex-1">
-          {club.description}
-        </p>
+        {club.description ? (
+          <p className="text-[14px] text-text-body leading-[1.55] mt-1 flex-1 line-clamp-3">
+            {club.description}
+          </p>
+        ) : (
+          <div className="mt-2 p-3 rounded-lg bg-primary/5 border border-primary/10 flex-1">
+            <p className="text-[13px] text-primary font-medium italic">
+              Dies ist ein Basis-Eintrag. Hilf der Community und vervollständige das Profil!
+            </p>
+          </div>
+        )}
       </CardContent>
 
       <CardFooter className="px-5 pb-5 pt-0">
         <Link
-          href={`/vereine/${club.id}`}
+          href={`/vereine/${club.slug}`}
+          prefetch={true}
           className="text-[14px] font-semibold text-primary hover:underline self-start"
         >
           Details →

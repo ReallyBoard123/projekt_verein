@@ -1,21 +1,47 @@
-import { Music, Leaf, Palette, Trophy, Users, Heart } from "lucide-react";
+import { 
+  Music, 
+  Leaf, 
+  Palette, 
+  Trophy, 
+  Users, 
+  Heart, 
+  Search, 
+  MapPin,
+  Theater,
+  Hammer,
+  Book,
+  HandHelping,
+  Microscope,
+  Baby
+} from "lucide-react";
 import type { ReactNode } from "react";
 
-const CATEGORY_MAP: Record<string, { label: string; icon: ReactNode }> = {
-  sport: { label: "Sport", icon: <Trophy size={16} /> },
-  musik: { label: "Musik", icon: <Music size={16} /> },
-  kinder: { label: "Kinder & Familie", icon: <Users size={16} /> },
-  kultur: { label: "Kultur", icon: <Palette size={16} /> },
-  natur: { label: "Natur", icon: <Leaf size={16} /> },
-  ehrenamt: { label: "Ehrenamt", icon: <Heart size={16} /> },
-};
+// Keyword-based mapping for better coverage of dynamic backend tags
+const KEYWORD_MAP: { keywords: string[]; label: string; icon: ReactNode }[] = [
+  { keywords: ["sport", "fußball", "turnen", "aktiv", "tanz", "training"], label: "Sport & Aktiv", icon: <span className="text-[16px]">⚽</span> },
+  { keywords: ["musik", "kunst", "konzert", "chor", "gesang", "instrument", "chanson", "galerie", "theater", "ausstellung", "fotografie"], label: "Kultur & Musik", icon: <span className="text-[16px]">🎵</span> },
+  { keywords: ["kinder", "familie", "jugend", "baby"], label: "Kinder & Familie", icon: <span className="text-[16px]">👶</span> },
+  { keywords: ["natur", "umwelt", "green", "garten", "nachhaltig", "outdoor", "wandern"], label: "Natur & Umwelt", icon: <span className="text-[16px]">🌿</span> },
+  { keywords: ["sozial", "hilfe", "ehrenamt", "care", "beratung", "pflege", "senioren"], label: "Soziales & Hilfe", icon: <span className="text-[16px]">🤝</span> },
+  { keywords: ["tech", "digital", "diy", "handwerk", "it", "werkstatt", "reparier"], label: "Technik & Handwerk", icon: <span className="text-[16px]">🛠️</span> },
+  { keywords: ["bildung", "wissen", "schule", "uni", "forschung", "bibliothek", "buch", "literatur"], label: "Bildung & Wissen", icon: <span className="text-[16px]">📖</span> },
+  { keywords: ["verein", "initiative", "gemeinschaft"], label: "Verein", icon: <span className="text-[16px]">👥</span> },
+  { keywords: ["sonstiges", "vielfalt", "divers"], label: "Sonstiges", icon: <span className="text-[16px]">✨</span> },
+];
+
+function getMatch(category: string) {
+  const cat = category.toLowerCase();
+  return KEYWORD_MAP.find(m => m.keywords.some(k => cat.includes(k)));
+}
 
 export function categoryLabel(category: string): string {
-  return CATEGORY_MAP[category.toLowerCase()]?.label ?? category;
+  const match = getMatch(category);
+  return match ? match.label : category;
 }
 
 export function categoryIcon(category: string): ReactNode {
-  return CATEGORY_MAP[category.toLowerCase()]?.icon ?? <Users size={16} />;
+  const match = getMatch(category);
+  return match ? match.icon : <span className="text-[16px]">🏢</span>;
 }
 
 const MONTHS_DE = [

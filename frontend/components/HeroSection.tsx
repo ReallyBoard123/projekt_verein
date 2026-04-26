@@ -34,17 +34,17 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
 
             <div className="flex flex-col gap-3">
               <h1
-                className="text-[32px] md:text-[44px] leading-[1.1] text-foreground"
+                className="text-[32px] md:text-[44px] font-bold leading-[1.1] text-foreground"
                 style={{
                   fontFamily: "var(--font-serif)",
                   letterSpacing: "-0.3px",
                 }}
               >
-                Dein passender Verein in Kassel
+                Passende Vereine & Kollektive in Kassel
               </h1>
               <p className="text-[15px] md:text-[17px] text-text-body leading-[1.6]">
-                Entdecke Vereine in deiner Nähe – personalisiert, barrierefrei
-                und kostenlos.
+                Entdecke Gemeinschaften in deiner Nähe – personalisiert,
+                barrierefrei und kostenlos.
               </p>
             </div>
 

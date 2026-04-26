@@ -7,16 +7,32 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
 // Map backend "Verein" to frontend "Club"
 function mapBackendClub(v: any): Club {
+  const tags = v.angebote || [];
+  
+  // Find a specific category that is NOT just "Verein", "Initiative", or "e.V."
+  const specificCategory = tags.find((a: any) => 
+    !a.name.match(/^[\uD800-\uDBFF][\uDC00-\uDFFF]|^[^\w\s]/) && 
+    !["Verein", "Initiative", "e.V.", "ev", "e. v."].some(noise => a.name.toLowerCase() === noise || a.name.toLowerCase().includes("verein"))
+  );
+  
+  const clusterCategory = tags.find((a: any) => a.name.match(/^[\uD800-\uDBFF][\uDC00-\uDFFF]|^[^\w\s]/));
+  
+  // Fallback chain
+  const categoryCandidate = (specificCategory?.name) || (clusterCategory?.name) || "Verein";
+
   return {
     id: String(v.id),
+    slug: v.name?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-'),
     name: v.name || "Unbekannter Verein",
-    category: v.angebote?.[0]?.name || "Verein",
+    category: categoryCandidate,
     location: v.adresse || "Kassel",
     memberCount: 0, 
     foundingYear: 0, 
     description: v.beschreibung || "",
     tags: v.eigenschaften?.map((e: any) => e.name) || [],
     matchScore: 0,
+    latitude: v.latitude,
+    longitude: v.longitude,
     isOpenForAll: true,
     departments: v.angebote?.map((a: any) => ({
       id: String(a.id),
@@ -39,16 +55,24 @@ function mapBackendClub(v: any): Club {
 export async function fetchClubs(filters?: {
   category?: string;
   tags?: string[];
+  limit?: number;
 }): Promise<Club[]> {
   "use cache";
   
   try {
-    const body: any = {};
+    const body: any = {
+      limit: filters?.limit || 1000,
+    };
+    
+    const searchTags = [];
     if (filters?.category && filters.category !== "Alle") {
-      body.tags = [filters.category.toLowerCase()];
+      searchTags.push(filters.category);
     }
     if (filters?.tags) {
-      body.tags = [...(body.tags || []), ...filters.tags];
+      searchTags.push(...filters.tags);
+    }
+    if (searchTags.length > 0) {
+      body.tags = searchTags;
     }
 
     const res = await fetch(`${API_BASE}/api/search`, {
@@ -62,45 +86,26 @@ export async function fetchClubs(filters?: {
     return data.map(mapBackendClub);
   } catch (error) {
     console.warn("Backend fetch failed, using mock data", error);
-    return MOCK_CLUBS;
+    const mock = [...MOCK_CLUBS];
+    return filters?.limit ? mock.slice(0, filters.limit) : mock;
   }
 }
 
-export async function fetchClubById(id: string): Promise<Club> {
+export async function fetchClubBySlug(slug: string): Promise<Club> {
   "use cache";
   
   try {
-    const res = await fetch(`${API_BASE}/api/vereine/${id}`);
-    if (!res.ok) throw new Error(`Club ${id} not found`);
-    const data = await res.json();
-    return mapBackendClub(data);
-  } catch (error) {
-    console.warn(`Backend for club ${id} failed`, error);
-    const club = MOCK_CLUBS.find((c) => c.id === id);
-    if (!club) throw new Error(`Club ${id} not found in mocks`);
+    const all = await fetchClubs({ limit: 1422 });
+    const club = all.find(c => c.slug === slug);
+    if (!club) throw new Error(`Club with slug ${slug} not found`);
     return club;
+  } catch (error) {
+    console.warn(`Fetch by slug ${slug} failed, falling back to mock`);
+    return MOCK_CLUBS[0];
   }
 }
 
 export async function fetchEvents(): Promise<ClubEvent[]> {
   "use cache";
-  
-  try {
-    const res = await fetch(`${API_BASE}/api/angebote`);
-    if (!res.ok) throw new Error("Failed to fetch events");
-    const data = await res.json();
-    if (data.length === 0) return MOCK_EVENTS;
-    
-    return data.map((a: any) => ({
-      id: String(a.id),
-      name: a.name,
-      date: new Date().toISOString(),
-      location: "Kassel",
-      category: "Info",
-      isOpenForAll: true
-    }));
-  } catch (error) {
-    console.warn("Backend events failed", error);
-    return MOCK_EVENTS;
-  }
+  return []; 
 }

@@ -1,5 +1,6 @@
 export interface Club {
   id: string;
+  slug: string;
   name: string;
   category: string;
   location: string;
@@ -8,6 +9,8 @@ export interface Club {
   description: string;
   tags: string[];
   matchScore: number;
+  latitude?: number;
+  longitude?: number;
   isOpenForAll: boolean;
   departments: Department[];
   events: ClubEvent[];

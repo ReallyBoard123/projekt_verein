@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-const FILTERS = ["Alle", "Sport", "Kinder", "Kultur", "≤ 5 km"];
+const FILTERS = ["Alle", "Sport", "Kultur", "Kinder", "Technik", "Soziales"];
 
 interface FilterBarProps {
   active: string;
