@@ -6,6 +6,8 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Set;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +28,11 @@ public class Angebot {
     private String beschreibung;
 
     @Relationship(type = "BIETET_AN", direction = Relationship.Direction.INCOMING)
+    @JsonBackReference
     private Set<Verein> vereine;
 
     @Relationship(type = "HAT_EIGENSCHAFT", direction = Relationship.Direction.OUTGOING)
+    @JsonManagedReference
     private Set<Eigenschaft> eigenschaften;
 
     public Set<Verein> getVereine() {

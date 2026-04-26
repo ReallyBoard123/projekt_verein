@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Data
 @NoArgsConstructor
@@ -26,9 +27,11 @@ public class Eigenschaft {
     private String beschreibung;
 
     @Relationship(type = "HAT_EIGENSCHAFT", direction = Relationship.Direction.INCOMING)
+    @JsonBackReference
     private Set<Verein> vereine;
 
     @Relationship(type = "HAT_EIGENSCHAFT", direction = Relationship.Direction.INCOMING)
+    @JsonBackReference
     private Set<Angebot> angebote;
 
     public Set<Verein> getVereine() {
