@@ -1,154 +1,161 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
-import { readFileSync } from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 
-async function main() {
-  console.log('🌱 Starting seed...')
+const dbPath = join(process.cwd(), 'dev.db')
+const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` })
+const prisma = new PrismaClient({ adapter })
 
-  // Read the JSON file
-  const dataPath = join(process.cwd(), 'data', 'vereine.json')
-  console.log(`📖 Reading ${dataPath}...`)
-  
-  const vereine = JSON.parse(readFileSync(dataPath, 'utf-8'))
-  console.log(`📊 Found ${vereine.length} entries`)
+async function seedFromSnapshot(snapshotPath: string) {
+  const { vereine } = JSON.parse(readFileSync(snapshotPath, 'utf-8'))
+  console.log(`Seeding ${vereine.length} Vereine from snapshot...`)
 
-  // Create database path and adapter
-  const dbPath = join(process.cwd(), 'dev.db')
-  console.log(`💾 Using database: ${dbPath}`)
-  
-  // Pass config object with URL to adapter constructor
-  const adapter = new PrismaBetterSqlite3({
-    url: `file:${dbPath}`
-  })
-
-  // Create Prisma client with adapter
-  const prisma = new PrismaClient({
-    adapter
-  })
-
-  // Clear existing data
-  console.log('🧹 Clearing existing data...')
   await prisma.event.deleteMany()
   await prisma.meeting.deleteMany()
   await prisma.verein.deleteMany()
 
-  let successCount = 0
-  let errorCount = 0
+  for (const v of vereine) {
+    const { meetings, events, ...vereinData } = v
+    const created = await prisma.verein.create({
+      data: {
+        ...vereinData,
+        lastSynced: vereinData.lastSynced ? new Date(vereinData.lastSynced) : null,
+        createdAt: new Date(vereinData.createdAt),
+        updatedAt: new Date(vereinData.updatedAt),
+      },
+    })
 
-  // Process each verein
+    if (meetings?.length) {
+      await prisma.meeting.createMany({
+        data: meetings.map(({ id: _id, vereinId: _vid, createdAt, updatedAt, ...m }: any) => ({
+          ...m,
+          vereinId: created.id,
+          createdAt: new Date(createdAt),
+          updatedAt: new Date(updatedAt),
+        })),
+      })
+    }
+
+    if (events?.length) {
+      await prisma.event.createMany({
+        data: events.map(({ id: _id, vereinId: _vid, createdAt, updatedAt, ...e }: any) => ({
+          ...e,
+          vereinId: created.id,
+          createdAt: new Date(createdAt),
+          updatedAt: new Date(updatedAt),
+        })),
+      })
+    }
+  }
+
+  const counts = {
+    vereine: await prisma.verein.count(),
+    meetings: await prisma.meeting.count(),
+    events: await prisma.event.count(),
+  }
+  console.log(`Done — ${counts.vereine} Vereine, ${counts.meetings} Meetings, ${counts.events} Events`)
+}
+
+async function seedFromRaw(rawPath: string) {
+  const vereine = JSON.parse(readFileSync(rawPath, 'utf-8'))
+  console.log(`Seeding ${vereine.length} entries from raw JSON...`)
+
+  await prisma.event.deleteMany()
+  await prisma.meeting.deleteMany()
+  await prisma.verein.deleteMany()
+
+  let ok = 0
+  let err = 0
+
   for (const item of vereine) {
     try {
       const slug = item.id || item.identity?.name?.toLowerCase().replace(/\s+/g, '-') || `verein-${Date.now()}`
-      
-      // Check if already exists
-      const existing = await prisma.verein.findUnique({
-        where: { slug }
-      })
-      
-      if (existing) {
-        console.log(`⏭️  Skipping existing: ${slug}`)
-        continue
-      }
+      if (await prisma.verein.findUnique({ where: { slug } })) continue
 
-      // Parse social media if present
-      let socialMedia = null
-      if (item.metadata?.social_media) {
-        socialMedia = JSON.stringify(item.metadata.social_media)
-      }
-
-      // Create the verein
       const verein = await prisma.verein.create({
         data: {
           slug,
           name: item.identity?.name || 'Unknown',
           type: item.identity?.type || 'Verein',
           isCharitable: item.identity?.is_charitable || false,
-          
           subtitle: item.content?.subtitle || null,
           summary: item.content?.summary || null,
           description: item.content?.description || null,
-          
           categories: JSON.stringify(item.classification?.categories || []),
           tags: JSON.stringify(item.classification?.tags || []),
           district: item.classification?.district || null,
-          
           addressRaw: item.contact?.address_raw || null,
           email: item.contact?.email || null,
           phone: item.contact?.phone || null,
           website: item.contact?.website || null,
-          
           logoUrl: item.metadata?.logo_url || null,
-          socialMedia,
-          
+          socialMedia: item.metadata?.social_media ? JSON.stringify(item.metadata.social_media) : null,
           source: item.metadata?.source || null,
           originalUrl: item.metadata?.original_url || null,
           lastSynced: item.metadata?.last_synced ? new Date(item.metadata.last_synced) : null,
           completenessScore: item.metadata?.completeness_score || 0,
           verification: item.metadata?.verification || null,
-        }
+        },
       })
 
-      // Create meetings
-      if (item.meetings && item.meetings.length > 0) {
-        for (const meeting of item.meetings) {
-          await prisma.meeting.create({
-            data: {
-              vereinId: verein.id,
-              type: meeting.type || 'regular_meeting',
-              schedule: meeting.schedule || '',
-              dayOfWeek: meeting.day_of_week || null,
-              time: meeting.time || null,
-              frequency: meeting.frequency || null,
-              location: meeting.location || null,
-              description: meeting.description || null,
-              confidence: meeting.confidence || 'medium',
-            }
-          })
-        }
+      if (item.meetings?.length) {
+        await prisma.meeting.createMany({
+          data: item.meetings.map((m: any) => ({
+            vereinId: verein.id,
+            type: m.type || 'regular_meeting',
+            schedule: m.schedule || '',
+            dayOfWeek: m.day_of_week || null,
+            time: m.time || null,
+            frequency: m.frequency || null,
+            location: m.location || null,
+            description: m.description || null,
+            confidence: m.confidence || 'medium',
+          })),
+        })
       }
 
-      // Create events
-      if (item.events && item.events.length > 0) {
-        for (const event of item.events) {
-          await prisma.event.create({
-            data: {
-              vereinId: verein.id,
-              type: event.type || 'special_event',
-              title: event.title || null,
-              date: event.date || null,
-              dateDisplay: event.date_display || null,
-              endDate: event.end_date || null,
-              time: event.time || null,
-              location: event.location || null,
-              description: event.description || null,
-              rawMatch: event.raw_match || null,
-              confidence: event.confidence || 'medium',
-            }
-          })
-        }
+      if (item.events?.length) {
+        await prisma.event.createMany({
+          data: item.events.map((e: any) => ({
+            vereinId: verein.id,
+            type: e.type || 'special_event',
+            title: e.title || null,
+            date: e.date || null,
+            dateDisplay: e.date_display || null,
+            endDate: e.end_date || null,
+            time: e.time || null,
+            location: e.location || null,
+            description: e.description || null,
+            rawMatch: e.raw_match || null,
+            confidence: e.confidence || 'medium',
+          })),
+        })
       }
 
-      successCount++
-      if (successCount % 100 === 0) {
-        console.log(`✅ Processed ${successCount}/${vereine.length} entries...`)
-      }
-    } catch (error) {
-      errorCount++
-      console.error(`❌ Error processing ${item.id}:`, error)
+      ok++
+    } catch (e) {
+      err++
+      console.error(`Error on ${item.id}:`, e)
     }
   }
 
-  console.log('\n🎉 Seed completed!')
-  console.log(`   ✅ Success: ${successCount}`)
-  console.log(`   ❌ Errors: ${errorCount}`)
-  console.log(`   📊 Total: ${vereine.length}`)
+  console.log(`Done — ${ok} seeded, ${err} errors`)
+}
 
-  await prisma.$disconnect()
+async function main() {
+  const snapshotPath = join(process.cwd(), 'data', 'seed-snapshot.json')
+  const rawPath      = join(process.cwd(), 'data', 'vereine.json')
+
+  if (existsSync(snapshotPath)) {
+    console.log('Using seed-snapshot.json (curated data)')
+    await seedFromSnapshot(snapshotPath)
+  } else {
+    console.log('seed-snapshot.json not found — falling back to vereine.json (raw data)')
+    await seedFromRaw(rawPath)
+  }
 }
 
 main()
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
+  .catch(e => { console.error(e); process.exit(1) })
+  .finally(() => prisma.$disconnect())
