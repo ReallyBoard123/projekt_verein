@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { MapClub } from "@/lib/actions";
+import { MAP_CENTER, MAP_TILE_URL, MAP_TILE_ATTRIBUTION } from "@/lib/map-config";
 
 const CATEGORY_COLORS: Record<string, string> = {
   Sport:    "#e05c3a",
@@ -41,16 +42,14 @@ export default function MapView({ clubs, selected, onSelect }: Props) {
       if (!containerRef.current || mapRef.current) return;
 
       const map = L.map(containerRef.current, {
-        center: [51.315, 9.49],
+        center: MAP_CENTER,
         zoom: 13,
         zoomControl: false,
         preferCanvas: true, // canvas renderer — much faster for many markers
       });
 
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-        {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      L.tileLayer(MAP_TILE_URL, {
+          attribution: MAP_TILE_ATTRIBUTION,
           subdomains: "abcd",
           maxZoom: 19,
         }

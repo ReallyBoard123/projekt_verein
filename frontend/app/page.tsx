@@ -181,15 +181,18 @@ export default function VereineListingPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-            <Button className="h-12 bg-[var(--brand-accent)] hover:bg-[var(--brand-accent)]/90 text-white border-0">
+            <a
+              href="mailto:together@kassel.de"
+              className="h-12 px-6 rounded-md inline-flex items-center justify-center bg-[var(--brand-accent)] hover:opacity-90 text-white text-sm font-medium transition-opacity"
+            >
               Verein kostenlos eintragen
-            </Button>
-            <Button
-              variant="outline"
-              className="h-12 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground bg-transparent"
+            </a>
+            <button
+              onClick={() => document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })}
+              className="h-12 px-6 rounded-md inline-flex items-center justify-center border border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent text-sm font-medium transition-colors"
             >
               Mehr erfahren
-            </Button>
+            </button>
           </div>
         </div>
       </section>

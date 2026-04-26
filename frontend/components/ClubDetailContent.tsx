@@ -138,9 +138,20 @@ export default function ClubDetailContent({ club }: { club: Club }) {
             <Heart size={18} className={cn("mr-2", saved && "fill-primary")} />
             {saved ? "Gespeichert" : "Merken"}
           </Button>
-          <Button className="flex-1 sm:flex-none h-11 px-8 rounded-full shadow-lg shadow-primary/20">
-            Mitmachen →
-          </Button>
+          {club.contact.website ? (
+            <a
+              href={club.contact.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-none h-11 px-8 rounded-full shadow-lg shadow-primary/20 inline-flex items-center justify-center bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
+              Mitmachen →
+            </a>
+          ) : (
+            <Button className="flex-1 sm:flex-none h-11 px-8 rounded-full shadow-lg shadow-primary/20" disabled>
+              Mitmachen →
+            </Button>
+          )}
         </div>
       </div>
 
@@ -215,7 +226,7 @@ export default function ClubDetailContent({ club }: { club: Club }) {
                 </div>
               )}
 
-              {club.contact.phone && club.contact.phone !== "null" && (
+              {club.contact.phone && club.contact.phone && (
                 <div className="flex items-start gap-4">
                   <div className="w-9 h-9 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
                     <Phone size={16} className="text-primary" />
@@ -227,7 +238,7 @@ export default function ClubDetailContent({ club }: { club: Club }) {
                 </div>
               )}
 
-              {club.contact.website && club.contact.website !== "null" && (
+              {club.contact.website && club.contact.website && (
                 <div className="flex items-start gap-4">
                   <div className="w-9 h-9 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
                     <Globe size={16} className="text-primary" />

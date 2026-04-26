@@ -1,19 +1,3 @@
-import { 
-  Music, 
-  Leaf, 
-  Palette, 
-  Trophy, 
-  Users, 
-  Heart, 
-  Search, 
-  MapPin,
-  Theater,
-  Hammer,
-  Book,
-  HandHelping,
-  Microscope,
-  Baby
-} from "lucide-react";
 import type { ReactNode } from "react";
 
 // Keyword-based mapping for better coverage of dynamic backend tags

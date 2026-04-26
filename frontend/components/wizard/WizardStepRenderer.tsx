@@ -7,8 +7,8 @@ import { WizardStep, WizardOption } from "@/lib/wizardConfig";
 
 interface WizardStepRendererProps {
   step: WizardStep;
-  answers: Record<string, any>;
-  onSelect: (value: any) => void;
+  answers: Record<string, unknown>;
+  onSelect: (value: unknown) => void;
   onNext?: () => void;
   onBack?: () => void;
   onSkip?: () => void;
