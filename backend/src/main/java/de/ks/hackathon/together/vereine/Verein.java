@@ -1,5 +1,6 @@
 package de.ks.hackathon.together.vereine;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.ks.hackathon.together.angebot.Angebot;
 import de.ks.hackathon.together.eigenschaften.Eigenschaft;
 import lombok.AllArgsConstructor;
@@ -27,9 +28,11 @@ public class Verein {
     private String beschreibung;
 
     @Relationship(type = "BIETET_AN", direction = Relationship.Direction.OUTGOING)
+    @JsonManagedReference
     private Set<Angebot> angebote;
 
     @Relationship(type = "HAT_EIGENSCHAFT", direction = Relationship.Direction.OUTGOING)
+    @JsonManagedReference
     private Set<Eigenschaft> eigenschaften;
 
     private String websiteUrl;
