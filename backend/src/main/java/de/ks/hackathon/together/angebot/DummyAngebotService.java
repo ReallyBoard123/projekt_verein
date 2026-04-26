@@ -1,6 +1,8 @@
 package de.ks.hackathon.together.angebot;
 
 import de.ks.hackathon.together.eigenschaften.Eigenschaft;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,9 @@ import java.util.*;
 @Service
 @ConditionalOnProperty(name = "app.dummydata", havingValue = "true")
 public class DummyAngebotService extends AngebotService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AngebotService.class);
+
     public DummyAngebotService() {
         super(null);
     }

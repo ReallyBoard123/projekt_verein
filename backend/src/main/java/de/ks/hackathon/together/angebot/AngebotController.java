@@ -1,5 +1,7 @@
 package de.ks.hackathon.together.angebot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +9,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/angebote")
 public class AngebotController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AngebotController.class);
+
     private final AngebotService service;
 
     public AngebotController(AngebotService service) {

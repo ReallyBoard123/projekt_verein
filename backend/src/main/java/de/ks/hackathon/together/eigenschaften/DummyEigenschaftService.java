@@ -1,5 +1,7 @@
 package de.ks.hackathon.together.eigenschaften;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +13,16 @@ import java.util.Optional;
 @Service
 @ConditionalOnProperty(name = "app.dummydata", havingValue = "true")
 public class DummyEigenschaftService extends EigenschaftService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DummyEigenschaftService.class);
+
     public DummyEigenschaftService() {
         super(null);
     }
 
     @Override
     public List<Eigenschaft> findAll() {
+        LOG.debug("Dummy: findAll() aufgerufen");
         List<Eigenschaft> eigenschaften = new ArrayList<>();
         for (long i = 1; i <= 10; i++) {
             Eigenschaft e = new Eigenschaft();
@@ -30,7 +36,7 @@ public class DummyEigenschaftService extends EigenschaftService {
 
     @Override
     public Optional<Eigenschaft> findById(Long id) {
+        LOG.debug("Dummy: findById({}) aufgerufen", id);
         return findAll().stream().filter(e -> Objects.equals(e.getId(), id)).findFirst();
     }
 }
-

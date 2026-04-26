@@ -8,6 +8,8 @@ import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Relationship;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,14 +39,14 @@ public class Angebot {
 
     public Set<Verein> getVereine() {
         if (vereine == null) {
-            vereine = new java.util.HashSet<>();
+            vereine = new HashSet<>();
         }
         return vereine;
     }
 
     public Set<Eigenschaft> getEigenschaften() {
         if (eigenschaften == null) {
-            eigenschaften = new java.util.HashSet<>();
+            eigenschaften = new HashSet<>();
         }
         return eigenschaften;
     }
