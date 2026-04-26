@@ -1,50 +1,39 @@
+import type { ClubEvent } from "./club-event";
+
+// Define the structure for a department
+export interface Department {
+  id: string;
+  name: string;
+  // Add any other properties that might exist for a department
+  trainingTimes?: any[]; // Example: if trainingTimes are used elsewhere
+}
+
 export interface Club {
   id: string;
   slug: string;
   name: string;
   category: string;
   location: string;
-  memberCount: number;
-  foundingYear: number;
   description: string;
   tags: string[];
-  matchScore: number;
   latitude?: number;
   longitude?: number;
-  isOpenForAll: boolean;
-  departments: Department[];
+  contact: {
+    email?: string;
+    website?: string;
+    address?: string;
+    phone?: string; 
+  };
+  summary?: string; 
   events: ClubEvent[];
-  contact: Contact;
-  fees: Fee[];
+  departments: Department[]; 
+  fees: [];
+  matchScore?: number;
+  completenessScore?: number;
+  memberCount?: number;
+  foundingYear?: number;
+  isOpenForAll?: boolean;
 }
 
-export interface Department {
-  id: string;
-  name: string;
-  memberCount: number;
-  ageRange: string;
-  trainingTimes: string[];
-  icon: string;
-}
-
-export interface ClubEvent {
-  id: string;
-  name: string;
-  date: string;
-  location: string;
-  category: string;
-  isOpenForAll: boolean;
-  clubId?: string;
-}
-
-export interface Contact {
-  phone?: string;
-  email?: string;
-  website?: string;
-  address?: string;
-}
-
-export interface Fee {
-  group: string;
-  price: number;
-}
+// Export ClubEvent to resolve the import error in EventCard.tsx
+export { ClubEvent };

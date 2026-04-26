@@ -12,7 +12,7 @@ const PINS = [
 export default function MapStrip() {
   return (
     <div
-      className="relative w-full h-[320px] overflow-hidden rounded-[14px] border-[0.5px] border-[#C5DEDE] bg-[#E8F2F0]"
+      className="relative w-full h-[320px] overflow-hidden rounded-[14px] border-[0.5px] border-border bg-secondary"
       role="img"
       aria-label="Karte von Kassel mit Vereinsstandorten"
     >

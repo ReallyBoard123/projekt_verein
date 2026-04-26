@@ -27,7 +27,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import type { Club } from "@/types";
+import type { Club, Department } from "@/types"; // Import Department type
 import { categoryIcon, categoryLabel } from "@/lib/club-utils";
 import { cn } from "@/lib/utils";
 
@@ -49,7 +49,7 @@ export default function ClubDetailContent({ club }: { club: Club }) {
       {/* Header Block */}
       <div className="flex flex-col sm:flex-row items-start gap-6 mb-10">
         <div 
-          className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center text-primary shrink-0 rounded-[20px] shadow-sm border-[0.5px] border-[#E8F0F0]"
+          className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center text-primary shrink-0 rounded-[20px] shadow-sm border-[0.5px] border-border-light"
           style={{ background: "rgb(13 92 99 / 0.08)" }}
         >
           <div className="scale-[2.0] md:scale-[2.5]">
@@ -76,13 +76,13 @@ export default function ClubDetailContent({ club }: { club: Club }) {
                 {club.location}
               </span>
             )}
-            {club.memberCount > 0 && (
+            {(club.memberCount ?? 0) > 0 && (
               <span className="flex items-center gap-1.5">
                 <Users size={16} className="text-primary/70" />
                 {club.memberCount} Mitglieder
               </span>
             )}
-            {club.foundingYear > 0 && (
+            {(club.foundingYear ?? 0) > 0 && (
               <span className="flex items-center gap-1.5">
                 <Calendar size={16} className="text-primary/70" />
                 Seit {club.foundingYear}
@@ -117,7 +117,7 @@ export default function ClubDetailContent({ club }: { club: Club }) {
             <h2 className="text-[20px] font-bold text-foreground mb-4 font-serif">
               Über uns
             </h2>
-            <div className="prose prose-slate max-w-none text-[16px] text-text-body leading-[1.8] space-y-4">
+            <div className="prose prose-slate max-w-none text-[16px] text-body leading-[1.8] space-y-4">
               <p>{club.description || "Für diesen Verein liegt noch keine ausführliche Beschreibung vor."}</p>
             </div>
             
@@ -144,7 +144,8 @@ export default function ClubDetailContent({ club }: { club: Club }) {
                   <Card key={dept.id} className="p-5 border-[0.5px] bg-muted/5 hover:bg-background transition-colors">
                     <h3 className="font-bold text-[16px] mb-2">{dept.name}</h3>
                     <div className="space-y-1.5 mb-4">
-                      {dept.trainingTimes.map((t) => (
+                      {/* Added check for trainingTimes */}
+                      {dept.trainingTimes && dept.trainingTimes.length > 0 && dept.trainingTimes.map((t) => (
                         <div key={t} className="flex items-center gap-2 text-[13px] text-text-muted">
                           <Clock size={14} className="shrink-0" />
                           {t}
@@ -215,18 +216,34 @@ export default function ClubDetailContent({ club }: { club: Club }) {
             {club.latitude && club.longitude ? (
               <div className="h-[200px] mt-8 relative rounded-xl border border-border overflow-hidden shadow-inner">
                 <iframe
+                  title={`Karte: ${club.name}`}
                   width="100%"
                   height="100%"
-                  frameBorder="0"
-                  scrolling="no"
-                  marginHeight={0}
-                  marginWidth={0}
-                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${club.longitude - 0.005}%2C${club.latitude - 0.005}%2C${club.longitude + 0.005}%2C${club.latitude + 0.005}&layer=mapnik&marker=${club.latitude}%2C${club.longitude}`}
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${club.longitude - 0.008}%2C${club.latitude - 0.005}%2C${club.longitude + 0.008}%2C${club.latitude + 0.005}&layer=mapnik&marker=${club.latitude}%2C${club.longitude}`}
                 />
-                <div className="absolute bottom-2 right-2 bg-white/90 px-2 py-0.5 rounded text-[10px] text-text-muted border shadow-sm">
-                  © OpenStreetMap
-                </div>
+                <a
+                  href={`https://www.openstreetmap.org/?mlat=${club.latitude}&mlon=${club.longitude}#map=17/${club.latitude}/${club.longitude}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-2 right-2 bg-white/90 px-2 py-0.5 rounded text-[10px] text-text-muted border shadow-sm hover:text-primary hover:bg-white"
+                >
+                  Größere Karte ↗
+                </a>
               </div>
+            ) : club.contact.address ? (
+              <a
+                href={`https://www.openstreetmap.org/search?query=${encodeURIComponent(club.contact.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-[180px] mt-8 relative bg-primary/5 rounded-xl border border-dashed border-primary/20 overflow-hidden flex flex-col items-center justify-center gap-2 hover:bg-primary/10 transition-colors group"
+              >
+                <MapPin size={24} className="text-primary/60 group-hover:text-primary" />
+                <span className="text-[12px] text-text-muted group-hover:text-primary font-medium">
+                  Auf OpenStreetMap öffnen ↗
+                </span>
+              </a>
             ) : (
               <div className="h-[180px] mt-8 relative bg-primary/5 rounded-xl border border-dashed border-primary/20 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center opacity-40">

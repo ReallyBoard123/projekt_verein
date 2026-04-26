@@ -1,23 +1,116 @@
 "use client";
 
-import { useState } from "react";
-import { Search, Check } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import Fuse from 'fuse.js'; // Import Fuse.js
+import { Search, Check } from "lucide-react"; // Import Search icon for the button
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import OnboardingPanel from "@/components/OnboardingPanel";
+import type { Club } from "@/types"; // Assuming Club type is available
 
-const QUICK_CHIPS = ["Fußball", "Kinder", "Musik", "Wandern", "Kunst"];
+// Import the server action
+import { fetchAllClubsForSearch } from "@/lib/actions"; 
+
+// REMOVED: QUICK_CHIPS array as the chips are removed from the UI
+// const QUICK_CHIPS = ["Fußball", "Kinder", "Musik", "Wandern", "Kunst"];
 
 interface HeroSectionProps {
   onSearch?: (query: string) => void;
   onMatch?: (answers: Record<string, any>) => void;
+  // Prop to receive club data from the parent Server Component
+  clubsData?: Club[]; 
 }
 
-export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
-  const [query, setQuery] = useState("");
-  const [activeChip, setActiveChip] = useState("Fußball");
+// Configure Fuse.js
+const fuseOptions = {
+  keys: [
+    'name',
+    'summary',
+    'description',
+    'tags',
+    'category',
+    'location',
+  ],
+  includeScore: true,
+  threshold: 0.3, // Adjust for desired fuzziness (0 is exact match, 1 is loose match)
+};
 
-  const handleSearch = () => onSearch?.(query);
+export default function HeroSection({ onSearch, onMatch, clubsData }: HeroSectionProps) {
+  const [query, setQuery] = useState("");
+  // REMOVED: activeChip state as Quick chips are removed
+  // const [activeChip, setActiveChip] = useState("Fußball"); 
+  const [searchResults, setSearchResults] = useState<Club[]>([]);
+  const [isLoadingData, setIsLoadingData] = useState(true);
+
+  // Fetch club data if not provided as prop
+  const [localClubsData, setLocalClubsData] = useState<Club[] | null>(clubsData || null);
+
+  useEffect(() => {
+    if (!clubsData) { // If clubsData prop is NOT provided
+      const loadClubs = async () => {
+        setIsLoadingData(true);
+        try {
+          const fetchedClubs = await fetchAllClubsForSearch();
+          setLocalClubsData(fetchedClubs); // Populate local state
+        } catch (error) {
+          console.error("Failed to fetch clubs for search:", error);
+        } finally {
+          setIsLoadingData(false);
+        }
+      };
+      loadClubs();
+    } else { // If clubsData prop IS provided
+      setLocalClubsData(clubsData); // Use the prop
+      setIsLoadingData(false); // Data is already available
+    }
+  }, [clubsData]); // Re-run if clubsData prop changes
+
+  // Initialize Fuse instance - now correctly depends on localClubsData
+  const fuse = useMemo(() => {
+    if (!localClubsData) {
+      return null;
+    }
+    return new Fuse(localClubsData, fuseOptions);
+  }, [localClubsData]); // Dependency changed to localClubsData
+
+  // Effect to update search results when query changes or data is loaded
+  useEffect(() => {
+    // Check if fuse is ready (not null) and data is loaded
+    if (!fuse || !localClubsData || isLoadingData) {
+      setSearchResults([]); 
+      return;
+    }
+
+    if (query.trim() === "") {
+      setSearchResults([]); 
+      return;
+    }
+    const results = fuse.search(query);
+    
+    // Fuse.js returns results with score and item
+    const clubsWithScores = results.map(result => result.item);
+    setSearchResults(clubsWithScores);
+
+  }, [query, fuse, localClubsData, isLoadingData]);
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    if (query.trim() === "") return;
+    if (searchResults.length > 0) {
+      onSearch?.(query); 
+    } else {
+      onSearch?.(query); 
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearchSubmit();
+    }
+  };
 
   return (
     <section
@@ -40,7 +133,7 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
                   letterSpacing: "-0.3px",
                 }}
               >
-                Passende Vereine & Kollektive in Kassel
+                Passende Vereine & Initiativen in Kassel
               </h1>
               <p className="text-[15px] md:text-[17px] text-text-body leading-[1.6]">
                 Entdecke Gemeinschaften in deiner Nähe – personalisiert,
@@ -61,65 +154,66 @@ export default function HeroSection({ onSearch, onMatch }: HeroSectionProps) {
               <input
                 type="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                onChange={handleSearchInputChange}
+                onKeyDown={handleKeyDown}
                 placeholder="Verein oder Sportart suchen …"
                 className="flex-1 px-3 py-3 text-[15px] text-foreground bg-transparent outline-none placeholder:text-text-muted"
                 aria-label="Verein oder Sportart suchen"
               />
+              {/* Updated Button: Icon only on sm, icon + text on md+ */}
               <Button
-                onClick={handleSearch}
-                className="m-1 rounded-lg text-[13px] font-semibold shrink-0"
+                onClick={handleSearchSubmit}
+                className="m-1 rounded-lg shrink-0 px-3 sm:px-5" // Responsive padding
               >
-                Suchen
+                <Search size={16} className="mr-2 sm:mr-0" /> {/* Icon always visible, margin changes */}
+                <span className="hidden sm:inline">Suchen</span> {/* Text hidden on screens smaller than sm */}
               </Button>
             </div>
 
-            {/* Quick-filter chips */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[13px] font-medium text-text-muted">
-                Schnellfilter:
-              </span>
-              {QUICK_CHIPS.map((chip) => {
-                const isActive = activeChip === chip;
-                return (
-                  <button
-                    key={chip}
-                    type="button"
-                    onClick={() => setActiveChip(chip)}
-                    aria-pressed={isActive}
-                    className={cn(
-                      "flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all",
-                      isActive
-                        ? "text-primary"
-                        : "border-border text-text-body hover:border-primary/50",
-                    )}
-                    style={{
-                      border: isActive
-                        ? "1.5px solid var(--primary)"
-                        : "1px solid var(--border)",
-                      background: isActive ? "rgb(13 92 99 / 0.08)" : "#fff",
+            {/* Display Fuzzy Search Results */}
+            {!isLoadingData && query.trim() !== "" && searchResults.length > 0 && (
+              <div
+                className="mt-2 rounded-md bg-white shadow-lg border border-gray-200 max-h-60 overflow-y-auto"
+                style={{
+                  scrollbarColor: 'var(--primary) var(--background)', // Primary color for scrollbar thumb, background for track
+                  scrollbarWidth: 'thin'
+                }}
+              >
+                {searchResults.slice(0, 4).map((club) => ( // Changed from 5 to 4 suggestions
+                  <div
+                    key={club.id}
+                    className="p-2 cursor-pointer hover:bg-gray-100 border-b border-gray-200 last:border-b-0"
+                    onClick={() => {
+                      setQuery(club.name); 
+                      setSearchResults([]); 
+                      onSearch?.(club.name); 
                     }}
                   >
-                    {isActive && (
-                      <Check size={12} strokeWidth={3} aria-hidden="true" />
-                    )}
-                    {chip}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+                    <div className="font-medium text-sm">{club.name}</div>
+                    <div className="text-xs text-gray-500 truncate">{club.summary || club.description}</div>
+                  </div>
+                ))}
+                 {searchResults.length > 4 && ( // Adjusted check for "Mehr Ergebnisse..."
+                  <div className="p-2 text-xs text-gray-500 cursor-pointer hover:bg-gray-100" onClick={() => {
+                    setQuery(""); 
+                    setSearchResults([]);
+                    onSearch?.(query); 
+                  }}>
+                    Mehr Ergebnisse...
+                  </div>
+                )}
+              </div>
+            )}
+            {/* Message if no results found */}
+            {!isLoadingData && query.trim() !== "" && searchResults.length === 0 && (
+              <div className="mt-2 text-sm text-gray-500">Keine passenden Vereine gefunden.</div>
+            )}
 
-          {/* Onboarding - Underneath Search on Mobile, also Left on Desktop if needed? 
-              User said "Underneath the search component". 
-              Usually in these layouts, it's either in the right column (Desktop) or stacked (Mobile).
-              If the user wants it specifically "underneath", I will stack it in the first column for both, 
-              OR keep it in the 2nd column but ensure the 2nd column is AFTER the 1st in the source.
-          */}
+            {/* REMOVED: Quick-filter chips section */}
+          </div>
         </div>
 
-        {/* Right: Onboarding (Will be underneath on mobile naturally) */}
+        {/* Right: Onboarding */}
         <div className="w-full">
           <OnboardingPanel onComplete={onMatch} />
         </div>

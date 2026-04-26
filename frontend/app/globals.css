@@ -54,32 +54,32 @@
 
 :root {
   /* shadcn semantic tokens — mapped to VereinsFinder brand */
-  --background: #ffffff;
+  --background: #f7f8ef;
   --foreground: #0b1a1a;
   --card: #ffffff;
   --card-foreground: #0b1a1a;
   --popover: #ffffff;
   --popover-foreground: #0b1a1a;
-  --primary: #0d5c63;
+  --primary: #2e4ed2;
   --primary-foreground: #ffffff;
-  --secondary: #e4f4f5;
+  --secondary: #eaece0;
   --secondary-foreground: #0b1a1a;
-  --muted: #f5fafa;
+  --muted: #eaece0;
   --muted-foreground: #7a9a9a;
-  --accent: #f0f9f9;
+  --accent: #eaece0;
   --accent-foreground: #2a5555;
   --destructive: #dc2626;
-  --border: #c5dede;
-  --input: #c5dede;
-  --ring: #0d5c63;
+  --border: #d4d7c6;
+  --input: #d4d7c6;
+  --ring: #2e4ed2;
   --radius: 10px;
 
   /* VereinsFinder design tokens */
-  --brand-accent: #b35c00;
-  --bg-panel: #e4f4f5;
-  --bg-alt: #f5fafa;
-  --border-light: #e8f0f0;
-  --chip-bg: #f0f9f9;
+  --brand-accent: #ff2391;
+  --bg-panel: #f7f8ef;
+  --bg-alt: #eaece0;
+  --border-light: #e4e6d4;
+  --chip-bg: #ffffff;
   --chip-text: #2a5555;
   --text-body: #3a5555;
   --text-muted: #7a9a9a;

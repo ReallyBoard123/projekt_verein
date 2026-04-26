@@ -1,56 +1,83 @@
 "use server";
 
+import { prisma } from "./prisma";
 import type { Club, ClubEvent } from "@/types";
-import { MOCK_CLUBS, MOCK_EVENTS } from "./mock-data";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+// ---------------------------------------------------------------------------
+// Mapping
+// ---------------------------------------------------------------------------
 
-// Map backend "Verein" to frontend "Club"
-function mapBackendClub(v: any): Club {
-  const tags = v.angebote || [];
-  
-  // Find a specific category that is NOT just "Verein", "Initiative", or "e.V."
-  const specificCategory = tags.find((a: any) => 
-    !a.name.match(/^[\uD800-\uDBFF][\uDC00-\uDFFF]|^[^\w\s]/) && 
-    !["Verein", "Initiative", "e.V.", "ev", "e. v."].some(noise => a.name.toLowerCase() === noise || a.name.toLowerCase().includes("verein"))
-  );
-  
-  const clusterCategory = tags.find((a: any) => a.name.match(/^[\uD800-\uDBFF][\uDC00-\uDFFF]|^[^\w\s]/));
-  
-  // Fallback chain
-  const categoryCandidate = (specificCategory?.name) || (clusterCategory?.name) || "Verein";
+function mapVerein(v: {
+  slug: string;
+  name: string;
+  type: string;
+  description: string | null;
+  summary: string | null;
+  tags: string;
+  categories: string;
+  district: string | null;
+  addressRaw: string | null;
+  addressLat: number | null;
+  addressLng: number | null;
+  email: string | null;
+  phone: string | null;
+  website: string | null;
+  completenessScore: number | null;
+}): Club {
+  const tags: string[] = JSON.parse(v.tags || "[]");
+  const categories: string[] = JSON.parse(v.categories || "[]");
+  const category = categories[0] ?? tags[0] ?? v.type ?? "Verein";
 
   return {
-    id: String(v.id),
-    slug: v.name?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-'),
-    name: v.name || "Unbekannter Verein",
-    category: categoryCandidate,
-    location: v.adresse || "Kassel",
-    memberCount: 0, 
-    foundingYear: 0, 
-    description: v.beschreibung || "",
-    tags: v.eigenschaften?.map((e: any) => e.name) || [],
-    matchScore: 0,
-    latitude: v.latitude,
-    longitude: v.longitude,
-    isOpenForAll: true,
-    departments: v.angebote?.map((a: any) => ({
-      id: String(a.id),
-      name: a.name,
-      memberCount: 0,
-      ageRange: "Alle Alter",
-      trainingTimes: [],
-      icon: "users"
-    })) || [],
-    events: [], 
+    id: v.slug,
+    slug: v.slug,
+    name: v.name,
+    category,
+    location: v.district ?? "Kassel",
+    description: v.description ?? v.summary ?? "",
+    tags,
+    latitude: v.addressLat ?? undefined,
+    longitude: v.addressLng ?? undefined,
     contact: {
-      phone: v.telefonnummer,
-      website: v.websiteUrl,
-      address: v.adresse
+      email: v.email ?? undefined,
+      website: v.website ?? undefined,
+      address: v.addressRaw ?? undefined,
     },
-    fees: []
+    events: [],
+    departments: [],
+    fees: [],
+    completenessScore: v.completenessScore ?? 0.3,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Tag + category filtering (in-memory — 155 records, no perf concern)
+// ---------------------------------------------------------------------------
+
+function filterClubs(
+  clubs: Club[],
+  filters: { category?: string; tags?: string[]; limit?: number }
+): Club[] {
+  let result = clubs;
+
+  if (filters.category) {
+    const cat = filters.category;
+    result = result.filter((c) => c.category === cat);
+  }
+
+  if (filters.tags?.length) {
+    const wanted = new Set(filters.tags.map((t) => t.toLowerCase()));
+    result = result.filter((c) =>
+      c.tags.some((t) => wanted.has(t.toLowerCase()))
+    );
+  }
+
+  return filters.limit ? result.slice(0, filters.limit) : result;
+}
+
+// ---------------------------------------------------------------------------
+// Public server actions
+// ---------------------------------------------------------------------------
 
 export async function fetchClubs(filters?: {
   category?: string;
@@ -58,54 +85,74 @@ export async function fetchClubs(filters?: {
   limit?: number;
 }): Promise<Club[]> {
   "use cache";
-  
-  try {
-    const body: any = {
-      limit: filters?.limit || 1000,
-    };
-    
-    const searchTags = [];
-    if (filters?.category && filters.category !== "Alle") {
-      searchTags.push(filters.category);
-    }
-    if (filters?.tags) {
-      searchTags.push(...filters.tags);
-    }
-    if (searchTags.length > 0) {
-      body.tags = searchTags;
-    }
 
-    const res = await fetch(`${API_BASE}/api/search`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+  const rows = await prisma.verein.findMany({
+    select: {
+      slug: true,
+      name: true,
+      type: true,
+      description: true,
+      summary: true,
+      tags: true,
+      categories: true,
+      district: true,
+      addressRaw: true,
+      addressLat: true,
+      addressLng: true,
+      email: true,
+      phone: true,
+      website: true,
+      completenessScore: true,
+    },
+  });
 
-    if (!res.ok) throw new Error("Failed to search from backend");
-    const data = await res.json();
-    return data.map(mapBackendClub);
-  } catch (error) {
-    console.warn("Backend fetch failed, using mock data", error);
-    const mock = [...MOCK_CLUBS];
-    return filters?.limit ? mock.slice(0, filters.limit) : mock;
-  }
+  const clubs = rows.map(mapVerein);
+  return filters ? filterClubs(clubs, filters) : clubs;
 }
 
-export async function fetchClubBySlug(slug: string): Promise<Club> {
+export async function fetchClubBySlug(slug: string): Promise<Club | null> {
   "use cache";
-  
-  try {
-    const all = await fetchClubs({ limit: 1422 });
-    const club = all.find(c => c.slug === slug);
-    if (!club) throw new Error(`Club with slug ${slug} not found`);
-    return club;
-  } catch (error) {
-    console.warn(`Fetch by slug ${slug} failed, falling back to mock`);
-    return MOCK_CLUBS[0];
-  }
+
+  const v = await prisma.verein.findUnique({
+    where: { slug },
+    include: { events: true, meetings: true },
+  });
+
+  if (!v) return null;
+
+  const club = mapVerein(v);
+
+  club.events = v.events.map((e) => ({
+    id: e.id,
+    name: e.title ?? e.type ?? "Event",
+    date: e.date ?? "",
+    location: e.location ?? v.district ?? "Kassel",
+    category: e.type ?? club.category,
+    isOpenForAll: true,
+  }));
+
+  return club;
+}
+
+// Alias used by HeroSection for Fuse.js local search index
+export async function fetchAllClubsForSearch(): Promise<Club[]> {
+  return fetchClubs();
 }
 
 export async function fetchEvents(): Promise<ClubEvent[]> {
   "use cache";
-  return []; 
+
+  const events = await prisma.event.findMany({
+    include: { verein: true },
+    orderBy: { date: "asc" },
+  });
+
+  return events.map((e) => ({
+    id: e.id,
+    name: e.title ?? e.type ?? "Event",
+    date: e.date ?? "",
+    location: e.location ?? e.verein.district ?? "Kassel",
+    category: e.type ?? "General",
+    isOpenForAll: true,
+  }));
 }

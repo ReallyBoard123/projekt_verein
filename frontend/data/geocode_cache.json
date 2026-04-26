@@ -1,0 +1,3342 @@
+{
+  "osm-309717071": {
+    "address": "Heiligenröder Straße 70, Kassel, Germany",
+    "result": {
+      "lat": 51.31347,
+      "lng": 9.5558803,
+      "display_name": "70, Heiligenröder Straße, Sandershausen, Niestetal, Landkreis Kassel, Hessen, 34266, Deutschland"
+    }
+  },
+  "osm-354425699": {
+    "address": "Wilhelmshöher Allee 259, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3132555,
+      "lng": 9.4440472,
+      "display_name": "Le Figaro Michel, 259, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-423767134": {
+    "address": "Frankfurter Straße 254, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2873658,
+      "lng": 9.469912,
+      "display_name": "254, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-452027741": {
+    "address": "Johanna-Waescher-Straße 4, Kassel, Germany",
+    "result": {
+      "lat": 51.3062872,
+      "lng": 9.4469604,
+      "display_name": "4, Johanna-Waescher-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-492816613": {
+    "address": "Ständeplatz 17, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3141621,
+      "lng": 9.4898922,
+      "display_name": "Landesbank Hessen-Thüringen, 17, Ständeplatz, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-911798945": {
+    "address": "Friedrichsstraße 36, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3103332,
+      "lng": 9.4927259,
+      "display_name": "Hölkesches Haus, 36, Friedrichsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-1098839231": {
+    "address": "Frankfurter Straße 168, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2950882,
+      "lng": 9.4763881,
+      "display_name": "Verlag Dierichs GmbH & Co KG, 168, Frankfurter Straße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-1137359298": {
+    "address": "Bosestraße 1, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2997993,
+      "lng": 9.4801326,
+      "display_name": "1, Bosestraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-1281358521": {
+    "address": "Dittershäuser Straße 13, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.277716,
+      "lng": 9.4666573,
+      "display_name": "13, Dittershäuser Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-1400172644": {
+    "address": "Wilhelmsstraße 2, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3141794,
+      "lng": 9.4906976,
+      "display_name": "Verkehrsclub Deutschland (VCD) Landesverband Hessen e.V., 2, Wilhelmsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-1409389968": {
+    "address": "Untere Karlsstraße 16, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3150057,
+      "lng": 9.4983572,
+      "display_name": "16, Untere Karlsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-1641319270": {
+    "address": "Wilhelmshöher Allee 23, Kassel, Germany",
+    "result": {
+      "lat": 51.3113842,
+      "lng": 9.4844162,
+      "display_name": "Wille Rechtsanwälte, 23, Wilhelmshöher Allee, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-1696493142": {
+    "address": "Wilhelmshöher Allee 169, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3126827,
+      "lng": 9.4583278,
+      "display_name": "Rechtsanwälte Pflug Achenbach Dittrich, 169, Wilhelmshöher Allee, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-1804824470": {
+    "address": "Theaterstraße 1, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3142581,
+      "lng": 9.4942411,
+      "display_name": "Take hallali Burger, 1, Theaterstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-1820024713": {
+    "address": "Friedrich-Ebert-Straße 74, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3156843,
+      "lng": 9.4769246,
+      "display_name": "74, Friedrich-Ebert-Straße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-1960761647": {
+    "address": "Wilhelmshöher Allee 150, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.312919,
+      "lng": 9.4619782,
+      "display_name": "Ariana Pizza, 150, Wilhelmshöher Allee, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-2105325170": {
+    "address": "Marktstraße 6, 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.2547403,
+      "lng": 9.4149971,
+      "display_name": "6, Marktstraße, City Baunatal, Altenbauna, Baunatal, Landkreis Kassel, Hessen, 34225, Deutschland"
+    }
+  },
+  "osm-2393099721": {
+    "address": "Goethestraße 44, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3148664,
+      "lng": 9.4705954,
+      "display_name": "44, Goethestraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-2452938621": {
+    "address": "Schillerstraße 21, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3206659,
+      "lng": 9.4958128,
+      "display_name": "21, Schillerstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-2508008132": {
+    "address": "Leuschnerstraße 81, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2913005,
+      "lng": 9.456175,
+      "display_name": "Schaefer Steuerberater und Rechtsanwälte Kassel, 81, Leuschnerstraße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-2530456675": {
+    "address": "Ludwig-Erhard-Straße 10, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3059498,
+      "lng": 9.4441826,
+      "display_name": "10, Ludwig-Erhard-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-2549275490": {
+    "address": "Goethestraße 77, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3145113,
+      "lng": 9.465128,
+      "display_name": "Offen für Vielfalt e.V., 77, Goethestraße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-2560567876": {
+    "address": "Kurt-Schumacher-Straße 18, Kassel, Germany",
+    "result": {
+      "lat": 51.3176519,
+      "lng": 9.5009425,
+      "display_name": "18, Kurt-Schumacher-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-2589340381": {
+    "address": "Brandaustraße 1-3, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3225363,
+      "lng": 9.4787364,
+      "display_name": "R6, 1-3, Brandaustraße, Rothenberg, Rothenditmold, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-2603527673": {
+    "address": "Kurt-Schumacher-Straße 29, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171266,
+      "lng": 9.5038688,
+      "display_name": "Ordnungsamt, 29, Kurt-Schumacher-Straße, Josephplatz, Wesertor, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-2603686087": {
+    "address": "Leipziger Straße 104-108, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3062768,
+      "lng": 9.5248958,
+      "display_name": "VetterTec GmbH, 104-108, Leipziger Straße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-2620157451": {
+    "address": "Dormannweg 48b, Kassel, Germany",
+    "result": {
+      "lat": 51.3009489,
+      "lng": 9.5390457,
+      "display_name": "SBH Süd, 48b, Dormannweg, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-2653704682": {
+    "address": "Parkstraße 28, Kassel, Germany",
+    "result": {
+      "lat": 51.3167875,
+      "lng": 9.4764112,
+      "display_name": "28, Parkstraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-2662117528": {
+    "address": "Weserstraße 38/40, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3226976,
+      "lng": 9.5129251,
+      "display_name": "Stadtteilbüro Wesertor, 38/40, Weserstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-2663131510": {
+    "address": "Wilhelm-Speck-Straße 17, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3244744,
+      "lng": 9.518834,
+      "display_name": "Hermanns, 17, Wilhelm-Speck-Straße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-2663611730": {
+    "address": "Gottschalkstraße 39, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3242624,
+      "lng": 9.5034189,
+      "display_name": "39, Gottschalkstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-2663611759": {
+    "address": "Gottschalkstraße 43, Kassel, Germany",
+    "result": {
+      "lat": 51.3246858,
+      "lng": 9.5034096,
+      "display_name": "Karacan Kfz- Sachverständigenbüro, 43, Gottschalkstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-2837009711": {
+    "address": "Zum Sportplatz 9, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2591464,
+      "lng": 9.5079223,
+      "display_name": "9, Zum Sportplatz, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-2893289180": {
+    "address": "Agathofstraße 48, Kassel, Germany",
+    "result": {
+      "lat": 51.3072205,
+      "lng": 9.5266918,
+      "display_name": "Stadtteilzentrum Agathof, 48, Agathofstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-2989832060": {
+    "address": "Holländische Straße 88, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3286105,
+      "lng": 9.499718,
+      "display_name": "88, Holländische Straße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-3053512465": {
+    "address": "Hans-Sautter-Straße 20-22, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2869065,
+      "lng": 9.4509641,
+      "display_name": "Bürgel Kassel Kilian & Wojacek GbR, 20-22, Hans-Sautter-Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3062903205": {
+    "address": "Frankfurter Straße 270, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2864225,
+      "lng": 9.4691616,
+      "display_name": "270, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3062912871": {
+    "address": "Frankfurter Straße 246, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2877081,
+      "lng": 9.4702339,
+      "display_name": "246, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3073893320": {
+    "address": "Am Donarbrunnen 43, Kassel, Germany",
+    "result": {
+      "lat": 51.2950304,
+      "lng": 9.4645879,
+      "display_name": "43, Am Donarbrunnen, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3088908229": {
+    "address": "Samuel-Beckett-Anlage 12, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3176314,
+      "lng": 9.4722479,
+      "display_name": "12, Samuel-Beckett-Anlage, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-3300666619": {
+    "address": "Marktplatz 5, 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.255063,
+      "lng": 9.4150029,
+      "display_name": "5, Marktplatz, City Baunatal, Altenbauna, Baunatal, Landkreis Kassel, Hessen, 34225, Deutschland"
+    }
+  },
+  "osm-3383530187": {
+    "address": "Scheidemannplatz 2, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3158641,
+      "lng": 9.4928301,
+      "display_name": "Handwerkskammer, 2, Scheidemannplatz, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3391489610": {
+    "address": "Universitätsplatz 12, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.325488,
+      "lng": 9.5050186,
+      "display_name": "Dépa Forschungskantine, 12, Universitätsplatz, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-3408793447": {
+    "address": "Karthäuserstraße 7-9, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.314041,
+      "lng": 9.4852707,
+      "display_name": "Bundesnetzagentur - Ausführungsarbeiten für Meldung von Photovoltaikanlagen, 7-9, Karthäuserstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3409109168": {
+    "address": "Am Lossewerk 10, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3152735,
+      "lng": 9.5307916,
+      "display_name": "10, Am Lossewerk, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-3411717365": {
+    "address": "Obere Königsstraße 23, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3130391,
+      "lng": 9.4929865,
+      "display_name": "23, Obere Königsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3430357010": {
+    "address": "Friedrichsplatz 8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3128227,
+      "lng": 9.4954115,
+      "display_name": "8, Friedrichsplatz, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3484362434": {
+    "address": "Brüder-Grimm-Straße 14, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.2830688,
+      "lng": 9.4639305,
+      "display_name": "14, Brüder-Grimm-Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3491388116": {
+    "address": "Wilhelmshöher Allee 157 - 159, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3125899,
+      "lng": 9.459991,
+      "display_name": "Hessische Landgesellschaft, 157 - 159, Wilhelmshöher Allee, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-3491388117": {
+    "address": "Wilhelmshöher Allee 157-159, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3125899,
+      "lng": 9.459991,
+      "display_name": "Hessische Landgesellschaft, 157 - 159, Wilhelmshöher Allee, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-3560888965": {
+    "address": "Moritzstraße 18, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3230899,
+      "lng": 9.5051192,
+      "display_name": "Campus Center, 18, Moritzstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-3563528995": {
+    "address": "Kölnische Straße 66, Kassel, Germany",
+    "result": {
+      "lat": 51.3174163,
+      "lng": 9.4831327,
+      "display_name": "66, Kölnische Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3571408785": {
+    "address": "Schönfelder Straße 41a, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3089474,
+      "lng": 9.469644,
+      "display_name": "41a, Schönfelder Straße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-3578277159": {
+    "address": "Leuschnerstraße 81, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2913005,
+      "lng": 9.456175,
+      "display_name": "Schaefer Steuerberater und Rechtsanwälte Kassel, 81, Leuschnerstraße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3586929579": {
+    "address": "Königstor 3-13, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3127678,
+      "lng": 9.4879477,
+      "display_name": "Netcom Kassel GmbH, 3-13, Königstor, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3707886098": {
+    "address": "Holländische Straße 74, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3271566,
+      "lng": 9.5006474,
+      "display_name": "Philipp-Scheidemann-Haus, 74, Holländische Straße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-3707915827": {
+    "address": "Westring 68, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3253886,
+      "lng": 9.5032192,
+      "display_name": "68, Westring, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-3716596441": {
+    "address": "Mauerstraße 13, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.317443,
+      "lng": 9.4974465,
+      "display_name": "Landeszahnärztekammer Hessen Außenstelle Kassel, 13, Mauerstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3719177259": {
+    "address": "Obere Königsstraße 8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3119686,
+      "lng": 9.4926104,
+      "display_name": "Rathaus, 8, Obere Königsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3719611820": {
+    "address": "Parkstraße 53, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3165486,
+      "lng": 9.4744869,
+      "display_name": "53, Parkstraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-3728001972": {
+    "address": "Grüner Weg 14, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3198515,
+      "lng": 9.4940582,
+      "display_name": "14, Grüner Weg, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3728008364": {
+    "address": "Grüner Weg 2 A, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3192796,
+      "lng": 9.4958283,
+      "display_name": "DEVK, 2 A, Grüner Weg, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3781036453": {
+    "address": "Harleshäuser Straße 134, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3353334,
+      "lng": 9.441217,
+      "display_name": "Uhrtürmchen, 134, Harleshäuser Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-3820417648": {
+    "address": "Obere Königsstraße 39, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3146428,
+      "lng": 9.494601,
+      "display_name": "Königs-Galerie, 39, Obere Königsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3839405448": {
+    "address": "Fuldatalstraße 6, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3237614,
+      "lng": 9.5142288,
+      "display_name": "6, Fuldatalstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-3854108506": {
+    "address": "Universitätsplatz 10, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3253959,
+      "lng": 9.5054459,
+      "display_name": "AStA Kassel - Allgemeiner Studierendenausschuss Universität Kassel, 10, Universitätsplatz, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-3932055894": {
+    "address": "Wolfhager Straße 403, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3374701,
+      "lng": 9.4363278,
+      "display_name": "403, Wolfhager Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-3965320049": {
+    "address": "Miramstraße 87, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3111854,
+      "lng": 9.5373092,
+      "display_name": "Nibbler Gebäude C, 87, Miramstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-3980342286": {
+    "address": "Die Freiheit 19, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3159762,
+      "lng": 9.5043188,
+      "display_name": "Institut für Sprachen, 19, Die Freiheit, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-3983880678": {
+    "address": "Opernstraße 11-13, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3141353,
+      "lng": 9.4923106,
+      "display_name": "11-13, Opernstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4038443018": {
+    "address": "Weserstraße 6a, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.317547,
+      "lng": 9.5097542,
+      "display_name": "Insel-Restaurant Finkenherd, 6a, Weserstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-4107684330": {
+    "address": "Frankfurter Straße 174, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2929781,
+      "lng": 9.4748447,
+      "display_name": "BKK Wirtschaft und Finanzen, 174, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4161570096": {
+    "address": "Gutenbergstraße 9, Kassel, Germany",
+    "result": {
+      "lat": 51.3241944,
+      "lng": 9.5027809,
+      "display_name": "9, Gutenbergstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4300523742": {
+    "address": "Harleshäuser Straße 62, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3257058,
+      "lng": 9.4451901,
+      "display_name": "62, Harleshäuser Straße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-4358717249": {
+    "address": "Matthäus-Merian-Straße 2b, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.2694344,
+      "lng": 9.5240485,
+      "display_name": "Intercomp, 2b, Matthäus-Merian-Straße, Am Lohfeldener Rüssel, Crumbach, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-4358717250": {
+    "address": "Matthäus-Merian-Straße 12, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.270275,
+      "lng": 9.5316452,
+      "display_name": "12, Matthäus-Merian-Straße, Am Lohfeldener Rüssel, Crumbach, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-4437031285": {
+    "address": "Werner-Hilpert-Straße 21, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.318077,
+      "lng": 9.4924712,
+      "display_name": "21, Werner-Hilpert-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4456176300": {
+    "address": "An der Kurhessenhalle 16b, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2893229,
+      "lng": 9.4709705,
+      "display_name": "16b, An der Kurhessenhalle, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4456194326": {
+    "address": "Frankfurter Straße 229a, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.289718,
+      "lng": 9.4730094,
+      "display_name": "Landesapothekerkammer Hessen - Zweigstelle Kurhessen, 229a, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4456217995": {
+    "address": "Frankfurter Straße 229b, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2895922,
+      "lng": 9.4732833,
+      "display_name": "229b, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4456217997": {
+    "address": "Frankfurter Straße 229b, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2895922,
+      "lng": 9.4732833,
+      "display_name": "229b, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4457522997": {
+    "address": "Frankfurter Straße 247, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2881194,
+      "lng": 9.4711498,
+      "display_name": "247, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4524280503": {
+    "address": "Ochshäuser Dorfstraße 20, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.2800747,
+      "lng": 9.5501864,
+      "display_name": "Alte Schule, 20, Ochshäuser Dorfstraße, Am Hammelsberg, Ochshausen, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-4567692350": {
+    "address": "Friedrich-Ebert-Straße 45-47, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3147958,
+      "lng": 9.4822833,
+      "display_name": "Brunsch & Meyer Grund und Boden AG, 45-47, Friedrich-Ebert-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4567692351": {
+    "address": "Brüder-Grimm-Platz 4, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3109187,
+      "lng": 9.4911,
+      "display_name": "4, Brüder-Grimm-Platz, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4614271626": {
+    "address": "Marktstraße 6, 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.2547403,
+      "lng": 9.4149971,
+      "display_name": "6, Marktstraße, City Baunatal, Altenbauna, Baunatal, Landkreis Kassel, Hessen, 34225, Deutschland"
+    }
+  },
+  "osm-4614271638": {
+    "address": "Marktstraße 6, 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.2547403,
+      "lng": 9.4149971,
+      "display_name": "6, Marktstraße, City Baunatal, Altenbauna, Baunatal, Landkreis Kassel, Hessen, 34225, Deutschland"
+    }
+  },
+  "osm-4637055625": {
+    "address": "Wilhelmshöher Allee 122, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.312861,
+      "lng": 9.4655048,
+      "display_name": "Facharztpraxis für Kinder- und Jugendmedizin, 122, Wilhelmshöher Allee, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-4674587989": {
+    "address": "Obere Königsstraße 8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3119686,
+      "lng": 9.4926104,
+      "display_name": "Rathaus, 8, Obere Königsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4695773190": {
+    "address": "Annastraße 11, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3170053,
+      "lng": 9.4779506,
+      "display_name": "Bundesverband Produktionsschulen e. V., 11, Annastraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-4706670487": {
+    "address": "Lilienthalstraße 25, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2993305,
+      "lng": 9.5268729,
+      "display_name": "25, Lilienthalstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-4720197214": {
+    "address": "Hafenstraße 13, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3148626,
+      "lng": 9.5113747,
+      "display_name": "13, Hafenstraße, Unterneustadt, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-4720197215": {
+    "address": "Schillstraße 8, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3152274,
+      "lng": 9.5128693,
+      "display_name": "Günay, 8, Schillstraße, Unterneustadt, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-4725824471": {
+    "address": "Wilhelmshöher Allee 255, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3126901,
+      "lng": 9.4450389,
+      "display_name": "BSI ButterSpender International AG, 255, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-4725824473": {
+    "address": "Landgraf-Karl-Straße 1, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3133396,
+      "lng": 9.4449142,
+      "display_name": "1, Landgraf-Karl-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-4725824481": {
+    "address": "Wilhelmshöher Allee 253, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3131499,
+      "lng": 9.4450945,
+      "display_name": "Sencha, 253, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-4725824483": {
+    "address": "Landgraf-Karl-Straße 1, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3133396,
+      "lng": 9.4449142,
+      "display_name": "1, Landgraf-Karl-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-4725824485": {
+    "address": "Wilhelmshöher Allee 255, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3126901,
+      "lng": 9.4450389,
+      "display_name": "BSI ButterSpender International AG, 255, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-4738869455": {
+    "address": "Wilhelmshöher Allee 262, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3141047,
+      "lng": 9.445308,
+      "display_name": "Atrium, 262, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-4755438965": {
+    "address": "6, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3640572,
+      "lng": 9.4541765,
+      "display_name": "6, Am Mühlenberg, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-4755438978": {
+    "address": "6, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3640572,
+      "lng": 9.4541765,
+      "display_name": "6, Am Mühlenberg, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-4755438979": {
+    "address": "4, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3057409,
+      "lng": 9.4628604,
+      "display_name": "Wehlheiden, Kassel, Hessen, Deutschland"
+    }
+  },
+  "osm-4755438996": {
+    "address": "6, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3640572,
+      "lng": 9.4541765,
+      "display_name": "6, Am Mühlenberg, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-4755438997": {
+    "address": "6, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3640572,
+      "lng": 9.4541765,
+      "display_name": "6, Am Mühlenberg, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-4851262626": {
+    "address": "Rainer-Dierichs-Platz 1A, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3184393,
+      "lng": 9.4903386,
+      "display_name": "Stiftung BSW, 1A, Rainer-Dierichs-Platz, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-4910849232": {
+    "address": "Kleine Rosenstraße 1-3, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3174514,
+      "lng": 9.4956185,
+      "display_name": "NEO HUB, 1-3, Kleine Rosenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5022827061": {
+    "address": "Die Freiheit 7, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3162394,
+      "lng": 9.5030944,
+      "display_name": "Planet Werbung, 7, Die Freiheit, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5073245936": {
+    "address": "Falderbaumstraße 35, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2758506,
+      "lng": 9.5038575,
+      "display_name": "35, Falderbaumstraße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-5107044577": {
+    "address": "Sickingenstraße 7, Kassel, Germany",
+    "result": {
+      "lat": 51.3202521,
+      "lng": 9.4947217,
+      "display_name": "Grüne Kreisverband Kassel Parteibüro, 7, Sickingenstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5135728701": {
+    "address": "Zentgrafenstraße 127, Kassel, Germany",
+    "result": {
+      "lat": 51.3225786,
+      "lng": 9.446802,
+      "display_name": "Bürger- und Heimatverein Kassel-Kirchditmold e.V., 127, Zentgrafenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-5157995125": {
+    "address": "Kleine Rosenstraße 3, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3174862,
+      "lng": 9.4951072,
+      "display_name": "3, Kleine Rosenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5157995126": {
+    "address": "Kleine Rosenstraße 3, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3174862,
+      "lng": 9.4951072,
+      "display_name": "3, Kleine Rosenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5176527227": {
+    "address": "Frankfurter Straße 123, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3007682,
+      "lng": 9.4825653,
+      "display_name": "123, Frankfurter Straße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-5243131372": {
+    "address": "Leuschnerstraße 73, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2901955,
+      "lng": 9.458363,
+      "display_name": "Magazinhof Silo Süd, 73, Leuschnerstraße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-5282977556": {
+    "address": "Obervellmarsche Straße 72, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3564745,
+      "lng": 9.4717805,
+      "display_name": "72, Obervellmarsche Straße, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-5286713405": {
+    "address": "Obervellmarsche Straße 98-100, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3569626,
+      "lng": 9.4684389,
+      "display_name": "98-100, Obervellmarsche Straße, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-5296023587": {
+    "address": "Friedrichsstraße 28, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3110843,
+      "lng": 9.4914969,
+      "display_name": "Neue Denkerei, 28, Friedrichsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5298342673": {
+    "address": "Veckerhagener Straße 86, 34233 Kassel, Germany",
+    "result": {
+      "lat": 51.3525472,
+      "lng": 9.5272581,
+      "display_name": "86, Veckerhagener Straße, Ihringshausen, Fuldatal, Landkreis Kassel, Hessen, 34233, Deutschland"
+    }
+  },
+  "osm-5298342675": {
+    "address": "Veckerhagener Straße 114, 34233 Kassel, Germany",
+    "result": {
+      "lat": 51.3547189,
+      "lng": 9.5271524,
+      "display_name": "114, Veckerhagener Straße, Ihringshausen, Fuldatal, Landkreis Kassel, Hessen, 34233, Deutschland"
+    }
+  },
+  "osm-5298342676": {
+    "address": "Veckerhagener Straße 57, 34233 Kassel, Germany",
+    "result": {
+      "lat": 51.3550923,
+      "lng": 9.52663,
+      "display_name": "57, Veckerhagener Straße, Ihringshausen, Fuldatal, Landkreis Kassel, Hessen, 34233, Deutschland"
+    }
+  },
+  "osm-5536672070": {
+    "address": "An der Stadthalle 9, 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.2537156,
+      "lng": 9.4125725,
+      "display_name": "Coworking Baunatal, 9, An der Stadthalle, City Baunatal, Altenbauna, Baunatal, Landkreis Kassel, Hessen, 34225, Deutschland"
+    }
+  },
+  "osm-5646259595": {
+    "address": "Tannenheckerweg 6, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3291797,
+      "lng": 9.4945529,
+      "display_name": "6, Tannenheckerweg, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-5652102826": {
+    "address": "Friedrich-Engels-Straße 7, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.314341,
+      "lng": 9.4828092,
+      "display_name": "7, Friedrich-Engels-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5682364507": {
+    "address": "Jordanstraße 6, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3141563,
+      "lng": 9.4873504,
+      "display_name": "6, Jordanstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-5737125787": {
+    "address": "Mendelssohn-Bartholdy-Straße 23-25, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2786877,
+      "lng": 9.4732156,
+      "display_name": "Kart-Driving by Richi, 23-25, Mendelssohn-Bartholdy-Straße, Unternehmenspark Niederzwehren, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-5838730827": {
+    "address": "Industriestraße 4, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.269104,
+      "lng": 9.5063081,
+      "display_name": "4, Industriestraße, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-5949937059": {
+    "address": "Bunsenstraße 200, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3416071,
+      "lng": 9.4826477,
+      "display_name": "LINKER Industrie-Technik GmbH, 200, Bunsenstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-5949937060": {
+    "address": "Bunsenstraße 200, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3416071,
+      "lng": 9.4826477,
+      "display_name": "LINKER Industrie-Technik GmbH, 200, Bunsenstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-5949937061": {
+    "address": "Bunsenstraße 200, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3416071,
+      "lng": 9.4826477,
+      "display_name": "LINKER Industrie-Technik GmbH, 200, Bunsenstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-6005250845": {
+    "address": "Große Rosenstraße 21, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3183692,
+      "lng": 9.4939179,
+      "display_name": "21, Große Rosenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6205050432": {
+    "address": "Schönfelder Straße 41a, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3089474,
+      "lng": 9.469644,
+      "display_name": "41a, Schönfelder Straße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-6212374413": {
+    "address": "Kölnische Straße 81, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3166267,
+      "lng": 9.4808514,
+      "display_name": "Deutsche Bahn AG, 81, Kölnische Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6552951651": {
+    "address": "Fuldaaue 13-15, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2926356,
+      "lng": 9.5045092,
+      "display_name": "Windsurfing Verein Nord Hessen Kassel e.V., 13-15, Fuldaaue, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-6552951652": {
+    "address": "Fuldaaue 13-15, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2926356,
+      "lng": 9.5045092,
+      "display_name": "Windsurfing Verein Nord Hessen Kassel e.V., 13-15, Fuldaaue, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-6567777854": {
+    "address": "Heckershäuser Straße 56, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.364005,
+      "lng": 9.44872,
+      "display_name": "56, Heckershäuser Straße, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-6572477595": {
+    "address": "Wolfhager Straße 364, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3364377,
+      "lng": 9.4406417,
+      "display_name": "364, Wolfhager Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-6578035252": {
+    "address": "Ochshäuser Straße 34, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2932806,
+      "lng": 9.5347971,
+      "display_name": "34, Ochshäuser Straße, Forstfeld, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-6578143353": {
+    "address": "Karlshafener Straße 2, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3365287,
+      "lng": 9.4383476,
+      "display_name": "2, Karlshafener Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-6583952238": {
+    "address": "Ihringshäuser Straße 7, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3258142,
+      "lng": 9.5114631,
+      "display_name": "7, Ihringshäuser Straße, Wesertor, Kassel, Hessen, 34109, Deutschland"
+    }
+  },
+  "osm-6586329976": {
+    "address": "Lange Straße 51, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3149404,
+      "lng": 9.4404975,
+      "display_name": "51, Lange Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-6586354071": {
+    "address": "Mergellstraße 11, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3213564,
+      "lng": 9.4486567,
+      "display_name": "11, Mergellstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-6586354072": {
+    "address": "Brunnenstraße 3, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3214106,
+      "lng": 9.4493466,
+      "display_name": "3, Brunnenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-6586354074": {
+    "address": "Teichstraße 35, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3210448,
+      "lng": 9.4502364,
+      "display_name": "Praxis für Physiotherapie Bernd Stiegler, 35, Teichstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-6586412184": {
+    "address": "Zentgrafenstraße 116, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3223537,
+      "lng": 9.4502178,
+      "display_name": "116, Zentgrafenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-6596754845": {
+    "address": "Wolfhager Straße 365, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3351105,
+      "lng": 9.4421078,
+      "display_name": "365, Wolfhager Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-6609481053": {
+    "address": "Wolfsschlucht 15, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3148586,
+      "lng": 9.4927275,
+      "display_name": "Kurhessische Landbank eG, 15, Wolfsschlucht, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6612124029": {
+    "address": "Mittelgasse 22, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3169416,
+      "lng": 9.50201,
+      "display_name": "22, Mittelgasse, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6616337896": {
+    "address": "Ulmenstraße 27, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3126792,
+      "lng": 9.4854364,
+      "display_name": "27, Ulmenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6616436474": {
+    "address": "Kölnische Straße 69, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3167812,
+      "lng": 9.4841525,
+      "display_name": "69, Kölnische Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6622466223": {
+    "address": "Lange Wender 1, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3517692,
+      "lng": 9.4655024,
+      "display_name": "1, Lange Wender, Gewerbegebiet Lange Wender, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-6622606668": {
+    "address": "Ziegelstraße 17, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3107149,
+      "lng": 9.4715471,
+      "display_name": "17, Ziegelstraße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-6622606669": {
+    "address": "Kantstraße 7, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3098068,
+      "lng": 9.4707083,
+      "display_name": "7, Kantstraße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-6622606672": {
+    "address": "Gräfestraße 18, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3109612,
+      "lng": 9.4691221,
+      "display_name": "18, Gräfestraße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-6622667890": {
+    "address": "Helmarshäuser Straße 6, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.336638,
+      "lng": 9.4414977,
+      "display_name": "6, Helmarshäuser Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-6622691447": {
+    "address": "Kölnische Straße 39, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3164195,
+      "lng": 9.4890581,
+      "display_name": "39, Kölnische Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6622691448": {
+    "address": "Ständeplatz 2-4, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3160859,
+      "lng": 9.4919354,
+      "display_name": "Landeswohlfahrtsverband Hessen (LWV) Hauptverwaltung, 2-4, Ständeplatz, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6790568370": {
+    "address": "Kleine Rosenstraße 1-3, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3174514,
+      "lng": 9.4956185,
+      "display_name": "NEO HUB, 1-3, Kleine Rosenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-6830921469": {
+    "address": "Miramstraße 87, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3111854,
+      "lng": 9.5373092,
+      "display_name": "Nibbler Gebäude C, 87, Miramstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-6895928140": {
+    "address": "Theaterstraße 1, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3142581,
+      "lng": 9.4942411,
+      "display_name": "Take hallali Burger, 1, Theaterstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-7114754334": {
+    "address": "Zentgrafenstraße 128, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3224881,
+      "lng": 9.4495489,
+      "display_name": "128, Zentgrafenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-7122338885": {
+    "address": ", 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3157257,
+      "lng": 9.4926363,
+      "display_name": "34117, Mitte, Kassel, Hessen, Deutschland"
+    }
+  },
+  "osm-7122787352": {
+    "address": "Kohlenstraße 16, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3094015,
+      "lng": 9.4668271,
+      "display_name": "16, Kohlenstraße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-7141572805": {
+    "address": "Breite Straße 9a, 34266 Kassel, Germany",
+    "result": {
+      "lat": 51.3068437,
+      "lng": 9.5797794,
+      "display_name": "Pfadfinder Niestetal (VCP), 9a, Breite Straße, Heiligenrode, Niestetal, Landkreis Kassel, Hessen, 34266, Deutschland"
+    }
+  },
+  "osm-7160242182": {
+    "address": "Kölnische Straße 71, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3167758,
+      "lng": 9.483293,
+      "display_name": "71, Kölnische Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-7163813241": {
+    "address": "Mombachstraße 12, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3268943,
+      "lng": 9.5011415,
+      "display_name": "Kulturzentrum Schlachthof, 12, Mombachstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-7188772185": {
+    "address": "Kölnische Straße 4, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3162762,
+      "lng": 9.4961999,
+      "display_name": "GWH, 4, Kölnische Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-7379243344": {
+    "address": "Heinrich-Plett-Straße 39, 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2802756,
+      "lng": 9.4474095,
+      "display_name": "39, Heinrich-Plett-Straße, Oberzwehren, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-7399819085": {
+    "address": "Triftweg 150b, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3423142,
+      "lng": 9.5504615,
+      "display_name": "Betonstahl Bosnyak, 150b, Triftweg, Wolfsanger-Hasenhecke, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-7488577791": {
+    "address": "Lange Straße 85, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3150615,
+      "lng": 9.4372101,
+      "display_name": "85, Lange Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-7607027106": {
+    "address": "Ostring 48-50, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2732464,
+      "lng": 9.494911,
+      "display_name": "Nicol, 48-50, Ostring, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027125": {
+    "address": "Industriestraße 2a, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2684318,
+      "lng": 9.504808,
+      "display_name": "2a, Industriestraße, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027128": {
+    "address": "Ostring 18, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2687167,
+      "lng": 9.5064184,
+      "display_name": "WeGo Systembaustoffe, 18, Ostring, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027131": {
+    "address": "Ostring 18a, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2680964,
+      "lng": 9.5053248,
+      "display_name": "18a, Ostring, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027132": {
+    "address": "Ostring 16, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2680744,
+      "lng": 9.5062752,
+      "display_name": "16, Ostring, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027134": {
+    "address": "An den Lindenbäumen 48, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2672522,
+      "lng": 9.5067815,
+      "display_name": "48, An den Lindenbäumen, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027135": {
+    "address": "An den Lindenbäumen 19-25, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2678092,
+      "lng": 9.507674,
+      "display_name": "Sauvage Cosmetique, 19-25, An den Lindenbäumen, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7607027140": {
+    "address": "Crumbacher Straße 23-25, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2635649,
+      "lng": 9.5078636,
+      "display_name": "Braunata Metrona, 23-25, Crumbacher Straße, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-7815545571": {
+    "address": "Universitätsplatz 12, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.325488,
+      "lng": 9.5050186,
+      "display_name": "Dépa Forschungskantine, 12, Universitätsplatz, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-7972918504": {
+    "address": "Zentgrafenstraße 152, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3227424,
+      "lng": 9.4476141,
+      "display_name": "152, Zentgrafenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-7973994687": {
+    "address": ", 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3002063,
+      "lng": 9.4799194,
+      "display_name": "34121, Südstadt, Kassel, Hessen, Deutschland"
+    }
+  },
+  "osm-8058579164": {
+    "address": "Königstor 35, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3132469,
+      "lng": 9.4816883,
+      "display_name": "Barmenia Versicherung - Patrick Giesler, 35, Königstor, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-8058579165": {
+    "address": "Königstor 35, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3132469,
+      "lng": 9.4816883,
+      "display_name": "Barmenia Versicherung - Patrick Giesler, 35, Königstor, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-8063067221": {
+    "address": "Osterholzstraße 52, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3077753,
+      "lng": 9.5374697,
+      "display_name": "CED UG (haftungsbeschränkt) & Co. KG, 52, Osterholzstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-8224600376": {
+    "address": "Wilhelmshöher Allee 287 A, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3134974,
+      "lng": 9.4395316,
+      "display_name": "Gesundheitssport Bad Wilhelmshöhe e.V., 287 A, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-8320402229": {
+    "address": "Lewinskistraße 6, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3240758,
+      "lng": 9.4923787,
+      "display_name": "Agentur für Arbeit, 6, Lewinskistraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-8497248812": {
+    "address": "Wilhelmshöher Allee 268, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.313831,
+      "lng": 9.4436167,
+      "display_name": "Der Urgeschmack Hofladen, 268, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-8558051869": {
+    "address": "Tränkepforte 4, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3150526,
+      "lng": 9.502608,
+      "display_name": "4, Tränkepforte, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-8622080426": {
+    "address": "Untere Königsstraße 95, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3200464,
+      "lng": 9.5000222,
+      "display_name": "McFit, 95, Untere Königsstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-8650100368": {
+    "address": "Königstor 23, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3128634,
+      "lng": 9.4841988,
+      "display_name": "23, Königstor, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-8676696541": {
+    "address": "Eugen-Richter-Straße 109, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2936843,
+      "lng": 9.4546022,
+      "display_name": "109, Eugen-Richter-Straße, Süsterfeld, Süsterfeld-Helleböhn, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-8676696542": {
+    "address": "Eugen-Richter-Straße 109, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2936843,
+      "lng": 9.4546022,
+      "display_name": "109, Eugen-Richter-Straße, Süsterfeld, Süsterfeld-Helleböhn, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-8783799795": {
+    "address": "Ochshäuser Straße 34, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2932806,
+      "lng": 9.5347971,
+      "display_name": "34, Ochshäuser Straße, Forstfeld, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-8859767758": {
+    "address": "Heinrich-Hertz-Straße 11, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2803818,
+      "lng": 9.5211798,
+      "display_name": "Fmi Systems GmbH | New Horizons Schulungscenter, 11, Heinrich-Hertz-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-8887025681": {
+    "address": "Annastraße 11, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3170053,
+      "lng": 9.4779506,
+      "display_name": "Bundesverband Produktionsschulen e. V., 11, Annastraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-8906735495": {
+    "address": "Friedrich-Engels-Straße 3, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3136013,
+      "lng": 9.4826506,
+      "display_name": "Orange Cube Werbeagentur, 3, Friedrich-Engels-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9084687117": {
+    "address": "Leipziger Straße 407, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2939692,
+      "lng": 9.557989,
+      "display_name": "407, Leipziger Straße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-9084697093": {
+    "address": "Miramstraße 87, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3111854,
+      "lng": 9.5373092,
+      "display_name": "Nibbler Gebäude C, 87, Miramstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-9084703730": {
+    "address": "Leipziger Straße 407, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2939692,
+      "lng": 9.557989,
+      "display_name": "407, Leipziger Straße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-9084738916": {
+    "address": "Tischbeinstraße 32, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.308131,
+      "lng": 9.483254,
+      "display_name": "Dialog-Institut Dr. Kilian, 32, Tischbeinstraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-9345998824": {
+    "address": "Spohrstraße 6-8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171558,
+      "lng": 9.4960148,
+      "display_name": "Deutscher Gewerkschaftsbund, 6-8, Spohrstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9365497917": {
+    "address": "Spohrstraße 6-8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171558,
+      "lng": 9.4960148,
+      "display_name": "Deutscher Gewerkschaftsbund, 6-8, Spohrstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9369816089": {
+    "address": "Spohrstraße 6-8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171558,
+      "lng": 9.4960148,
+      "display_name": "Deutscher Gewerkschaftsbund, 6-8, Spohrstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9369816090": {
+    "address": "Spohrstraße 6-8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171558,
+      "lng": 9.4960148,
+      "display_name": "Deutscher Gewerkschaftsbund, 6-8, Spohrstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9467942231": {
+    "address": "Treppenstraße 9, Kassel, Germany",
+    "result": {
+      "lat": 51.3156226,
+      "lng": 9.4937155,
+      "display_name": "namaste, 9, Treppenstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9471601384": {
+    "address": "Spohrstraße 6-8, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171558,
+      "lng": 9.4960148,
+      "display_name": "Deutscher Gewerkschaftsbund, 6-8, Spohrstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9472062290": {
+    "address": "Loßbergstraße 13, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3229345,
+      "lng": 9.4494313,
+      "display_name": "13, Loßbergstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-9509044199": {
+    "address": "Am Alten Sudhaus 7b, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3182433,
+      "lng": 9.478738,
+      "display_name": "nearbuy, 7b, Am Alten Sudhaus, Martini-Quartier, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-9534380336": {
+    "address": "1, 34117 Kassel, Germany",
+    "result": null
+  },
+  "osm-9838017616": {
+    "address": "Kurt-Schumacher-Straße 29, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3171266,
+      "lng": 9.5038688,
+      "display_name": "Ordnungsamt, 29, Kurt-Schumacher-Straße, Josephplatz, Wesertor, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-9973134897": {
+    "address": "Hopfenbergweg 38, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3049065,
+      "lng": 9.5498672,
+      "display_name": "38, Hopfenbergweg, Eichwald, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-10113501880": {
+    "address": "Bertha-von-Suttner-Straße 1, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3083331,
+      "lng": 9.4477876,
+      "display_name": "REKS GmbH & Co. KG, 1, Bertha-von-Suttner-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-10116476478": {
+    "address": "Hafenstraße 2, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3142367,
+      "lng": 9.5109256,
+      "display_name": "Anwaltskanzlei Posch – Fachanwalt für Strafrecht, 2, Hafenstraße, Unterneustadt, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-10294348175": {
+    "address": "Wilhelmshöher Allee 23, Kassel, Germany",
+    "result": {
+      "lat": 51.3113842,
+      "lng": 9.4844162,
+      "display_name": "Wille Rechtsanwälte, 23, Wilhelmshöher Allee, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-10308460730": {
+    "address": "Breitscheidstraße 6, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3181831,
+      "lng": 9.4705139,
+      "display_name": "EMD Deutschland, 6, Breitscheidstraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-10577098845": {
+    "address": "Am Stege 50, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2895497,
+      "lng": 9.5236478,
+      "display_name": "50, Am Stege, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-10678464816": {
+    "address": "Raabestraße 14, Kassel, Germany",
+    "result": {
+      "lat": 51.3182211,
+      "lng": 9.4512858,
+      "display_name": "Agentur Denkwunder, 14, Raabestraße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-10678464817": {
+    "address": "Raabestraße 14, Kassel, Germany",
+    "result": {
+      "lat": 51.3182211,
+      "lng": 9.4512858,
+      "display_name": "Agentur Denkwunder, 14, Raabestraße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-10678481168": {
+    "address": "Brabanter Straße 38, Kassel, Germany",
+    "result": {
+      "lat": 51.3074948,
+      "lng": 9.4169312,
+      "display_name": "38, Brabanter Straße, Dorf Mulang, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-10680112234": {
+    "address": "Richard-Roosen-Straße 9, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2859788,
+      "lng": 9.5095223,
+      "display_name": "cdemy, 9, Richard-Roosen-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-10697427571": {
+    "address": "Bertha-von-Suttner-Straße 7, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3094139,
+      "lng": 9.4468024,
+      "display_name": "Kali & Salz, 7, Bertha-von-Suttner-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-10748620516": {
+    "address": "Obere Königsstraße 1, Kassel, Germany",
+    "result": {
+      "lat": 51.3117989,
+      "lng": 9.4907626,
+      "display_name": "1, Obere Königsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-10754650071": {
+    "address": "Friedrichsstraße 18, Kassel, Germany",
+    "result": {
+      "lat": 51.3122313,
+      "lng": 9.4895894,
+      "display_name": "Fuldatal e.V. - Beratungsstelle, 18, Friedrichsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-10789490170": {
+    "address": "Untere Königsstraße 95, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3200464,
+      "lng": 9.5000222,
+      "display_name": "McFit, 95, Untere Königsstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-11075341456": {
+    "address": "Chamissostraße 1, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3309195,
+      "lng": 9.5106478,
+      "display_name": "Baugenossenschaft Belvedere zu Kassel eG, 1, Chamissostraße, Fasanenhof, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-11210788124": {
+    "address": "Querallee 43, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3164167,
+      "lng": 9.4736362,
+      "display_name": "43, Querallee, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-11399782316": {
+    "address": "Am Alten Sudhaus 7a, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3182128,
+      "lng": 9.4787379,
+      "display_name": "unlimited.studio GmbH, 7a, Am Alten Sudhaus, Martini-Quartier, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-11519512728": {
+    "address": "Wilhelmshöher Allee 253-255, Kassel, Germany",
+    "result": {
+      "lat": 51.3128813,
+      "lng": 9.4451117,
+      "display_name": "City Center Bad Wilhelmshöhe, 253 - 255, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-11642010026": {
+    "address": "Leipziger Straße 185, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3053432,
+      "lng": 9.5288795,
+      "display_name": "185, Leipziger Straße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-11642986513": {
+    "address": "Erfurter Straße 15, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3059193,
+      "lng": 9.5296568,
+      "display_name": "15, Erfurter Straße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-11676141207": {
+    "address": "Lange Straße 9, 34233 Kassel, Germany",
+    "result": {
+      "lat": 51.3152044,
+      "lng": 9.4447542,
+      "display_name": "9, Lange Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-11676301695": {
+    "address": "Königstor 35, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3132469,
+      "lng": 9.4816883,
+      "display_name": "Barmenia Versicherung - Patrick Giesler, 35, Königstor, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-11681740307": {
+    "address": "Zum Berggarten 18, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3220632,
+      "lng": 9.4407857,
+      "display_name": "18, Zum Berggarten, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-11751849121": {
+    "address": "Sickingenstraße 7, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3203634,
+      "lng": 9.4947604,
+      "display_name": "Amt für Vermessung und Geoinformation, 7, Sickingenstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-11811150328": {
+    "address": "Wilhelmsstraße 21, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3134017,
+      "lng": 9.4924717,
+      "display_name": "21, Wilhelmsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-11827183095": {
+    "address": "Sickingenstraße 7-9, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3203902,
+      "lng": 9.4947135,
+      "display_name": "7-9, Sickingenstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-11875775418": {
+    "address": "Mönchebergstraße 48e, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3279456,
+      "lng": 9.5105234,
+      "display_name": "H48E Sozialpädiatisches Zentrum, 48e, Mönchebergstraße, Fasanenhof, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-11956730007": {
+    "address": "Bardelebenstraße 12, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3235001,
+      "lng": 9.4578577,
+      "display_name": "12, Bardelebenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-11993784967": {
+    "address": "Wildemannsgasse 1, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3156032,
+      "lng": 9.5032512,
+      "display_name": "Markthalle, 1, Wildemannsgasse, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-12090236177": {
+    "address": "Wilhelmshöher Allee 273, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3135065,
+      "lng": 9.4419058,
+      "display_name": "Brencher, 273, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-12136378349": {
+    "address": "Schillerstraße 73, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3211027,
+      "lng": 9.488352,
+      "display_name": "medienblau gGmbH, 73, Schillerstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-12143582179": {
+    "address": "Schillerstraße 50-52, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3220711,
+      "lng": 9.4883245,
+      "display_name": "50-52, Schillerstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-12144281784": {
+    "address": "Pommernstraße 3, Kassel, Germany",
+    "result": {
+      "lat": 51.3228611,
+      "lng": 9.1812687,
+      "display_name": "3, Pommernstraße, Wolfhagen, Landkreis Kassel, Hessen, 34466, Deutschland"
+    }
+  },
+  "osm-12196805188": {
+    "address": "Heckerstraße 30, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3064391,
+      "lng": 9.4851484,
+      "display_name": "Aktive Medienwerkstatt Kassel, 30, Heckerstraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-12320205707": {
+    "address": "Wilhelm-Speck-Straße 17, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3244744,
+      "lng": 9.518834,
+      "display_name": "Hermanns, 17, Wilhelm-Speck-Straße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-12378994583": {
+    "address": "Wilhelmsstraße 2, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3141794,
+      "lng": 9.4906976,
+      "display_name": "Verkehrsclub Deutschland (VCD) Landesverband Hessen e.V., 2, Wilhelmsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-12529087954": {
+    "address": "Johanna-Waescher-Straße 7, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3062026,
+      "lng": 9.4486187,
+      "display_name": "7, Johanna-Waescher-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-12529090046": {
+    "address": "Am Rathaus 3, 34233 Kassel, Germany",
+    "result": {
+      "lat": 51.3491602,
+      "lng": 9.5255238,
+      "display_name": "3, Am Rathaus, Ihringshausen, Fuldatal, Landkreis Kassel, Hessen, 34233, Deutschland"
+    }
+  },
+  "osm-12529134923": {
+    "address": "Kuhbergstraße 28, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3014256,
+      "lng": 9.4200326,
+      "display_name": "28, Kuhbergstraße, Brasselsberg, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-12533952273": {
+    "address": "Leuschnerstraße 75, Kassel, Germany",
+    "result": {
+      "lat": 51.2910647,
+      "lng": 9.4579104,
+      "display_name": "Magazinhof Silo West, 75, Leuschnerstraße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-12617763393": {
+    "address": "Friedrich-Ebert-Straße 136, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3164547,
+      "lng": 9.4642583,
+      "display_name": "136, Friedrich-Ebert-Straße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-12638315525": {
+    "address": "Nora-Platiel-Straße 2, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3222471,
+      "lng": 9.5036748,
+      "display_name": "Green Office Uni Kassel, 2, Nora-Platiel-Straße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-12709434379": {
+    "address": "Emilienstraße 41, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3104037,
+      "lng": 9.4740436,
+      "display_name": "ASN Group, 41, Emilienstraße, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-12736784420": {
+    "address": "Hersfelder Straße 35, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3293481,
+      "lng": 9.4835395,
+      "display_name": "35, Hersfelder Straße, Rothenberg, Rothenditmold, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-12901687923": {
+    "address": "Kölnische Straße 108-112, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3184915,
+      "lng": 9.4770255,
+      "display_name": "Gascade, 108-112, Kölnische Straße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-12986548649": {
+    "address": "Universitätsplatz 2, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.323834,
+      "lng": 9.5050031,
+      "display_name": "Cafeteria LernBar, 2, Universitätsplatz, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-13002428797": {
+    "address": "Ruhlstraße 9, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3107761,
+      "lng": 9.4844763,
+      "display_name": "9, Ruhlstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-13034354531": {
+    "address": "Sternstraße 20, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3125941,
+      "lng": 9.5047358,
+      "display_name": "Kurbad Jungborn, 20, Sternstraße, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-13046675671": {
+    "address": "Bergshäuser Straße 40, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2905375,
+      "lng": 9.5076591,
+      "display_name": "40, Bergshäuser Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-13046699134": {
+    "address": "Frankfurter Straße 209, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2914742,
+      "lng": 9.4745513,
+      "display_name": "209, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-13108827003": {
+    "address": "Heinrich-Hertz-Straße 3b, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2809161,
+      "lng": 9.5182381,
+      "display_name": "3b, Heinrich-Hertz-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-13175171297": {
+    "address": "Friedrich-Ebert-Straße 93, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3157131,
+      "lng": 9.4731746,
+      "display_name": "93, Friedrich-Ebert-Straße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-13495547701": {
+    "address": "Wilhelmshöher Allee 256, Kassel, Germany",
+    "result": {
+      "lat": 51.313734,
+      "lng": 9.4470209,
+      "display_name": "256, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-13556747172": {
+    "address": "Wilhelmshöher Allee 273, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3135065,
+      "lng": 9.4419058,
+      "display_name": "Brencher, 273, Wilhelmshöher Allee, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-13703298697": {
+    "address": "Otto-Hahn-Straße 10, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2792274,
+      "lng": 9.506679,
+      "display_name": "10, Otto-Hahn-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-13703322033": {
+    "address": "Otto-Hahn-Straße 12, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2784706,
+      "lng": 9.5059294,
+      "display_name": "12, Otto-Hahn-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-13703322050": {
+    "address": "Otto-Hahn-Straße 14, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2780467,
+      "lng": 9.5059389,
+      "display_name": "14, Otto-Hahn-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-13709655914": {
+    "address": "Kölnische Straße 108-112, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3184915,
+      "lng": 9.4770255,
+      "display_name": "Gascade, 108-112, Kölnische Straße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-241913702": {
+    "address": "Kirchbaunaer Straße 1, 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.2555692,
+      "lng": 9.417163,
+      "display_name": "Scirocco Hotel & Service, 1, Kirchbaunaer Straße, City Baunatal, Altenbauna, Baunatal, Landkreis Kassel, Hessen, 34225, Deutschland"
+    }
+  },
+  "osm-556440533": {
+    "address": "Wilhelmshöher Allee 90, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3125391,
+      "lng": 9.4707556,
+      "display_name": "90, Wilhelmshöher Allee, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-773508175": {
+    "address": "Am Sportzentrum 2, 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2903925,
+      "lng": 9.4823911,
+      "display_name": "Vereinslokal KGV Giesewiesen, 2, Am Sportzentrum, Südstadt, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-846112329": {
+    "address": "Weißensteinstraße 70-72, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3173744,
+      "lng": 9.4300674,
+      "display_name": "SVLFG - Sozialversicherung für Landwirtschaft, Forsten und Gartenbau, 70-72, Weißensteinstraße, Kirchditmold, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-1763013844": {
+    "address": "Heckershäuser Straße 54, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3638804,
+      "lng": 9.4503907,
+      "display_name": "Grundschule Obervellmar, 54, Heckershäuser Straße, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-2140246032": {
+    "address": "Ringhofstraße 2, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3061439,
+      "lng": 9.5270085,
+      "display_name": "2, Ringhofstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-2650386366": {
+    "address": "Mönchebergstraße 8, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3206311,
+      "lng": 9.5081869,
+      "display_name": "8, Mönchebergstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-2663452650": {
+    "address": "Hannoversche Straße 43, 34266 Kassel, Germany",
+    "result": {
+      "lat": 51.3188896,
+      "lng": 9.5451922,
+      "display_name": "Preißler Immobilien, 43, Hannoversche Straße, Sandershausen, Niestetal, Landkreis Kassel, Hessen, 34266, Deutschland"
+    }
+  },
+  "osm-3063056474": {
+    "address": "Crumbacher Straße 64, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.2698823,
+      "lng": 9.5430916,
+      "display_name": "64, Crumbacher Straße, Crumbach, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-3183008245": {
+    "address": "Frankfurter Straße 257, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2869582,
+      "lng": 9.4701888,
+      "display_name": "257, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-3831730327": {
+    "address": "Simmershäuser Straße 121, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3425323,
+      "lng": 9.5054837,
+      "display_name": "Gaststätte Volkswohl, 121, Simmershäuser Straße, Fasanenhof, Kassel, Fuldatal, Landkreis Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-4004032986": {
+    "address": "Holländische Straße 17, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3216991,
+      "lng": 9.5015945,
+      "display_name": "17, Holländische Straße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-4432680892": {
+    "address": "Kölnische Straße 99, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3172294,
+      "lng": 9.4771884,
+      "display_name": "99, Kölnische Straße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-4456426657": {
+    "address": "Frankfurter Straße 226, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2888539,
+      "lng": 9.470678,
+      "display_name": "Autoservice Arslani, 226, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-4703228474": {
+    "address": "Lange Wender 7, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.354891,
+      "lng": 9.4622676,
+      "display_name": "Herkules-Center, 7, Lange Wender, Gewerbegebiet Lange Wender, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-4744047121": {
+    "address": "Döllbachstraße 8, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3261353,
+      "lng": 9.4784189,
+      "display_name": "8, Döllbachstraße, Rothenberg, Rothenditmold, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-4802429685": {
+    "address": "Frankfurter Straße 109, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.30193,
+      "lng": 9.4831141,
+      "display_name": "109, Frankfurter Straße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-5286713404": {
+    "address": "Brüder-Grimm-Straße 14, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.2830688,
+      "lng": 9.4639305,
+      "display_name": "14, Brüder-Grimm-Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-5684489954": {
+    "address": "Waldauer Weg 9A, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.2819,
+      "lng": 9.5449307,
+      "display_name": "Carservice Lohfelden, 9A, Waldauer Weg, Am Hammelsberg, Ochshausen, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-6584147501": {
+    "address": "Warburger Straße 45, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3492139,
+      "lng": 9.468336,
+      "display_name": "45, Warburger Straße, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-6586429387": {
+    "address": "Zentgrafenstraße 142, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3226815,
+      "lng": 9.4485923,
+      "display_name": "142, Zentgrafenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-7061378485": {
+    "address": "Holländische Straße 141, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3344055,
+      "lng": 9.4936821,
+      "display_name": "141, Holländische Straße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-7924932385": {
+    "address": "Hauptstraße 14, 34292 Kassel, Germany",
+    "result": {
+      "lat": 51.365899,
+      "lng": 9.4259264,
+      "display_name": "14, Hauptstraße, Heckershausen, Ahnatal, Landkreis Kassel, Hessen, 34292, Deutschland"
+    }
+  },
+  "osm-9525654367": {
+    "address": "Mendelssohn-Bartholdy-Straße 20, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2803796,
+      "lng": 9.4737148,
+      "display_name": "Lighthouse, 20, Mendelssohn-Bartholdy-Straße, Unternehmenspark Niederzwehren, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-9556359564": {
+    "address": "Heßbergstraße 1a, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3202272,
+      "lng": 9.4513537,
+      "display_name": "Matratzen Union, 1a, Heßbergstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-9624200641": {
+    "address": "Friedrichsstraße 36, Kassel, Germany",
+    "result": {
+      "lat": 51.3103332,
+      "lng": 9.4927259,
+      "display_name": "Hölkesches Haus, 36, Friedrichsstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-10807808546": {
+    "address": "An den Triftäckern 8, Kassel, Germany",
+    "result": {
+      "lat": 51.2878688,
+      "lng": 9.4560521,
+      "display_name": "8, An den Triftäckern, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-11047604173": {
+    "address": "Friedrich-Ebert-Straße 82, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3158782,
+      "lng": 9.4758174,
+      "display_name": "82, Friedrich-Ebert-Straße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-51738162": {
+    "address": "Mönchebergstraße 11, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3221879,
+      "lng": 9.5073889,
+      "display_name": "IT Servicecentrum, 11, Mönchebergstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-62117515": {
+    "address": ", 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3157257,
+      "lng": 9.4926363,
+      "display_name": "34117, Mitte, Kassel, Hessen, Deutschland"
+    }
+  },
+  "osm-78392658": {
+    "address": "Silberbornstraße 66, Kassel, Germany",
+    "result": {
+      "lat": 51.2936387,
+      "lng": 9.4607954,
+      "display_name": "Vereinsheim, 66, Silberbornstraße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-93077062": {
+    "address": "Franz-Ulrich-Straße 12, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.318295,
+      "lng": 9.4861904,
+      "display_name": "Krankenversorgung der Bundesbahnbeamten - Bezirksleitung Kassel, 12, Franz-Ulrich-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-93118510": {
+    "address": "Zentgrafenstraße 4, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3253196,
+      "lng": 9.4602326,
+      "display_name": "4, Zentgrafenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-96655667": {
+    "address": "Vollmarshäuser Straße 4, Kassel, Germany",
+    "result": {
+      "lat": 51.2801101,
+      "lng": 9.610155,
+      "display_name": "4, Vollmarshäuser Straße, Niederkaufungen, Kaufungen, Landkreis Kassel, Hessen, 34260, Deutschland"
+    }
+  },
+  "osm-125269944": {
+    "address": "Quellhofstraße 22, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3327124,
+      "lng": 9.5014051,
+      "display_name": "ELVAN Market, 22, Quellhofstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-132190891": {
+    "address": "Am Keilsberg 4, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2656006,
+      "lng": 9.4585712,
+      "display_name": "Schützenverein Oberzwehren, 4, Am Keilsberg, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-147991274": {
+    "address": "Wilhelmshöher Allee 47, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.31142,
+      "lng": 9.4793424,
+      "display_name": "Center for Environmental Systems Research, 47, Wilhelmshöher Allee, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-152183887": {
+    "address": "Am Sportzentrum 7, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2920633,
+      "lng": 9.4847042,
+      "display_name": "Hockey-Club Kassel e.V., 7, Am Sportzentrum, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-158893757": {
+    "address": "Holländische Straße 129, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.333567,
+      "lng": 9.4950535,
+      "display_name": "129, Holländische Straße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-158924883": {
+    "address": "Warburger Straße 53, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3509947,
+      "lng": 9.4671526,
+      "display_name": "DRK Rettungswache Vellmar, 53, Warburger Straße, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-159025496": {
+    "address": "Rembrandtweg 2, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3668066,
+      "lng": 9.4712615,
+      "display_name": "Newcare Home Vellmar, 2, Rembrandtweg, Frommershausen, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-160541395": {
+    "address": "Ludwig-Erhard-Straße 6, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3060526,
+      "lng": 9.4452148,
+      "display_name": "K+S IT Services, 6, Ludwig-Erhard-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-165013000": {
+    "address": "Angersbachstraße 53, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.32188,
+      "lng": 9.4687104,
+      "display_name": "Schützenhaus ESV Jahn Kassel, 53, Angersbachstraße, Gewerbepark Angersbach, Rothenditmold, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-168191053": {
+    "address": ", 34225 Kassel, Germany",
+    "result": {
+      "lat": 51.2501253,
+      "lng": 9.4099603,
+      "display_name": "34225, Altenbauna, Baunatal, Landkreis Kassel, Hessen, Deutschland"
+    }
+  },
+  "osm-172532733": {
+    "address": "Auedamm 23, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2990679,
+      "lng": 9.5001242,
+      "display_name": "WVC Kassel e.V., 23, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-180298769": {
+    "address": "Auedamm 15, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3040714,
+      "lng": 9.5007133,
+      "display_name": "Clubhaus CSK 98 e.V., 15, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-181514588": {
+    "address": "Trottstraße 1, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3166794,
+      "lng": 9.4523018,
+      "display_name": "ESV Jahn Kassel e.V., 1, Trottstraße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-181747226": {
+    "address": "Auedamm 33, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2968302,
+      "lng": 9.4969162,
+      "display_name": "Rudergesellschaft Kassel 1927 e.V., 33, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-181747227": {
+    "address": "Auedamm 27, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.297846,
+      "lng": 9.4991654,
+      "display_name": "Ruderverein Kurhessen-Cassel e.V., 27, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-181747229": {
+    "address": "Auedamm 35, Kassel, Germany",
+    "result": {
+      "lat": 51.2965811,
+      "lng": 9.4963145,
+      "display_name": "Casseler Frauen-Ruder-Verein e.V., 35, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-181747230": {
+    "address": "Auedamm 37, Kassel, Germany",
+    "result": {
+      "lat": 51.2964563,
+      "lng": 9.4959742,
+      "display_name": "PSV Grün-Weiß Kassel e.V., 37, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-182552232": {
+    "address": "Weißensteinstraße 70-72, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3173744,
+      "lng": 9.4300674,
+      "display_name": "SVLFG - Sozialversicherung für Landwirtschaft, Forsten und Gartenbau, 70-72, Weißensteinstraße, Kirchditmold, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-183604063": {
+    "address": "Karthäuserstraße 23, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3157778,
+      "lng": 9.4840523,
+      "display_name": "Haus der Arbeitgeberverbände, 23, Karthäuserstraße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-186332897": {
+    "address": "Auedamm 53, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2946688,
+      "lng": 9.4900595,
+      "display_name": "Bootshaus Ruderverein Cassel 2010 / TRV Albert-Schweitzer-Schule Kassel, 53, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-195797212": {
+    "address": "Auedamm 25, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2982118,
+      "lng": 9.4998328,
+      "display_name": "Ruderverein des Wilhelmsgymnasiums Kassel e.V., 25, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-197714021": {
+    "address": "Lilienthalstraße 23, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2997608,
+      "lng": 9.5270315,
+      "display_name": "Kletterhalle Vertical World, 23, Lilienthalstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-198562236": {
+    "address": "Am Fieseler Werk 10, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.2824913,
+      "lng": 9.5274028,
+      "display_name": "Reifen + Autoservice Ehrhardt, 10, Am Fieseler Werk, Ochshausen, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-198711693": {
+    "address": "Am Keilsberg 3, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2688752,
+      "lng": 9.4587304,
+      "display_name": "Verein für Deutsche Schäferhunde (SV) e.V. OG Kassel Niederzwehren e.V., 3, Am Keilsberg, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-198874969": {
+    "address": "Richard-Roosen-Straße 8, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2854018,
+      "lng": 9.5095239,
+      "display_name": "DRK Kassel-Wolfhagen e.V. ELAN, 8, Richard-Roosen-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-199001780": {
+    "address": "Nürnberger Straße 240, Kassel, Germany",
+    "result": {
+      "lat": 51.2835653,
+      "lng": 9.5129486,
+      "display_name": "Pinscher-Schnauzer-Club-Kassel Vereinsheim, 240, Nürnberger Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-204956781": {
+    "address": "Holländische Straße 129a-129b, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3637988,
+      "lng": 9.4536826,
+      "display_name": "Kindergarten Obervellmar, 129a-129b, Holländische Straße, Obervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-214807056": {
+    "address": "Auedamm 29, Kassel, Germany",
+    "result": {
+      "lat": 51.2972343,
+      "lng": 9.4979661,
+      "display_name": "Ruderverein der Jacob Grimm Schule e.V., 29, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-214807058": {
+    "address": "Auedamm 31, Kassel, Germany",
+    "result": {
+      "lat": 51.2970166,
+      "lng": 9.497275,
+      "display_name": "Ruderverein der Heinrich-Schütz-Schule Kassel e.V., 31, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-223390828": {
+    "address": "Giesenallee 11, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2901014,
+      "lng": 9.4876694,
+      "display_name": "Ruderverein Goethegymnasium Kassel e.V., 11, Giesenallee, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-223390830": {
+    "address": "Giesenallee 15, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2886505,
+      "lng": 9.4879582,
+      "display_name": "Feuerwehrverein Kassel e.V., 15, Giesenallee, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-223392813": {
+    "address": "Giesenallee 7, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2914618,
+      "lng": 9.4874824,
+      "display_name": "7, Giesenallee, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-227690551": {
+    "address": "Holländische Straße 207, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3425582,
+      "lng": 9.477432,
+      "display_name": "TOP-Auto Service Center, 207, Holländische Straße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-252027549": {
+    "address": "Bremer Straße 28, Kassel, Germany",
+    "result": {
+      "lat": 51.3194425,
+      "lng": 9.5049533,
+      "display_name": "Kasseler islamisches Kulturzentrum e.V., 28, Bremer Straße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-254687057": {
+    "address": "Waitzstraße 2d, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2907412,
+      "lng": 9.5089737,
+      "display_name": "POLYMA Energiesysteme GmbH Werk 2 Service und Elektrowerkstatt, 2d, Waitzstraße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-260749285": {
+    "address": "Kellermannstraße 27, Kassel, Germany",
+    "result": {
+      "lat": 51.3275828,
+      "lng": 9.5155971,
+      "display_name": "Computer Service Kassel, 27, Kellermannstraße, Fasanenhof, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-262566753": {
+    "address": "Niedervellmarer Straße 45, Kassel, Germany",
+    "result": {
+      "lat": 51.3440556,
+      "lng": 9.48228,
+      "display_name": "RT Autoteile & Service Center, 45, Niedervellmarer Straße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-277505277": {
+    "address": "Rotdornweg 31, Kassel, Germany",
+    "result": {
+      "lat": 51.336144,
+      "lng": 9.5248065,
+      "display_name": "Kita Bossebande e.V., 31, Rotdornweg, Bossental, Wolfsanger-Hasenhecke, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-301800676": {
+    "address": "Korbacher Straße 30, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2857988,
+      "lng": 9.4649379,
+      "display_name": "Saal der \"Freie(n) Turnerschaft 1897 e.V. Kassel-Niederzwehren\", 30, Korbacher Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-302124528": {
+    "address": "Frankfurter Straße 192, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2912405,
+      "lng": 9.473354,
+      "display_name": "Autoservice 192, 192, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-302126461": {
+    "address": "Frankfurter Straße 178a, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2925293,
+      "lng": 9.4738416,
+      "display_name": "Premio Reifen + Autoservice, Frank Neudert e.K., 178a, Frankfurter Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-309434105": {
+    "address": "Auf der Dönche 3, 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2839101,
+      "lng": 9.4381233,
+      "display_name": "Tennisverein, 3, Auf der Dönche, Nordshausen, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-316250070": {
+    "address": "Dennhäuser Straße 60-64, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2824257,
+      "lng": 9.4777868,
+      "display_name": "Service-Center Möbel Schaumann, 60-64, Dennhäuser Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-350326303": {
+    "address": "Dittershäuser Straße 13a, 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2775942,
+      "lng": 9.4672378,
+      "display_name": "La Dolce Vita, 13a, Dittershäuser Straße, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-366635165": {
+    "address": "Am Donarbrunnen 86, Kassel, Germany",
+    "result": {
+      "lat": 51.2956391,
+      "lng": 9.4614141,
+      "display_name": "SpVgg Olympia Kassel e.V., 86, Am Donarbrunnen, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-370460944": {
+    "address": "Giesenallee 6, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2894139,
+      "lng": 9.4861092,
+      "display_name": "Vereinshaus, 6, Giesenallee, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-400775814": {
+    "address": "Weserstraße 6a, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.317547,
+      "lng": 9.5097542,
+      "display_name": "Insel-Restaurant Finkenherd, 6a, Weserstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-424375910": {
+    "address": "Bachstraße 12, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3159398,
+      "lng": 9.4381058,
+      "display_name": "12, Bachstraße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-514489892": {
+    "address": "Uferstraße 8, 34277 Kassel, Germany",
+    "result": {
+      "lat": 51.2546963,
+      "lng": 9.5056297,
+      "display_name": "DLRG - OV Lohfelden-Fuldabrück e.V., 8, Uferstraße, Bergshausen, Fuldabrück, Landkreis Kassel, Hessen, 34277, Deutschland"
+    }
+  },
+  "osm-544781566": {
+    "address": "In der Aue , 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3591673,
+      "lng": 9.4742351,
+      "display_name": "In der Aue, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-557781639": {
+    "address": "Habichtswalder Straße 20, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3185666,
+      "lng": 9.4499186,
+      "display_name": "20, Habichtswalder Straße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-623566027": {
+    "address": "Rudolf-Diesel-Straße 9, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2704318,
+      "lng": 9.517917,
+      "display_name": "TVS - TRUCK Vertriebs- und Service GmbH, 9, Rudolf-Diesel-Straße, Waldau, Crumbach, Kassel, Fuldabrück, Landkreis Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-660496141": {
+    "address": "Ysenburgstraße 2, 34266 Kassel, Germany",
+    "result": {
+      "lat": 51.3226873,
+      "lng": 9.5533642,
+      "display_name": "Autoservice-Fuchs, 2, Ysenburgstraße, Sandershausen, Niestetal, Landkreis Kassel, Hessen, 34266, Deutschland"
+    }
+  },
+  "osm-701084316": {
+    "address": "Rheinstahlring 3c, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3456807,
+      "lng": 9.458809,
+      "display_name": "Kindertagesstätte Vellmar-West, 3c, Rheinstahlring, Vellmar-West, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-1082480906": {
+    "address": "Steinstücker Weg 21, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3355113,
+      "lng": 9.4489579,
+      "display_name": "21, Steinstückerweg, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-1225272840": {
+    "address": "Friedrich-Ebert-Straße 44, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3154082,
+      "lng": 9.4826574,
+      "display_name": "Deutsche Rentenversicherung, 44, Friedrich-Ebert-Straße, Mitte, Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-1315908505": {
+    "address": "Am Fieseler Werk 13, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.2844798,
+      "lng": 9.530075,
+      "display_name": "13, Am Fieseler Werk, Ochshausen, Lohfelden, Landkreis Kassel, Hessen, 34253, Deutschland"
+    }
+  },
+  "osm-1352049323": {
+    "address": "Kaufunger Straße 18, 34253 Kassel, Germany",
+    "result": {
+      "lat": 51.3116432,
+      "lng": 9.5104118,
+      "display_name": "18, Kaufunger Straße, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-1433613296": {
+    "address": "Jahnstraße 13, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.353266,
+      "lng": 9.4734845,
+      "display_name": "Grundschule Niedervellmar, 13, Jahnstraße, Niedervellmar, Vellmar, Landkreis Kassel, Hessen, 34246, Deutschland"
+    }
+  },
+  "osm-1444900109": {
+    "address": "Jahnstraße 11, 34246 Kassel, Germany",
+    "result": {
+      "lat": 51.3090699,
+      "lng": 9.5088022,
+      "display_name": "Sportplatz Jahnkampfbahn, 11, Jahnstraße, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-4962846": {
+    "address": "Ölmühlenweg 7, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3120591,
+      "lng": 9.516142,
+      "display_name": "Sportplatz Scharnhorststraße, 7, Ölmühlenweg, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-35829713": {
+    "address": "Gabelsbergerstraße 1, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3167808,
+      "lng": 9.4722679,
+      "display_name": "Turnhalle Gabelsbergerstraße, 1, Gabelsbergerstraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-36574804": {
+    "address": "Fasanenweg , 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3022852,
+      "lng": 9.5466838,
+      "display_name": "Fasanenweg, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-36820583": {
+    "address": "Olebachweg , 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3010465,
+      "lng": 9.5403286,
+      "display_name": "Olebachweg, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-37246438": {
+    "address": "Elfbuchenstraße 3, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3166098,
+      "lng": 9.4673997,
+      "display_name": "Stadtteilzentrum Vorderer Westen, 3, Elfbuchenstraße, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-39522343": {
+    "address": "Murhardstraße 6, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3151307,
+      "lng": 9.4748978,
+      "display_name": "Logenhaus, 6, Murhardstraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-40100662": {
+    "address": "Lindenbergstraße , 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.291463,
+      "lng": 9.5328694,
+      "display_name": "Lindenbergstraße, Forstfeld, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-42765142": {
+    "address": "Schanzenstraße 1A, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3225421,
+      "lng": 9.4449708,
+      "display_name": "Gemeindehaus, 1A, Schanzenstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-45022174": {
+    "address": "Graßweg , 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3055434,
+      "lng": 9.465575,
+      "display_name": "Graßweg, Wehlheiden, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-59738310": {
+    "address": "Kirchditmolder Straße 46, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3172028,
+      "lng": 9.4444314,
+      "display_name": "Sportanlage Stockwiesen, 46, Kirchditmolder Straße, Kirchditmold, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-60644061": {
+    "address": "Schwarzer Stein 20, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3394318,
+      "lng": 9.5009454,
+      "display_name": "Sportplatz Hegelsberg, 20, Schwarzer Stein, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-87981734": {
+    "address": "Damaschkestraße , 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2911338,
+      "lng": 9.4913277,
+      "display_name": "Damaschkestraße, Waldau, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-89360350": {
+    "address": "Luisenstraße 2, 34119 Kassel, Germany",
+    "result": {
+      "lat": 51.3138602,
+      "lng": 9.4795475,
+      "display_name": "Sporthalle am Königstor, 2, Luisenstraße, Motzberg, Vorderer Westen, Kassel, Hessen, 34119, Deutschland"
+    }
+  },
+  "osm-93114036": {
+    "address": "Wolfhager Straße 329, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3315279,
+      "lng": 9.4489143,
+      "display_name": "Ernst-Leinius-Schule, 329, Wolfhager Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-93114044": {
+    "address": "Rolf-Lucas-Straße 22, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3298018,
+      "lng": 9.4447047,
+      "display_name": "Gemeinschaftshaus Harleshausen, 22, Rolf-Lucas-Straße, Harleshausen, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-122385372": {
+    "address": "Lore-Klitsch-Weg 1, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3030475,
+      "lng": 9.5071224,
+      "display_name": "Sportplatz Waldauer Wiesen, 1, Lore-Klitsch-Weg, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-126775510": {
+    "address": "Mattenbergstraße 52a, 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2761573,
+      "lng": 9.4435976,
+      "display_name": "Sporthalle Oberzwehren, 52a, Mattenbergstraße, Mattenberg, Oberzwehren, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-128372286": {
+    "address": "Auedamm 2, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3111093,
+      "lng": 9.5015909,
+      "display_name": "Hessenkampfbahn, 2, Auedamm, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-130304624": {
+    "address": "Damaschkestraße 10, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2955212,
+      "lng": 9.4830231,
+      "display_name": "Balance - Fitness- & Wellness-Club, 10, Damaschkestraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-138470115": {
+    "address": "Jahnstraße 43, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3075493,
+      "lng": 9.5034247,
+      "display_name": "Casseler Kanu-Club, 43, Jahnstraße, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-144185244": {
+    "address": "Burgfeldstraße 2A, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3132114,
+      "lng": 9.4232727,
+      "display_name": "KTC Wilhelmshöhe, 2A, Burgfeldstraße, Dorf Mulang, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-158365883": {
+    "address": "Ysenburgstraße 17, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3200508,
+      "lng": 9.5143338,
+      "display_name": "Emil-Junghenn-Halle, 17, Ysenburgstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-159726664": {
+    "address": "Büchnerstraße 1, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3100709,
+      "lng": 9.4420307,
+      "display_name": "Sporthalle Bad Wilhelmshöhe, 1, Büchnerstraße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-160614510": {
+    "address": "Zum Feldlager 83, 34128 Kassel, Germany",
+    "result": {
+      "lat": 51.3405611,
+      "lng": 9.4559558,
+      "display_name": "Bürgerhaus Jungfernkopf, 83, Zum Feldlager, Jungfernkopf, Kassel, Hessen, 34128, Deutschland"
+    }
+  },
+  "osm-164930340": {
+    "address": "Mergellstraße 41, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3209805,
+      "lng": 9.4458739,
+      "display_name": "Grundschule Kirchditmold, 41, Mergellstraße, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-164999682": {
+    "address": "Eichwaldstraße 110, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3029286,
+      "lng": 9.5376509,
+      "display_name": "Sporthalle Bettenhausen, 110, Eichwaldstraße, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-165013004": {
+    "address": "Schillerstraße 4, 34117 Kassel, Germany",
+    "result": {
+      "lat": 51.3209325,
+      "lng": 9.4978632,
+      "display_name": "Sporthalle 1. Berufsschulzentrum, 4, Schillerstraße, Schillerviertel, Nord (Holland), Kassel, Hessen, 34117, Deutschland"
+    }
+  },
+  "osm-181747297": {
+    "address": "Damaschkestraße 25, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.296963,
+      "lng": 9.4845839,
+      "display_name": "Auepark Großsporthalle, 25, Damaschkestraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-186407923": {
+    "address": "Dormannweg 14, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3025928,
+      "lng": 9.5328294,
+      "display_name": "Babylon Musikbunker, 14, Dormannweg, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-188664615": {
+    "address": "Menzelstraße 25, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3005843,
+      "lng": 9.484397,
+      "display_name": "Kasseler Tennisclub 1931, 25, Menzelstraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-188936683": {
+    "address": "Gala-Metzner-Platz 1, 34130 Kassel, Germany",
+    "result": {
+      "lat": 51.3199007,
+      "lng": 9.4458069,
+      "display_name": "Sportplatz Hochzeitsweg, 1, Gala-Metzner-Platz, Kirchditmold, Kassel, Hessen, 34130, Deutschland"
+    }
+  },
+  "osm-193536477": {
+    "address": "Frankfurter Straße 96, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.3031739,
+      "lng": 9.4831551,
+      "display_name": "Phoenix Sport Akademie, 96, Frankfurter Straße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-198875184": {
+    "address": "Richard-Roosen-Straße 5, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.286263,
+      "lng": 9.5085711,
+      "display_name": "Fitness-Center Industriepark Waldau, 5, Richard-Roosen-Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-202628058": {
+    "address": "Mörikestraße , 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3337077,
+      "lng": 9.5119838,
+      "display_name": "Mörikestraße, Fasanenhof, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-202665660": {
+    "address": "Struthbachweg 3, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3317605,
+      "lng": 9.4946024,
+      "display_name": "Nordstadtstadion, 3, Struthbachweg, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-202665665": {
+    "address": "Struthbachweg 3, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3317605,
+      "lng": 9.4946024,
+      "display_name": "Nordstadtstadion, 3, Struthbachweg, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-234968427": {
+    "address": "Altenbaunaer Straße 109, 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2753839,
+      "lng": 9.4507379,
+      "display_name": "Rotes Haus, 109, Altenbaunaer Straße, Oberzwehren, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-234968428": {
+    "address": "Altenbaunaer Straße 109A, 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2752983,
+      "lng": 9.4508973,
+      "display_name": "TSV 1891 Kassel-Oberzwehren, 109A, Altenbaunaer Straße, Oberzwehren, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-241107965": {
+    "address": "Wolfhager Straße 170-172, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3259717,
+      "lng": 9.4760595,
+      "display_name": "Familienzentrum Rothenditmold, 170-172, Wolfhager Straße, Rothenberg, Rothenditmold, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-253167257": {
+    "address": "Marburger Straße 41, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3260392,
+      "lng": 9.4813602,
+      "display_name": "Anne-Frank-Haus, 41, Marburger Straße, Rothenberg, Rothenditmold, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-253786439": {
+    "address": "Kasseler Straße 35, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2884388,
+      "lng": 9.522761,
+      "display_name": "Bürgerhaus Waldau, 35, Kasseler Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-254687103": {
+    "address": "Fuldaaue 33, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.292726,
+      "lng": 9.5110384,
+      "display_name": "Sportplatz Waldau, 33, Fuldaaue, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-254940380": {
+    "address": "Kasseler Straße 35, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.2884388,
+      "lng": 9.522761,
+      "display_name": "Bürgerhaus Waldau, 35, Kasseler Straße, Waldau, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-256340714": {
+    "address": "Dormannweg 29, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3023786,
+      "lng": 9.5344313,
+      "display_name": "Geschwister-Scholl-Haus, 29, Dormannweg, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-260091671": {
+    "address": "Weserstraße 26, 34125 Kassel, Germany",
+    "result": {
+      "lat": 51.3204831,
+      "lng": 9.5107107,
+      "display_name": "Stadtteilzentrum Wesertor, 26, Weserstraße, Josephplatz, Wesertor, Kassel, Hessen, 34125, Deutschland"
+    }
+  },
+  "osm-285466141": {
+    "address": "Hildegard-von-Bingen-Straße , 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3030291,
+      "lng": 9.4459413,
+      "display_name": "Hildegard-von-Bingen-Straße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-293323899": {
+    "address": "Quellhofstraße 140, 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3402167,
+      "lng": 9.496142,
+      "display_name": "Schule Hegelsberg, 140, Quellhofstraße, Nord (Holland), Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-298414125": {
+    "address": "Umbachsweg 61, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3035675,
+      "lng": 9.5536566,
+      "display_name": "Grundschule Eichwäldchen, 61, Umbachsweg, Eichwald, Bettenhausen, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-342449026": {
+    "address": "Forstbachweg 16c, Kassel, Germany",
+    "result": {
+      "lat": 51.2928187,
+      "lng": 9.5417319,
+      "display_name": "Haus Forstbachweg, 16c, Forstbachweg, Forstfeld, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-390907466": {
+    "address": "Philippinenhöfer Weg 28, Kassel, Germany",
+    "result": {
+      "lat": 51.3439364,
+      "lng": 9.4942997,
+      "display_name": "Bürgerhaus Philippinenhof, 28, Philippinenhöfer Weg, Philippinenhof-Warteberg, Kassel, Hessen, 34127, Deutschland"
+    }
+  },
+  "osm-404118899": {
+    "address": "Am Donarbrunnen , 34134 Kassel, Germany",
+    "result": {
+      "lat": 51.2951768,
+      "lng": 9.4647989,
+      "display_name": "Am Donarbrunnen, Niederzwehren, Kassel, Hessen, 34134, Deutschland"
+    }
+  },
+  "osm-404118901": {
+    "address": "Auf der Dönche , 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2852921,
+      "lng": 9.4349354,
+      "display_name": "Auf der Dönche, Nordshausen, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-431514653": {
+    "address": "Mattenbergstraße , 34132 Kassel, Germany",
+    "result": {
+      "lat": 51.2707252,
+      "lng": 9.4337611,
+      "display_name": "Mattenbergstraße, Mattenberg, Oberzwehren, Kassel, Hessen, 34132, Deutschland"
+    }
+  },
+  "osm-934627616": {
+    "address": "Damaschkestraße 23, 34121 Kassel, Germany",
+    "result": {
+      "lat": 51.2971291,
+      "lng": 9.4855177,
+      "display_name": "task-Halle Auepark, 23, Damaschkestraße, Südstadt, Kassel, Hessen, 34121, Deutschland"
+    }
+  },
+  "osm-1209513254": {
+    "address": "Weißensteinstraße 62, 34131 Kassel, Germany",
+    "result": {
+      "lat": 51.3176654,
+      "lng": 9.4308863,
+      "display_name": "Stamm Wilhelm Busch, 62, Weißensteinstraße, Bad Wilhelmshöhe, Kassel, Hessen, 34131, Deutschland"
+    }
+  },
+  "osm-1286898422": {
+    "address": "Jahnstraße 11, 34123 Kassel, Germany",
+    "result": {
+      "lat": 51.3090699,
+      "lng": 9.5088022,
+      "display_name": "Sportplatz Jahnkampfbahn, 11, Jahnstraße, Unterneustadt, Kassel, Hessen, 34123, Deutschland"
+    }
+  },
+  "osm-1371332524": {
+    "address": ", 34127 Kassel, Germany",
+    "result": {
+      "lat": 51.3357328,
+      "lng": 9.4896,
+      "display_name": "34127, Nord (Holland), Kassel, Hessen, Deutschland"
+    }
+  }
+}

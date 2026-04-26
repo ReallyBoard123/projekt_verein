@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Star } from "lucide-react";
+import { Wand2 } from "lucide-react";
 import type { Club } from "@/types";
 import { categoryIcon, categoryLabel } from "@/lib/club-utils";
 import {
@@ -9,16 +9,33 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 interface ClubCardProps {
   club: Club;
+  onTagClick?: (tag: string) => void;
 }
 
-export default function ClubCard({ club }: ClubCardProps) {
+export default function ClubCard({ club, onTagClick }: ClubCardProps) {
+  const visibleTags = club.tags.slice(0, 3);
+  const isWizardMatch = (club.matchScore ?? 0) > 0;
+
   return (
-    <Card className="flex flex-col overflow-hidden border-[0.5px] shadow-[0_1px_6px_rgba(13,92,99,0.05)]">
+    <Card
+      className={cn(
+        "flex flex-col overflow-hidden border-[0.5px] transition-all duration-300",
+        isWizardMatch
+          ? "shadow-[0_2px_12px_rgba(13,92,99,0.13)] border-primary/30"
+          : "shadow-[0_1px_6px_rgba(13,92,99,0.05)]"
+      )}
+    >
+      {/* Wizard match accent bar */}
+      {isWizardMatch && (
+        <div className="h-[3px] w-full bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
+      )}
+
       {/* Header strip */}
-      <CardHeader className="flex flex-row items-center justify-between px-5 py-3.5 space-y-0 border-b-[0.5px] border-[#E8F0F0]">
+      <CardHeader className="flex flex-row items-center justify-between px-5 py-3.5 space-y-0 border-b-[0.5px] border-border-light">
         <div className="flex items-center gap-2.5">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center text-primary"
@@ -31,12 +48,12 @@ export default function ClubCard({ club }: ClubCardProps) {
           </span>
         </div>
 
-        {club.matchScore > 0 && (
+        {isWizardMatch && (
           <Badge
             variant="secondary"
-            className="flex items-center gap-1 px-2 py-1 rounded-full text-primary bg-primary/7 border-primary/25 hover:bg-primary/7"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-primary bg-primary/10 border-primary/30 hover:bg-primary/10"
           >
-            <Star size={11} fill="currentColor" aria-hidden="true" />
+            <Wand2 size={11} aria-hidden="true" />
             <span className="text-[12px] font-semibold">
               {club.matchScore} % Match
             </span>
@@ -48,33 +65,32 @@ export default function ClubCard({ club }: ClubCardProps) {
       <CardContent className="p-5 flex flex-col flex-1 gap-2">
         <h3 className="text-[17px] font-bold text-foreground">{club.name}</h3>
 
-        <div className="flex items-center gap-1 text-text-muted">
-          <MapPin size={12} aria-hidden="true" />
-          <span className="text-[13px]">{club.location}</span>
-        </div>
-
-        <div className="flex flex-wrap gap-1.5 mt-1">
-          {club.tags.map((tag) => (
-            <Badge
-              key={tag}
-              variant="secondary"
-              className="px-2 py-0.5 rounded text-[12px] font-medium text-chip-text bg-[var(--chip-bg)] hover:bg-[var(--chip-bg)] shadow-none"
-              style={{ borderRadius: "4px" }}
-            >
-              {tag}
-            </Badge>
-          ))}
-        </div>
-
         {club.description ? (
-          <p className="text-[14px] text-text-body leading-[1.55] mt-1 flex-1 line-clamp-3">
-            {club.description}
+          <p className="text-[14px] text-text-body leading-[1.55] mt-1 flex-1 line-clamp-4">
+            {club.description.length > 280
+              ? club.description.slice(0, 280).trimEnd() + "…"
+              : club.description}
           </p>
         ) : (
           <div className="mt-2 p-3 rounded-lg bg-primary/5 border border-primary/10 flex-1">
             <p className="text-[13px] text-primary font-medium italic">
               Dies ist ein Basis-Eintrag. Hilf der Community und vervollständige das Profil!
             </p>
+          </div>
+        )}
+
+        {/* Tag badges */}
+        {visibleTags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {visibleTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => onTagClick?.(tag)}
+                className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-primary/5 text-primary/80 border border-primary/10 hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                #{tag}
+              </button>
+            ))}
           </div>
         )}
       </CardContent>

@@ -1,0 +1,96 @@
+// Prisma schema for Together (Vereinsfinder) database
+// Based on vereine.json structure with 893 entries
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Verein {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  type            String   @default("Verein")
+  isCharitable    Boolean  @default(false)
+  
+  subtitle        String?
+  summary         String?
+  description     String?
+  
+  categories      String   @default("[]") // JSON array of strings
+  tags            String   @default("[]") // JSON array of strings
+  district        String?
+  
+  addressRaw      String?
+  addressLat      Float?
+  addressLng      Float?
+  email           String?
+  phone           String?
+  website         String?
+  
+  logoUrl         String?
+  socialMedia     String?  // JSON object { facebook, instagram, twitter, etc. }
+  
+  source          String?
+  originalUrl     String?
+  lastSynced      DateTime?
+  completenessScore Float? @default(0)
+  verification    String?
+  
+  meetings        Meeting[]
+  events          Event[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([district])
+  @@index([name])
+}
+
+model Meeting {
+  id          String  @id @default(cuid())
+  vereinId    String
+  verein      Verein  @relation(fields: [vereinId], references: [id], onDelete: Cascade)
+  
+  type        String  @default("regular_meeting") // regular_meeting, training, etc.
+  schedule    String  // e.g., "Every Monday 18:00" or "Sa 25"
+  dayOfWeek   String? // Monday, Tuesday, etc. (normalized)
+  time        String? // 18:00, 19:30, etc.
+  frequency   String? // weekly, monthly, etc.
+  location    String?
+  description String?
+  confidence  String? @default("medium") // low, medium, high
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([vereinId])
+  @@index([dayOfWeek])
+}
+
+model Event {
+  id          String  @id @default(cuid())
+  vereinId    String
+  verein      Verein  @relation(fields: [vereinId], references: [id], onDelete: Cascade)
+  
+  type        String  @default("special_event") // special_event, workshop, exhibition, etc.
+  title       String?
+  date        String? // ISO date: 2026-04-26
+  dateDisplay String? // Display format: 26.04.2026
+  endDate     String? // For multi-day events
+  time        String? // Start time
+  location    String?
+  description String?
+  rawMatch    String? // Original text match
+  confidence  String? @default("medium") // low, medium, high
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([vereinId])
+  @@index([date])
+}

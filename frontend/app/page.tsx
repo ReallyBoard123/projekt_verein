@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { fetchClubs } from "@/lib/actions";
+import { computeMatchScore, expandInterestTags } from "@/lib/scoring";
 import type { Club } from "@/types";
 import HeroSection from "@/components/HeroSection";
 import ClubCard from "@/components/ClubCard";
@@ -12,65 +13,102 @@ import { cn } from "@/lib/utils";
 
 const FILTER_CATEGORY_MAP: Record<string, string | null> = {
   Alle: null,
-  Sport: "Active & Sports",
-  Kinder: "Kinder und Jugendliche",
-  Kultur: "Arts & Culture",
-  Technik: "Tech & DIY",
-  Soziales: "Social & Care",
+  Sport: "Sport",
+  Kinder: "Jugend",
+  Kultur: "Kultur",
+  Technik: "Technik",
+  Soziales: "Soziales",
 };
 
+const PAGE_SIZE = 9;
+
 export default function VereineListingPage() {
-  const [clubs, setClubs] = useState<Club[]>([]);
+  const [allClubs, setAllClubs] = useState<Club[]>([]);
+  const [page, setPage] = useState(1);
   const [activeFilter, setActiveFilter] = useState("Alle");
+  const [activeTag, setActiveTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [showAll, setShowAll] = useState(false);
 
-  // Responsive limit: 6 for mobile, 9 for desktop
-  const [baseLimit, setLimit] = useState(9);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setLimit(window.innerWidth < 768 ? 6 : 9);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
+  // Fetch full filtered set on category or tag change — paginate client-side
   useEffect(() => {
     const load = async () => {
       setIsLoading(true);
+      setPage(1);
       const category = FILTER_CATEGORY_MAP[activeFilter];
-      const c = await fetchClubs({ 
-        category: category || undefined, 
-        limit: showAll ? 1000 : baseLimit 
+      const clubs = await fetchClubs({
+        category: category || undefined,
+        tags: activeTag ? [activeTag] : undefined,
       });
-      setClubs(c);
+      setAllClubs(clubs);
       setIsLoading(false);
     };
     load();
-  }, [activeFilter, baseLimit, showAll]);
+  }, [activeFilter, activeTag]);
 
-  const handleMatch = async (answers: Record<string, any>) => {
+  // Derive available tags from the current result set — only tags that exist
+  const availableTags = useMemo(() => {
+    const freq: Record<string, number> = {};
+    allClubs.forEach((c) =>
+      c.tags.forEach((t) => {
+        if (t !== activeTag) freq[t] = (freq[t] ?? 0) + 1;
+      })
+    );
+    return Object.entries(freq)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 12)
+      .map(([tag]) => tag);
+  }, [allClubs, activeTag]);
+
+  // Apply search filter on top of loaded clubs
+  const filteredClubs = useMemo(() => {
+    if (!searchQuery) return allClubs;
+    const q = searchQuery.toLowerCase();
+    return allClubs.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.tags.some((t) => t.toLowerCase().includes(q))
+    );
+  }, [allClubs, searchQuery]);
+
+  // Reset to page 1 when search changes
+  useEffect(() => { setPage(1); }, [searchQuery]);
+
+  const visibleClubs = filteredClubs.slice(0, page * PAGE_SIZE);
+  const hasMore = filteredClubs.length > page * PAGE_SIZE;
+  const remaining = filteredClubs.length - visibleClubs.length;
+
+  // Wizard match — replaces current result set, no pagination needed (max 12)
+  const handleMatch = async (answers: Record<string, unknown>) => {
     setIsLoading(true);
-    const tags = answers.interests || [];
-    const matched = await fetchClubs({ tags, limit: 12 });
-    setClubs(matched);
+    setPage(1);
+    setActiveFilter("Alle");
+    setActiveTag(null);
+
+    const interests = (answers.interests as string[] | undefined) ?? [];
+    const expandedTags = expandInterestTags(interests);
+
+    const candidates = await fetchClubs({
+      tags: expandedTags.length > 0 ? expandedTags : undefined,
+    });
+
+    const scored = candidates
+      .map((club) => ({ ...club, matchScore: computeMatchScore(club, answers) }))
+      .sort((a, b) => (b.matchScore ?? 0) - (a.matchScore ?? 0))
+      .slice(0, 12);
+
+    setAllClubs(scored);
     setIsLoading(false);
     document.getElementById("results")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const visibleClubs = clubs.filter((club) => {
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      return (
-        club.name.toLowerCase().includes(q) ||
-        club.tags.some((t) => t.toLowerCase().includes(q))
-      );
-    }
-    return true;
-  });
+  const totalLabel = isLoading
+    ? "Suche…"
+    : filteredClubs.length === 0
+    ? "Keine Treffer"
+    : visibleClubs.length < filteredClubs.length
+    ? `${visibleClubs.length} von ${filteredClubs.length} Vereinen`
+    : `${filteredClubs.length} ${filteredClubs.length === 1 ? "Verein" : "Vereine"}`;
 
   return (
     <main>
@@ -83,50 +121,55 @@ export default function VereineListingPage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
               <h2 className="text-[28px] md:text-[32px] leading-[1.2] font-serif font-bold">
-                Vereine & Kollektive
+                Vereine & Initiativen
               </h2>
-              <p className="text-[15px] text-text-body mt-1">
-                {isLoading
-                  ? "Matching..."
-                  : showAll 
-                    ? "Alle Vereine in Kassel" 
-                    : `${visibleClubs.length} Treffer für dich`}
-              </p>
+              <p className="text-[15px] text-text-body mt-1">{totalLabel}</p>
             </div>
-            {!showAll && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowAll(true)}
-                className="border-primary text-primary hover:bg-primary/5 self-start sm:self-auto"
-              >
-                Alle anzeigen
-              </Button>
-            )}
-            {showAll && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowAll(false)}
-                className="text-text-muted hover:text-primary self-start sm:self-auto"
-              >
-                Weniger anzeigen
-              </Button>
-            )}
           </div>
 
-          <FilterBar active={activeFilter} onChange={setActiveFilter} />
+          <FilterBar
+            active={activeFilter}
+            onChange={(f) => {
+              setActiveFilter(f);
+              setActiveTag(null);
+            }}
+            activeTag={activeTag}
+            onTagChange={setActiveTag}
+            availableTags={availableTags}
+          />
 
           <div
             className={cn(
               "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 transition-all duration-500",
-              isLoading ? "opacity-40 grayscale-[50%]" : "opacity-100",
+              isLoading ? "opacity-40 grayscale-[50%]" : "opacity-100"
             )}
           >
             {visibleClubs.map((club) => (
-              <ClubCard key={club.id} club={club} />
+              <ClubCard
+                key={club.id}
+                club={club}
+                onTagClick={(tag) => {
+                  setActiveTag(tag);
+                  setActiveFilter("Alle");
+                }}
+              />
             ))}
           </div>
+
+          {hasMore && (
+            <div className="flex justify-center mt-10">
+              <Button
+                variant="outline"
+                onClick={() => setPage((p) => p + 1)}
+                className="border-primary text-primary hover:bg-primary/5 px-8 h-11 rounded-full"
+              >
+                Weitere {Math.min(remaining, PAGE_SIZE)} anzeigen
+                <span className="ml-2 text-[12px] text-text-muted">
+                  ({remaining} weitere)
+                </span>
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -134,25 +177,24 @@ export default function VereineListingPage() {
         <MapStrip />
       </section>
 
-      {/* Admin footer */}
-      <section className="px-6 md:px-12 py-10 md:py-14 bg-[#0B1A1A]">
+      <section className="px-6 md:px-12 py-10 md:py-14 bg-primary">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <h2 className="text-[24px] md:text-[30px] text-white font-serif font-bold">
+            <h2 className="text-[24px] md:text-[30px] text-primary-foreground font-serif font-bold">
               Euer Verein fehlt?
             </h2>
-            <p className="text-[14px] md:text-[16px] mt-2 text-[#8AB5B5]">
+            <p className="text-[14px] md:text-[16px] mt-2 text-primary-foreground/80">
               Tragt euren Verein kostenlos ein und erreicht neue Mitglieder in
               Kassel.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-            <Button className="h-12 bg-[var(--brand-accent)] text-white border-0">
+            <Button className="h-12 bg-[var(--brand-accent)] hover:bg-[var(--brand-accent)]/90 text-white border-0">
               Verein kostenlos eintragen
             </Button>
             <Button
               variant="outline"
-              className="h-12 border-[#2A4545] text-[#8AB5B5] hover:bg-white/5"
+              className="h-12 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground bg-transparent"
             >
               Mehr erfahren
             </Button>

@@ -19,6 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const club = await fetchClubBySlug(slug);
+  if (!club) return {};
   return {
     title: `${club.name} — VereinsFinder Kassel`,
     description: club.description.substring(0, 160),
@@ -40,7 +41,7 @@ export default async function ClubDetailPage({ params }: PageProps) {
   return (
     <main>
       {/* Breadcrumb */}
-      <div className="px-6 md:px-12 py-4 bg-background border-b-[0.5px] border-[#E8F0F0]">
+      <div className="px-6 md:px-12 py-4 bg-background border-b-[0.5px] border-border-light">
         <div className="max-w-[1200px] mx-auto flex items-center gap-2 text-[14px]">
           <Link
             href="/"
