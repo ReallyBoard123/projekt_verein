@@ -155,3 +155,9 @@ Farbe kommuniziert nie allein: Match-Score = Badge + Icon + Text. Ausgewählte C
 ---
 
 *Zugang ist kein Privileg. Together macht gesellschaftliche Teilhabe für alle möglich.*
+
+---
+
+## Team
+
+Gebaut von **Together** — Chirag, Stefan, Valentina, Sebi, Lucas & Max.
