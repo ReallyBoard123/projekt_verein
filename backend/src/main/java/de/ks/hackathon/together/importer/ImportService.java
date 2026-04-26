@@ -1,7 +1,5 @@
 package de.ks.hackathon.together.importer;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.ks.hackathon.together.angebot.Angebot;
 import de.ks.hackathon.together.vereine.Verein;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 @Service
 @RequiredArgsConstructor
