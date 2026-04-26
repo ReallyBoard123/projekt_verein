@@ -38,8 +38,15 @@ const DB_CATEGORIES = [
   "Politik", "Stadtteil", "Interessenvertretung", "Förderverein", "Tierschutz",
 ];
 
+const SAVED_KEY = (slug: string) => `saved:${slug}`;
+const NOTICE_KEY = "merken_notice_shown";
+
 export default function ClubDetailContent({ club }: { club: Club }) {
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(SAVED_KEY(club.slug)) === "true";
+  });
+  const [showNotice, setShowNotice] = useState(false);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [suggestionSent, setSuggestionSent] = useState(false);
@@ -127,17 +134,33 @@ export default function ClubDetailContent({ club }: { club: Club }) {
         </div>
 
         <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto mt-4 sm:mt-0">
-          <Button
-            variant="outline"
-            onClick={() => setSaved((s) => !s)}
-            className={cn(
-              "flex-1 sm:flex-none h-11 px-6 rounded-full transition-all",
-              saved ? "bg-primary/10 border-primary/30 text-primary" : "border-border"
+          <div className="relative flex-1 sm:flex-none">
+            <Button
+              variant="outline"
+              onClick={() => {
+                const next = !saved;
+                setSaved(next);
+                localStorage.setItem(SAVED_KEY(club.slug), String(next));
+                if (next && !localStorage.getItem(NOTICE_KEY)) {
+                  localStorage.setItem(NOTICE_KEY, "true");
+                  setShowNotice(true);
+                  setTimeout(() => setShowNotice(false), 4000);
+                }
+              }}
+              className={cn(
+                "w-full h-11 px-6 rounded-full transition-all",
+                saved ? "bg-primary/10 border-primary/30 text-primary" : "border-border"
+              )}
+            >
+              <Heart size={18} className={cn("mr-2", saved && "fill-primary")} />
+              {saved ? "Gespeichert" : "Merken"}
+            </Button>
+            {showNotice && (
+              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 bg-foreground text-background text-[12px] leading-snug px-3 py-2 rounded-lg shadow-lg z-50 text-center animate-in fade-in slide-in-from-top-1 duration-200">
+                Deine Merkliste wird nur lokal auf deinem Gerät gespeichert — keine Daten werden an uns übertragen.
+              </div>
             )}
-          >
-            <Heart size={18} className={cn("mr-2", saved && "fill-primary")} />
-            {saved ? "Gespeichert" : "Merken"}
-          </Button>
+          </div>
           {club.contact.website ? (
             <a
               href={club.contact.website}

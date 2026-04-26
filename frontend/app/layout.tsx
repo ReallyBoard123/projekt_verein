@@ -41,15 +41,25 @@ export default function RootLayout({
           <div className="flex-1 pt-24">{children}</div>
         </Suspense>
 
-        <footer className="w-full py-16 md:py-24 border-t border-border bg-background flex flex-col items-center justify-center gap-6">
-          <p className="text-sm text-text-muted font-medium">Ein Projekt von</p>
+        <footer className="w-full py-16 md:py-24 border-t border-border bg-background flex flex-col items-center justify-center gap-6 px-6 text-center">
           <Image
             src="/logo.png"
-            alt="Project Logo"
+            alt="Together Logo"
             width={800}
             height={800}
-            className="h-56 md:h-80 w-56 md:w-80 object-contain opacity-90 hover:opacity-100 transition-opacity"
+            className="h-40 md:h-56 w-40 md:w-56 object-contain opacity-90 hover:opacity-100 transition-opacity"
           />
+          <div className="flex flex-col gap-1">
+            <p className="text-[15px] font-semibold text-foreground">Together</p>
+            <p className="text-[13px] text-text-muted">
+              Chirag · Stefan · Valentina · Sebi · Lucas · Max
+            </p>
+            <p className="text-[12px] text-text-muted/70 mt-0.5">Kassel Hackathon 2026</p>
+          </div>
+          <p className="text-[11px] text-text-muted/50 max-w-sm leading-relaxed">
+            Deine Merkliste wird ausschließlich lokal auf deinem Gerät gespeichert —
+            keine Daten werden an uns übertragen.
+          </p>
         </footer>
       </body>
     </html>
