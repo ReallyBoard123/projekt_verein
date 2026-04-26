@@ -14,11 +14,11 @@ Barrierefreie Web-App, die Menschen in Kassel (und später deutschlandweit) hilf
 
 ## Lösung & USP
 
-**Inline-Onboarding auf der Startseite** — Kein Wizard, kein separater Screen. 4 kurze Fragen als Chips direkt im Hero-Bereich, die Vereinsliste aktualisiert sich live darunter. Sofortige Empfehlungen ohne Seitenwechsel.
+**Inline-Onboarding auf der Startseite** — Kein Wizard, kein separater Screen. Kurze Fragen als Chips direkt im Hero-Bereich, die Vereinsliste aktualisiert sich live darunter. Sofortige Empfehlungen ohne Seitenwechsel.
 
 **Radikale Barrierefreiheit** — WCAG 2.1 AA von Grund auf. Farbe wird nie als einziges Signal eingesetzt – immer kombiniert mit Icon und Text.
 
-**Einfache Vereinseinreichung** — Vereine können sich über ein schlankes Formular einreichen. Kein Account, keine Hürde. Self-Service-Portal folgt in v1.1.
+**Einfache Vereinseinreichung** — Vereine können sich über ein schlankes Formular einreichen. Kein Account, keine Hürde.
 
 > Das Tinder für bürgerschaftliches Engagement.
 
@@ -29,34 +29,44 @@ Barrierefreie Web-App, die Menschen in Kassel (und später deutschlandweit) hilf
 | Feature | Priorität |
 |---|---|
 | Inline-Onboarding + personalisierte Empfehlungen | Must Have |
-| Vereinsübersicht mit Filter (Art, Entfernung, Kinderfreundlichkeit) | Must Have |
+| Vereinsübersicht mit Filter (Art, Tags) | Must Have |
 | Detailansicht Verein & Event-Übersicht | Must Have |
-| Vereinseinreichung per Formular (kein Account) | Must Have |
-| Self-Service-Portal (Profil & Events pflegen) | Should Have (v1.1) |
+| Kartenansicht mit Standortsuche | Must Have |
+| Vereinskorrektur per Formular (kein Account) | Must Have |
 | Barrierefreiheit (WCAG 2.1 AA) | Must Have |
-| Kartenansicht | Should Have (v1.1) |
+| Self-Service-Portal (Profil & Events pflegen) | Should Have (v1.1) |
 | Mehrsprachigkeit DE/EN/TR | Should Have (v1.1) |
 
 ---
 
-## Barrierefreiheit & Farben
+## Architektur
 
-Primärfarbe ist ein **Teal-Grün (`#0D5C63`)** statt reinem Grün – für Rot-Grün-Blinde (Deuteranopie, ~6% der Männer) unterscheidbar. Als Sekundärfarbe wird **Amber (`#B35C00`)** eingesetzt.
+```
+projekt_verein/
+├── backend/      Java 25 · Spring Boot 4 · Neo4j
+│                 REST API · Graph-Datenmodell · Dummy-Modus
+└── frontend/     Next.js 16 · Prisma · SQLite
+                  Server Actions · Wizard-Scoring · Kartenansicht
+```
 
-Farbe kommuniziert nie allein: Match-Score = Badge + Stern-Icon + Text. Ausgewählte Chips = Farbe + Umrandung + Checkmark. Fortschritt = Punkte + `Frage 2 von 4`.
+### Backend (Java / Neo4j)
 
----
+Spring Boot 4 REST-API mit Neo4j als Graphdatenbank. Modelliert Vereine als Knoten mit Kanten zu Angeboten (`Angebot`) und Eigenschaften (`Eigenschaft`), was komplexe Beziehungsabfragen und Empfehlungen ermöglicht.
 
-## Personas
+- **Dummy-Modus** (`app.dummydata=true`): Läuft ohne Neo4j-Instanz mit Testdaten
+- **Produktivmodus** (`app.dummydata=false`): Erfordert laufende Neo4j-Datenbank
+- **Geo-Suche**: Haversine-Formel für Umkreissuche über `/api/search`
+- **Import**: Vereinsdaten per Datei-Upload über `/api/import/vereine`
+- **OpenAPI**: Vollständige Spezifikation in `backend/src/main/resources/openapi.yaml`
 
-**Aigerim, 34** — Neuzugezogene, kein soziales Netz, sucht Angebote für sich und ihre Tochter (7).  
-**Heinz, 67** — Rentner, nicht technikaffin, braucht klare Sprache und große Schrift.  
-**Markus, 52** — Vereinsvorstand ohne eigene Website, will Angebote schnell online stellen.
+### Frontend (Next.js / Prisma)
 
+Next.js 16 mit Prisma und SQLite als lokale Datenbank. Alle Datenbankzugriffe laufen über Server Actions – kein separates API-Layer nötig.
 
----
-
-*Zugang ist kein Privileg. Together macht gesellschaftliche Teilhabe für alle möglich.*
+- **935 Vereine** aus Kassel, kuratiert und mit Geodaten angereichert
+- **Wizard-Scoring**: 9-Komponenten-Algorithmus matched Interessen auf Vereinstags
+- **Kartenansicht**: Leaflet-Integration mit Cluster-Pins
+- **Statische Generierung**: Top-Vereine werden zur Build-Zeit vorgerendert
 
 ---
 
@@ -64,9 +74,8 @@ Farbe kommuniziert nie allein: Match-Score = Badge + Stern-Icon + Text. Ausgewä
 
 ### Voraussetzungen
 
-- **Node.js** (für das Frontend)
-- **Java 25** (für das Backend, getestet mit Corretto 25)
-- **Neo4j** (optional, nur für produktiven Betrieb)
+- **Node.js 18+**
+- **Java 21+** *(optional — nur für den Java/Neo4j-Backend)*
 
 ### Starten
 
@@ -76,49 +85,73 @@ cd projekt_verein
 ./start.sh
 ```
 
-Das Skript:
-- installiert automatisch Frontend-Dependencies (`npm install`) beim ersten Start
-- startet Backend (`:8080`) und Frontend (`:3000`) parallel
-- beendet beide Prozesse sauber mit `Ctrl+C`
-- gibt Port 8080 automatisch frei, falls er noch belegt ist
+Das Skript übernimmt alles:
+1. `npm install` beim ersten Start
+2. Prisma-Migrationen und Daten-Seed (falls noch keine Datenbank vorhanden)
+3. Java-Backend starten — **nur wenn Java 21+ verfügbar** (sonst überspringen, Frontend läuft eigenständig)
+4. Next.js-Frontend auf `:3000` starten
+
+| Dienst | URL |
+|---|---|
+| Frontend | http://localhost:3000 |
+| Backend (optional) | http://localhost:8080 |
 
 ---
 
-## Konfiguration
+## Backend-Konfiguration
 
-### Dummy-Modus (kein Neo4j nötig)
+### Dummy-Modus (Standard, kein Neo4j nötig)
 
-In `backend/src/main/resources/application.properties` ist bereits gesetzt:
+In `backend/src/main/resources/application.properties`:
 
-```
+```properties
 app.dummydata=true
 ```
 
-Damit laufen alle Endpunkte ohne eine echte Datenbank.
+Alle Endpunkte antworten mit Testdaten.
 
-### Produktiver Betrieb mit Neo4j
+### Produktivbetrieb mit Neo4j
 
-1. Neo4j installieren: https://neo4j.com/download/
-2. Datenbank starten (Standard: `bolt://localhost:7687`)
-3. `application.properties` anpassen:
-
-```
+```properties
+app.dummydata=false
 spring.neo4j.uri=bolt://localhost:7687
 spring.neo4j.authentication.username=together
 spring.neo4j.authentication.password=together
-app.dummydata=false
+```
+
+Vereinsdaten importieren:
+
+```bash
+curl -F "file=@backend/src/main/resources/kassel_vereine_master_cleaned.json" \
+     http://localhost:8080/api/import/vereine
 ```
 
 ---
 
-## API
+## Frontend-Datenbank zurücksetzen
 
-- Backend läuft auf [http://localhost:8080](http://localhost:8080)
-- OpenAPI-Spezifikation: `backend/src/main/resources/openapi.yaml`
-- Vereinsdaten importieren:
-  ```bash
-  curl -F "file=@backend/src/main/resources/kassel_vereine_master_cleaned.json" http://localhost:8080/api/import/vereine
-  ```
+```bash
+cd frontend
+npm run db:reset   # Migrationen zurücksetzen + neu seeden
+npm run db:studio  # Prisma Studio öffnen
+```
 
 ---
 
+## Barrierefreiheit & Design
+
+Primärfarbe **Teal-Grün (`#0D5C63`)** statt reinem Grün – für Rot-Grün-Blinde (Deuteranopie, ~6% der Männer) unterscheidbar. Sekundärfarbe **Amber (`#B35C00`)**.
+
+Farbe kommuniziert nie allein: Match-Score = Badge + Icon + Text. Ausgewählte Chips = Farbe + Umrandung + Checkmark. Fortschritt = Punkte + `Frage 2 von 4`.
+
+---
+
+## Personas
+
+**Aigerim, 34** — Neuzugezogene, kein soziales Netz, sucht Angebote für sich und ihre Tochter (7).
+**Heinz, 67** — Rentner, nicht technikaffin, braucht klare Sprache und große Schrift.
+**Markus, 52** — Vereinsvorstand ohne eigene Website, will Angebote schnell online stellen.
+
+---
+
+*Zugang ist kein Privileg. Together macht gesellschaftliche Teilhabe für alle möglich.*
