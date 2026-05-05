@@ -51,7 +51,7 @@ function mapVerein(v: {
 }
 
 // ---------------------------------------------------------------------------
-// Tag + category filtering (in-memory — 155 records, no perf concern)
+// Tag + category filtering (in-memory after DB fetch)
 // ---------------------------------------------------------------------------
 
 function filterClubs(
@@ -104,6 +104,7 @@ export async function fetchClubs(filters?: {
       website: true,
       completenessScore: true,
     },
+    orderBy: { completenessScore: "desc" },
   });
 
   const clubs = rows.map(mapVerein);
