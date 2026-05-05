@@ -7,18 +7,18 @@
  * used by the scoring system.
  */
 
-import { PrismaClient } from "@prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import 'dotenv/config'
+import { PrismaClient } from "../lib/generated/prisma";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(__dirname, "..", "dev.db");
 const rawPath = path.join(__dirname, "..", "data", "vereine.json");
 const cleanedPath = path.join(__dirname, "..", "data", "cleaned_entries.json");
 
-const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 // ---------------------------------------------------------------------------

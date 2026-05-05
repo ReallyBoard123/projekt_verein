@@ -1,10 +1,10 @@
-import { PrismaClient } from '@prisma/client'
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
+import 'dotenv/config'
+import { PrismaClient } from '../lib/generated/prisma'
+import { PrismaNeon } from '@prisma/adapter-neon'
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 
-const dbPath = join(process.cwd(), 'dev.db')
-const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` })
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! })
 const prisma = new PrismaClient({ adapter })
 
 async function seedFromSnapshot(snapshotPath: string) {

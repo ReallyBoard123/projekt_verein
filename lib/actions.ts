@@ -122,7 +122,7 @@ export async function fetchClubBySlug(slug: string): Promise<Club | null> {
 
   const club = mapVerein(v);
 
-  club.events = v.events.map((e) => ({
+  club.events = v.events.map((e: typeof v.events[number]) => ({
     id: e.id,
     name: e.title ?? e.type ?? "Event",
     date: e.date ?? "",
@@ -170,7 +170,7 @@ export async function fetchMapClubs(): Promise<MapClub[]> {
     },
   });
 
-  return rows.map((r) => ({
+  return rows.map((r: typeof rows[number]) => ({
     slug: r.slug,
     name: r.name,
     category: (JSON.parse(r.categories || "[]") as string[])[0] ?? "Verein",
@@ -191,7 +191,7 @@ export async function fetchEvents(): Promise<ClubEvent[]> {
     orderBy: { date: "asc" },
   });
 
-  return events.map((e) => ({
+  return events.map((e: typeof events[number]) => ({
     id: e.id,
     name: e.title ?? e.type ?? "Event",
     date: e.date ?? "",

@@ -4,18 +4,17 @@
  * Drops all existing data and seeds only the 157 verified high-quality entries
  */
 
-import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
-import Database from 'better-sqlite3';
+import 'dotenv/config'
+import { PrismaClient } from '../lib/generated/prisma';
+import { PrismaNeon } from '@prisma/adapter-neon';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(__dirname, '..', 'dev.db');
 const cleanedDataPath = path.join(__dirname, '..', 'data', 'cleaned_entries.json');
 
-const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 interface CleanedEntry {
